@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
-import { TrendingUp, Database, LightBulb } from 'lucide-react';
+import { TrendingUp, Database, Lightbulb } from 'lucide-react';
 
 const Differentiators = () => {
   return (
@@ -21,6 +20,7 @@ const Differentiators = () => {
         </motion.div>
         
         <div className="space-y-16">
+          
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -163,7 +163,7 @@ const Differentiators = () => {
             </div>
             <div>
               <div className="inline-flex p-3 bg-black rounded-md mb-6">
-                <LightBulb className="text-white" size={24} />
+                <Lightbulb className="text-white" size={24} />
               </div>
               <h3 className="text-2xl font-bold mb-4">
                 Synthetic data & simulations
