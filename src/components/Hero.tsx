@@ -416,11 +416,11 @@ const Hero = () => {
                     </motion.div>
                   </div>
                   
-                  {/* Main visualization area - Improved height and visibility */}
+                  {/* Main visualization area - Added more spacing between tabs and content */}
                   <div className="grid grid-cols-3 gap-4">
                     <div className="col-span-2 bg-gray-50 rounded-xl p-4 relative overflow-hidden">
                       {/* Analysis header and tabs - with more separation from content */}
-                      <div className="flex justify-between items-center mb-4">
+                      <div className="flex justify-between items-center mb-6">
                         <div className="flex items-center space-x-1.5">
                           <LineChart className="h-4 w-4 text-indigo-600" />
                           <h4 className="text-sm font-medium text-gray-700">Analysis</h4>
@@ -447,8 +447,8 @@ const Hero = () => {
                         </div>
                       </div>
                       
-                      {/* Fixed height container for charts */}
-                      <div className="h-[200px] px-2">
+                      {/* Fixed height container for charts with increased top margin */}
+                      <div className="h-[200px] px-2 mt-4">
                         <AnimatePresence mode="wait">
                           <motion.div 
                             key={`chart-${activeChart}`}
@@ -564,7 +564,7 @@ const Hero = () => {
                               </div>
                             )}
 
-                            {/* Market Adoption Curve */}
+                            {/* Market Adoption Curve - Reverted to original design */}
                             {activeChart === 1 && (
                               <div className="h-full flex items-center justify-center">
                                 <div className="w-full">
@@ -578,20 +578,20 @@ const Hero = () => {
                                       <line x1="75" y1="0" x2="75" y2="40" stroke="#f1f1f1" strokeWidth="0.5" />
                                       
                                       {/* Bell curve */}
-                                      <path d="M0,39 C10,39 15,38 20,30 C25,10 30,5 40,5 C50,5 60,15 70,25 C80,35 90,38 100,39" fill="none" stroke="#9b87f5" strokeWidth="1.5" />
+                                      <path d="M5,38 C15,38 20,35 25,20 C30,5 35,3 40,3 C45,3 50,10 55,10 C60,10 65,5 70,10 C75,15 80,25 85,30 C90,35 95,37 100,38" fill="none" stroke="#9b87f5" strokeWidth="2" />
                                       
                                       {/* Areas under the bell curve */}
-                                      <path d="M0,39 C10,39 15,38 20,30 C25,10 30,5 40,5 L40,39 Z" fill="rgba(155, 135, 245, 0.1)" />
-                                      <path d="M40,5 C50,5 60,15 70,25 L70,39 L40,39 Z" fill="rgba(155, 135, 245, 0.2)" />
-                                      <path d="M70,25 C80,35 90,38 100,39 L100,39 L70,39 Z" fill="rgba(155, 135, 245, 0.05)" />
+                                      <path d="M5,38 C15,38 20,35 25,20 C30,5 35,3 40,3 L40,39 L5,39 Z" fill="rgba(155, 135, 245, 0.1)" />
+                                      <path d="M40,3 C45,3 50,10 55,10 C60,10 65,5 70,10 L70,39 L40,39 Z" fill="rgba(155, 135, 245, 0.2)" />
+                                      <path d="M70,10 C75,15 80,25 85,30 C90,35 95,37 100,38 L100,39 L70,39 Z" fill="rgba(155, 135, 245, 0.05)" />
                                       
-                                      {/* Current position indicator */}
-                                      <circle cx="35" cy="10" r="1.5" fill="#6E59A5" stroke="#fff" strokeWidth="0.5" />
+                                      {/* Current position marker */}
+                                      <circle cx="40" cy="3" r="2" fill="#6E59A5" />
                                       
                                       {/* Labels */}
-                                      <text x="12" y="36" fontSize="2.5" textAnchor="middle" fill="#6E59A5">Early Adopters</text>
-                                      <text x="55" y="36" fontSize="2.5" textAnchor="middle" fill="#6E59A5">Early Majority</text>
-                                      <text x="85" y="36" fontSize="2.5" textAnchor="middle" fill="#6E59A5">Late Majority</text>
+                                      <text x="12" y="33" fontSize="3" textAnchor="middle" fill="#6E59A5">Early Adopters</text>
+                                      <text x="55" y="33" fontSize="3" textAnchor="middle" fill="#6E59A5">Early Majority</text>
+                                      <text x="85" y="33" fontSize="3" textAnchor="middle" fill="#6E59A5">Late Majority</text>
                                     </svg>
                                   </div>
                                   
@@ -619,7 +619,7 @@ const Hero = () => {
                               </div>
                             )}
                             
-                            {/* Brand Association Chart - Replacing the competitor analysis with a more realistic visualization */}
+                            {/* Brand Association Chart */}
                             {activeChart === 2 && (
                               <div className="h-full flex items-center justify-center">
                                 <div className="w-full">
