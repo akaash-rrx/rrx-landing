@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -385,10 +386,10 @@ const Hero = () => {
                     </motion.div>
                   </div>
                   
-                  {/* Main visualization area - Fixed spacing issue */}
+                  {/* Main visualization area - Fixed height issues */}
                   <div className="grid grid-cols-3 gap-6 h-[280px]">
                     <div className="col-span-2 bg-gray-50 rounded-xl p-4 relative overflow-hidden">
-                      <div className="flex justify-between items-center mb-1">
+                      <div className="flex justify-between items-center mb-3">
                         <h4 className="text-sm font-medium text-gray-700">Market Research Analysis</h4>
                         <div className="flex items-center space-x-1 text-xs">
                           <button className={`px-2 py-1 rounded ${activeChart === 0 ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500'}`}>
@@ -409,8 +410,8 @@ const Hero = () => {
                         </div>
                       </div>
                       
-                      {/* Fixed height to ensure content is visible */}
-                      <div className="h-[250px] px-2">
+                      {/* Fixed height to ensure content is visible - decreased top margin */}
+                      <div className="h-[230px] px-2 mt-2">
                         <AnimatePresence mode="wait">
                           <motion.div 
                             key={`chart-${activeChart}`}
@@ -542,21 +543,225 @@ const Hero = () => {
                                         strokeWidth="0.5"
                                       />
                                       
-                                      {/* Market segment markers - removed animation */}
+                                      {/* Market segment markers - removing animations */}
                                       <circle cx="20" cy="8" r="1.2" fill="#9b87f5" />
                                       <circle cx="42" cy="15" r="1.2" fill="#6E59A5" />
                                       <circle cx="65" cy="25" r="1.2" fill="#aaa6db" />
                                       <circle cx="85" cy="33" r="1.2" fill="#d0cce9" />
                                     </svg>
                                     
-                                    {/* Labels */}
+                                    {/* Labels - fixed positioning */}
                                     <div className="absolute bottom-0 left-[18%] transform -translate-x-1/2 text-[10px] text-gray-600">
-                                      <div>Innovators</div>
+                                      Innovators
                                     </div>
                                     <div className="absolute bottom-0 left-[42%] transform -translate-x-1/2 text-[10px] text-gray-600">
-                                      <div>Early Adopters</div>
+                                      Early Adopters
                                     </div>
                                     <div className="absolute bottom-0 left-[65%] transform -translate-x-1/2 text-[10px] text-gray-600">
-                                      <div>Majority</div>
+                                      Majority
                                     </div>
                                     <div className="absolute bottom-0 left-[85%] transform -translate-x-1/2 text-[10px] text-gray-600">
+                                      Laggards
+                                    </div>
+                                  </div>
+                                  
+                                  <div className="grid grid-cols-2 gap-2 mt-2">
+                                    {marketSegmentData.map((segment, idx) => (
+                                      <div key={`segment-${idx}`} className="bg-white rounded border border-gray-100 shadow-sm p-2 flex justify-between items-center">
+                                        <div className="text-xs">
+                                          <div className="font-medium text-gray-800">{segment.name}</div>
+                                          <div className="text-gray-500 text-[10px]">{segment.percentage}% of market</div>
+                                        </div>
+                                        <div className={`text-xs font-medium ${segment.growth.includes('+') ? 'text-emerald-600' : 'text-red-500'}`}>
+                                          {segment.growth}
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                            
+                            {/* Competitor Comparison Chart */}
+                            {activeChart === 3 && (
+                              <div className="h-full w-full flex items-center justify-center">
+                                <div className="w-full max-w-lg">
+                                  <div className="text-xs font-medium text-gray-700 mb-3">Competitor Performance Matrix</div>
+                                  <div className="bg-white rounded-lg border border-gray-100 p-3 shadow-sm">
+                                    <div className="grid grid-cols-5 gap-1 text-center text-[10px] mb-2">
+                                      <div className="text-left font-medium text-gray-500">Product</div>
+                                      <div className="font-medium text-gray-500">Innovation</div>
+                                      <div className="font-medium text-gray-500">Reliability</div>
+                                      <div className="font-medium text-gray-500">Value</div>
+                                      <div className="font-medium text-gray-500">Overall</div>
+                                    </div>
+                                    
+                                    {competitorPerceptionData.map((comp, idx) => (
+                                      <div key={`comp-${idx}`} className="grid grid-cols-5 gap-1 py-2 text-center text-xs border-t border-gray-100">
+                                        <div className={`text-left font-medium ${idx === 0 ? 'text-indigo-600' : 'text-gray-700'}`}>
+                                          {comp.name}
+                                        </div>
+                                        <div className="flex justify-center items-center">
+                                          <div className="w-16 h-2 bg-gray-100 rounded-full">
+                                            <div 
+                                              className={`h-2 rounded-full ${idx === 0 ? 'bg-indigo-500' : 'bg-gray-400'}`}
+                                              style={{width: `${comp.metrics.innovation}%`}}
+                                            ></div>
+                                          </div>
+                                        </div>
+                                        <div className="flex justify-center items-center">
+                                          <div className="w-16 h-2 bg-gray-100 rounded-full">
+                                            <div 
+                                              className={`h-2 rounded-full ${idx === 0 ? 'bg-indigo-500' : 'bg-gray-400'}`}
+                                              style={{width: `${comp.metrics.reliability}%`}}
+                                            ></div>
+                                          </div>
+                                        </div>
+                                        <div className="flex justify-center items-center">
+                                          <div className="w-16 h-2 bg-gray-100 rounded-full">
+                                            <div 
+                                              className={`h-2 rounded-full ${idx === 0 ? 'bg-indigo-500' : 'bg-gray-400'}`}
+                                              style={{width: `${comp.metrics.value}%`}}
+                                            ></div>
+                                          </div>
+                                        </div>
+                                        <div className="font-medium text-gray-800">
+                                          {comp.overall}
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                            
+                            {/* Sentiment Analysis Chart */}
+                            {activeChart === 4 && (
+                              <div className="h-full flex items-center justify-center">
+                                <div className="w-full max-w-lg">
+                                  <div className="text-xs font-medium text-gray-700 mb-2">Brand Perception Analysis</div>
+                                  <div className="grid grid-cols-2 gap-3">
+                                    <div className="bg-white rounded-lg border border-gray-100 p-2 shadow-sm">
+                                      <div className="flex justify-between mb-1">
+                                        <div className="text-xs font-medium text-gray-700">Key Attributes</div>
+                                        <div className="text-xs text-gray-500">% Positive Mentions</div>
+                                      </div>
+                                      <div className="space-y-2 max-h-[150px] overflow-y-auto">
+                                        {brandAttributeData.map((attr, idx) => (
+                                          <div key={`attr-${idx}`} className="flex items-center justify-between">
+                                            <span className="text-xs text-gray-600">{attr.attribute}</span>
+                                            <div className="flex items-center space-x-2">
+                                              <div className="w-20 h-1.5 bg-gray-100 rounded-full">
+                                                <div 
+                                                  className="h-1.5 bg-gradient-to-r from-indigo-400 to-indigo-600 rounded-full" 
+                                                  style={{width: `${attr.percentage}%`}}
+                                                ></div>
+                                              </div>
+                                              <span className="text-xs font-medium text-gray-700 w-8">{attr.percentage}%</span>
+                                              <span className={`text-[10px] ${attr.change.includes('+') ? 'text-emerald-600' : 'text-red-500'}`}>
+                                                {attr.change}
+                                              </span>
+                                            </div>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    </div>
+                                    
+                                    <div className="bg-white rounded-lg border border-gray-100 p-2 shadow-sm">
+                                      <div className="text-xs font-medium text-gray-700 mb-2">Key Themes</div>
+                                      <div className="grid grid-cols-2 gap-2 text-xs">
+                                        <div className="bg-indigo-50 rounded p-2">
+                                          <div className="font-medium text-indigo-800">Innovation Focus</div>
+                                          <div className="text-indigo-600">86% Positive</div>
+                                          <div className="text-[10px] text-gray-500 mt-1">
+                                            Customers consistently highlight innovative features as a differentiator
+                                          </div>
+                                        </div>
+                                        <div className="bg-emerald-50 rounded p-2">
+                                          <div className="font-medium text-emerald-800">Ease of Use</div>
+                                          <div className="text-emerald-600">79% Positive</div>
+                                          <div className="text-[10px] text-gray-500 mt-1">
+                                            Interface simplicity and learning curve rated highly
+                                          </div>
+                                        </div>
+                                        <div className="bg-amber-50 rounded p-2">
+                                          <div className="font-medium text-amber-800">Value Proposition</div>
+                                          <div className="text-amber-600">65% Positive</div>
+                                          <div className="text-[10px] text-gray-500 mt-1">
+                                            ROI perception still has room for improvement
+                                          </div>
+                                        </div>
+                                        <div className="bg-blue-50 rounded p-2">
+                                          <div className="font-medium text-blue-800">Customer Support</div>
+                                          <div className="text-blue-600">88% Positive</div>
+                                          <div className="text-[10px] text-gray-500 mt-1">
+                                            Support team responsiveness highly praised
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </motion.div>
+                        </AnimatePresence>
+                      </div>
+                    </div>
+                    
+                    <div className="col-span-1 bg-white rounded-xl border border-gray-100 shadow-sm p-4">
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center space-x-1.5">
+                          <MapPin className="h-3.5 w-3.5 text-gray-600" />
+                          <h4 className="text-sm font-medium text-gray-700">Regional Insights</h4>
+                        </div>
+                        <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded">
+                          5 Regions
+                        </span>
+                      </div>
+                      
+                      <div className="space-y-3 h-[200px] overflow-y-auto pr-1">
+                        {[
+                          { region: "North America", value: 42, change: "+8%", color: "#818cf8" },
+                          { region: "Europe", value: 28, change: "+12%", color: "#a78bfa" },
+                          { region: "Asia Pacific", value: 18, change: "+15%", color: "#c4b5fd" },
+                          { region: "Latin America", value: 8, change: "+4%", color: "#ddd6fe" },
+                          { region: "Middle East", value: 4, change: "+2%", color: "#ede9fe" }
+                        ].map((item, idx) => (
+                          <div key={`region-${idx}`} className="bg-gray-50 rounded-lg p-2">
+                            <div className="flex justify-between items-center mb-1">
+                              <span className="text-xs font-medium text-gray-700">{item.region}</span>
+                              <div className="flex items-center space-x-1">
+                                <span className="text-xs font-medium">{item.value}%</span>
+                                <span className="text-[10px] text-emerald-600">{item.change}</span>
+                              </div>
+                            </div>
+                            <div className="w-full h-1.5 bg-gray-100 rounded-full">
+                              <div 
+                                className="h-1.5 rounded-full" 
+                                style={{width: `${item.value}%`, backgroundColor: item.color}}
+                              ></div>
+                            </div>
+                            <div className="mt-1 text-[10px] text-gray-500">
+                              {item.region === "North America" && "Primary market with highest adoption rate"}
+                              {item.region === "Europe" && "Strong growth in UK and Germany"}
+                              {item.region === "Asia Pacific" && "Emerging market with rapid adoption"}
+                              {item.region === "Latin America" && "Growing interest in Brazil and Mexico"}
+                              {item.region === "Middle East" && "New expansion area showing potential"}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
