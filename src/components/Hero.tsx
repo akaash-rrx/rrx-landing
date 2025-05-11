@@ -395,8 +395,8 @@ const Hero = () => {
                   {/* Main visualization area - Improved height and visibility */}
                   <div className="grid grid-cols-3 gap-4">
                     <div className="col-span-2 bg-gray-50 rounded-xl p-4 relative overflow-hidden">
-                      {/* Analysis header and tabs - now with more separation from content */}
-                      <div className="flex justify-between items-center mb-10">
+                      {/* Analysis header and tabs - with more separation from content */}
+                      <div className="flex justify-between items-center mb-12">
                         <div className="flex items-center space-x-1.5">
                           <LineChart className="h-4 w-4 text-indigo-600" />
                           <h4 className="text-sm font-medium text-gray-700">Analysis</h4>
@@ -423,8 +423,8 @@ const Hero = () => {
                         </div>
                       </div>
                       
-                      {/* Fixed height container for charts - Increased top margin for better separation */}
-                      <div className="h-[165px] px-2 mt-14">
+                      {/* Fixed height container for charts - Further increased top margin for better separation */}
+                      <div className="h-[165px] px-2 mt-16">
                         <AnimatePresence mode="wait">
                           <motion.div 
                             key={`chart-${activeChart}`}
@@ -438,7 +438,7 @@ const Hero = () => {
                             {activeChart === 0 && (
                               <div className="h-full flex items-center justify-center">
                                 <div className="w-full">
-                                  <div className="flex justify-between mb-2">
+                                  <div className="flex justify-between mb-4">
                                     <div className="text-xs font-medium text-gray-700">Customer Sentiment Trends</div>
                                     <div className="flex items-center text-xs space-x-3">
                                       <div className="flex items-center space-x-1">
@@ -458,95 +458,13 @@ const Hero = () => {
                                   
                                   {/* SVG Area Chart */}
                                   <div className="relative h-24 mt-2">
+                                    {/* ... keep existing code (SVG chart) */}
                                     <svg className="w-full h-full" viewBox="0 0 600 100" preserveAspectRatio="none">
-                                      {/* Gradient definitions */}
-                                      <defs>
-                                        <linearGradient id="positiveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                          <stop offset="0%" stopColor="rgb(16, 185, 129)" stopOpacity="0.4" />
-                                          <stop offset="100%" stopColor="rgb(16, 185, 129)" stopOpacity="0.1" />
-                                        </linearGradient>
-                                        <linearGradient id="negativeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                          <stop offset="0%" stopColor="rgb(248, 113, 113)" stopOpacity="0.4" />
-                                          <stop offset="100%" stopColor="rgb(248, 113, 113)" stopOpacity="0.1" />
-                                        </linearGradient>
-                                        <linearGradient id="neutralGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                          <stop offset="0%" stopColor="rgb(156, 163, 175)" stopOpacity="0.2" />
-                                          <stop offset="100%" stopColor="rgb(156, 163, 175)" stopOpacity="0.05" />
-                                        </linearGradient>
-                                      </defs>
-                                      
-                                      {/* Grid lines */}
-                                      <line x1="0" y1="25" x2="600" y2="25" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2" />
-                                      <line x1="0" y1="50" x2="600" y2="50" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2" />
-                                      <line x1="0" y1="75" x2="600" y2="75" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2" />
-                                      
-                                      {/* X-axis labels */}
-                                      {insightTrendsData.map((data, i) => (
-                                        <text 
-                                          key={`x-label-${i}`}
-                                          x={100 * i + 50} 
-                                          y="100" 
-                                          textAnchor="middle" 
-                                          fontSize="10" 
-                                          fill="#6B7280"
-                                        >
-                                          {data.month}
-                                        </text>
-                                      ))}
-                                      
-                                      {/* Positive sentiment area */}
-                                      <path 
-                                        d={`M0,${100 - insightTrendsData[0].positive} ${insightTrendsData.map((d, i) => `L${100 * i + 50},${100 - d.positive}`).join(' ')} L600,${100 - insightTrendsData[insightTrendsData.length - 1].positive} V100 H0 Z`}
-                                        fill="url(#positiveGradient)"
-                                      />
-                                      
-                                      {/* Positive line */}
-                                      <path 
-                                        d={`M0,${100 - insightTrendsData[0].positive} ${insightTrendsData.map((d, i) => `L${100 * i + 50},${100 - d.positive}`).join(' ')} L600,${100 - insightTrendsData[insightTrendsData.length - 1].positive}`}
-                                        fill="none"
-                                        stroke="#10B981"
-                                        strokeWidth="2"
-                                      />
-                                      
-                                      {/* Negative sentiment area */}
-                                      <path 
-                                        d={`M0,${100 - insightTrendsData[0].negative} ${insightTrendsData.map((d, i) => `L${100 * i + 50},${100 - d.negative}`).join(' ')} L600,${100 - insightTrendsData[insightTrendsData.length - 1].negative} V100 H0 Z`}
-                                        fill="url(#negativeGradient)"
-                                      />
-                                      
-                                      {/* Negative line */}
-                                      <path 
-                                        d={`M0,${100 - insightTrendsData[0].negative} ${insightTrendsData.map((d, i) => `L${100 * i + 50},${100 - d.negative}`).join(' ')} L600,${100 - insightTrendsData[insightTrendsData.length - 1].negative}`}
-                                        fill="none"
-                                        stroke="#F87171"
-                                        strokeWidth="2"
-                                      />
-                                      
-                                      {/* Data points - positive */}
-                                      {insightTrendsData.map((data, i) => (
-                                        <circle 
-                                          key={`point-pos-${i}`}
-                                          cx={100 * i + 50} 
-                                          cy={100 - data.positive} 
-                                          r="3" 
-                                          fill="#10B981" 
-                                        />
-                                      ))}
-                                      
-                                      {/* Data points - negative */}
-                                      {insightTrendsData.map((data, i) => (
-                                        <circle 
-                                          key={`point-neg-${i}`}
-                                          cx={100 * i + 50} 
-                                          cy={100 - data.negative} 
-                                          r="3" 
-                                          fill="#F87171" 
-                                        />
-                                      ))}
+                                      {/* ... keep existing code (gradient definitions, grid lines, chart paths) */}
                                     </svg>
                                   </div>
                                   
-                                  <div className="mt-2 grid grid-cols-3 gap-2">
+                                  <div className="mt-6 grid grid-cols-3 gap-2">
                                     <div className="text-center bg-gray-50 rounded-md px-2 py-1 border border-gray-200">
                                       <div className="text-[10px] text-gray-500">Key Sentiment Driver</div>
                                       <div className="text-xs font-medium text-gray-800 mt-0.5">Product Reliability</div>
@@ -570,49 +488,15 @@ const Hero = () => {
                                 <div className="w-full">
                                   <div className="text-xs font-medium text-gray-700 mb-2">Market Adoption Analysis</div>
                                   <div className="relative h-24 mb-1">
+                                    {/* ... keep existing code (SVG for market curve) */}
                                     <svg viewBox="0 0 100 40" className="w-full h-full" preserveAspectRatio="none">
-                                      {/* Bell curve path */}
-                                      <defs>
-                                        <linearGradient id="bellGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                          <stop offset="0%" stopColor="#9b87f5" stopOpacity="0.7" />
-                                          <stop offset="50%" stopColor="#6E59A5" stopOpacity="0.8" />
-                                          <stop offset="100%" stopColor="#d0cce9" stopOpacity="0.7" />
-                                        </linearGradient>
-                                      </defs>
-                                      <path 
-                                        d="M0,40 C10,40 15,5 25,5 C35,5 40,15 50,15 C60,15 65,25 75,25 C85,25 90,35 100,35 L100,40 L0,40 Z" 
-                                        fill="url(#bellGradient)"
-                                      />
-                                      <path 
-                                        d="M0,40 C10,40 15,5 25,5 C35,5 40,15 50,15 C60,15 65,25 75,25 C85,25 90,35 100,35" 
-                                        fill="none"
-                                        stroke="#6E59A5"
-                                        strokeWidth="0.5"
-                                      />
-                                      
-                                      {/* Market segment markers */}
-                                      <circle cx="20" cy="8" r="1.2" fill="#9b87f5" />
-                                      <circle cx="42" cy="15" r="1.2" fill="#6E59A5" />
-                                      <circle cx="65" cy="25" r="1.2" fill="#aaa6db" />
-                                      <circle cx="85" cy="33" r="1.2" fill="#d0cce9" />
+                                      {/* ... keep existing code (bell curve SVG elements) */}
                                     </svg>
                                       
-                                    {/* Improved label positioning */}
-                                    <div className="absolute -bottom-3 left-[18%] transform -translate-x-1/2 text-[8px] text-gray-600">
-                                      Early Adopters
-                                    </div>
-                                    <div className="absolute -bottom-3 left-[42%] transform -translate-x-1/2 text-[8px] text-gray-600">
-                                      Tech Enthusiasts
-                                    </div>
-                                    <div className="absolute -bottom-3 left-[65%] transform -translate-x-1/2 text-[8px] text-gray-600">
-                                      Pragmatists
-                                    </div>
-                                    <div className="absolute -bottom-3 left-[85%] transform -translate-x-1/2 text-[8px] text-gray-600">
-                                      Conservatives
-                                    </div>
+                                    {/* ... keep existing code (label positioning) */}
                                   </div>
                                   
-                                  <div className="grid grid-cols-2 gap-3 mt-3 text-xs">
+                                  <div className="grid grid-cols-2 gap-3 mt-8 text-xs">
                                     <div className="bg-white p-1.5 rounded-md border border-gray-100 shadow-sm">
                                       <div className="flex justify-between items-center">
                                         <div className="text-[10px] text-gray-500">Market Penetration</div>
@@ -647,74 +531,17 @@ const Hero = () => {
                                   
                                   {/* Radar chart simulation */}
                                   <div className="relative h-28 mt-1 mx-auto" style={{width: "280px"}}>
+                                    {/* ... keep existing code (SVG radar chart) */}
                                     <svg viewBox="0 0 200 120" className="w-full h-full">
-                                      {/* Background grid */}
-                                      <circle cx="100" cy="60" r="50" fill="none" stroke="#e5e7eb" strokeWidth="0.5" />
-                                      <circle cx="100" cy="60" r="33" fill="none" stroke="#e5e7eb" strokeWidth="0.5" />
-                                      <circle cx="100" cy="60" r="16" fill="none" stroke="#e5e7eb" strokeWidth="0.5" />
-                                      
-                                      {/* Axis lines */}
-                                      <line x1="100" y1="10" x2="100" y2="110" stroke="#e5e7eb" strokeWidth="0.5" />
-                                      <line x1="50" y1="60" x2="150" y2="60" stroke="#e5e7eb" strokeWidth="0.5" />
-                                      <line x1="65" y1="25" x2="135" y2="95" stroke="#e5e7eb" strokeWidth="0.5" strokeDasharray="2,2" />
-                                      <line x1="65" y1="95" x2="135" y2="25" stroke="#e5e7eb" strokeWidth="0.5" strokeDasharray="2,2" />
-                                      
-                                      {/* Axis labels */}
-                                      <text x="100" y="5" textAnchor="middle" fontSize="7" fill="#6B7280">Innovation</text>
-                                      <text x="100" y="118" textAnchor="middle" fontSize="7" fill="#6B7280">Reliability</text>
-                                      <text x="45" y="63" textAnchor="end" fontSize="7" fill="#6B7280">Cost</text>
-                                      <text x="155" y="63" textAnchor="start" fontSize="7" fill="#6B7280">Value</text>
-                                      
-                                      {/* Your product */}
-                                      <polygon 
-                                        points="100,20 130,60 100,95 70,60" 
-                                        fill="rgba(79, 70, 229, 0.2)" 
-                                        stroke="#4F46E5" 
-                                        strokeWidth="1"
-                                      />
-                                      <circle cx="100" cy="20" r="2" fill="#4F46E5" />
-                                      <circle cx="130" cy="60" r="2" fill="#4F46E5" />
-                                      <circle cx="100" cy="95" r="2" fill="#4F46E5" />
-                                      <circle cx="70" cy="60" r="2" fill="#4F46E5" />
-                                      
-                                      {/* Competitor A */}
-                                      <polygon 
-                                        points="100,30 120,60 100,85 80,60" 
-                                        fill="rgba(156, 163, 175, 0.2)" 
-                                        stroke="#9CA3AF" 
-                                        strokeWidth="1"
-                                        strokeDasharray="2,1"
-                                      />
-                                      <circle cx="100" cy="30" r="1.5" fill="#9CA3AF" />
-                                      <circle cx="120" cy="60" r="1.5" fill="#9CA3AF" />
-                                      <circle cx="100" cy="85" r="1.5" fill="#9CA3AF" />
-                                      <circle cx="80" cy="60" r="1.5" fill="#9CA3AF" />
-                                      
-                                      {/* Competitor B */}
-                                      <polygon 
-                                        points="100,25 110,60 100,90 90,60" 
-                                        fill="rgba(107, 114, 128, 0.2)" 
-                                        stroke="#6B7280" 
-                                        strokeWidth="1"
-                                        strokeDasharray="2,1"
-                                      />
+                                      {/* ... keep existing code (radar chart SVG elements) */}
                                     </svg>
                                     
                                     <div className="absolute top-2 right-3 bg-white/90 px-1.5 py-1 rounded border border-gray-100 shadow-sm">
-                                      <div className="flex items-center space-x-2 text-[9px]">
-                                        <div className="flex items-center">
-                                          <div className="w-2 h-2 bg-indigo-600 rounded-sm mr-1"></div>
-                                          <span>Your Product</span>
-                                        </div>
-                                        <div className="flex items-center">
-                                          <div className="w-2 h-2 bg-gray-400 rounded-sm mr-1"></div>
-                                          <span>Competitors</span>
-                                        </div>
-                                      </div>
+                                      {/* ... keep existing code (chart legend) */}
                                     </div>
                                   </div>
                                   
-                                  <div className="grid grid-cols-2 gap-2 mt-0 text-xs">
+                                  <div className="grid grid-cols-2 gap-2 mt-8 text-xs">
                                     <div className="bg-white p-1.5 rounded border border-gray-100 shadow-sm">
                                       <div className="flex justify-between items-center">
                                         <span className="text-[10px] text-gray-500">Overall Score</span>
@@ -742,6 +569,7 @@ const Hero = () => {
                       </div>
                     </div>
                     
+                    {/* Regional Insights panel */}
                     <div className="bg-gray-50 rounded-xl p-4 overflow-hidden">
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center space-x-1.5">
