@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -120,7 +119,7 @@ const Hero = () => {
               transition={{ delay: 0.2, duration: 0.5 }}
             >
               <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-indigo-50 text-indigo-700 text-sm font-medium tracking-wider">
-                <span className="w-2 h-2 bg-indigo-600 rounded-full mr-2 animate-pulse"></span>
+                <span className="w-2 h-2 bg-indigo-600 rounded-full mr-2"></span>
                 FOR RESEARCHERS, BY RESEARCHERS
               </span>
             </motion.div>
@@ -217,7 +216,7 @@ const Hero = () => {
                     </div>
                     <div className="flex items-center space-x-3">
                       <span className="flex items-center text-xs text-indigo-600">
-                        <span className="w-2 h-2 bg-indigo-600 rounded-full mr-1.5 animate-pulse"></span>
+                        <span className="w-2 h-2 bg-indigo-600 rounded-full mr-1.5"></span>
                         1,204 Interviews Analyzed
                       </span>
                       <div className="flex items-center space-x-2 bg-gray-50 px-2.5 py-1 rounded-md">
@@ -386,10 +385,10 @@ const Hero = () => {
                     </motion.div>
                   </div>
                   
-                  {/* Main visualization area */}
+                  {/* Main visualization area - Fixed spacing issue */}
                   <div className="grid grid-cols-3 gap-6 h-[280px]">
                     <div className="col-span-2 bg-gray-50 rounded-xl p-4 relative overflow-hidden">
-                      <div className="flex justify-between items-center mb-2">
+                      <div className="flex justify-between items-center mb-1">
                         <h4 className="text-sm font-medium text-gray-700">Market Research Analysis</h4>
                         <div className="flex items-center space-x-1 text-xs">
                           <button className={`px-2 py-1 rounded ${activeChart === 0 ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500'}`}>
@@ -410,7 +409,8 @@ const Hero = () => {
                         </div>
                       </div>
                       
-                      <div className="absolute bottom-0 left-0 right-0 h-[220px] px-4 pb-4">
+                      {/* Fixed height to ensure content is visible */}
+                      <div className="h-[250px] px-2">
                         <AnimatePresence mode="wait">
                           <motion.div 
                             key={`chart-${activeChart}`}
@@ -422,7 +422,7 @@ const Hero = () => {
                           >
                             {/* Topic Distribution Chart */}
                             {activeChart === 0 && (
-                              <div className="h-full flex items-start justify-between w-full pt-2">
+                              <div className="h-full flex items-start justify-between w-full pt-4">
                                 {[
                                   { name: "Product", value: 0.34, positive: 0.76, negative: 0.24 },
                                   { name: "Pricing", value: 0.22, positive: 0.65, negative: 0.35 },
@@ -542,35 +542,11 @@ const Hero = () => {
                                         strokeWidth="0.5"
                                       />
                                       
-                                      {/* Market segment markers */}
-                                      <motion.circle 
-                                        cx="20" cy="8" r="1.2"
-                                        fill="#9b87f5" 
-                                        initial={{ r: 0 }}
-                                        animate={{ r: 1.2 }}
-                                        transition={{ delay: 0.3, duration: 0.5 }}
-                                      />
-                                      <motion.circle 
-                                        cx="42" cy="15" r="1.2" 
-                                        fill="#6E59A5"
-                                        initial={{ r: 0 }}
-                                        animate={{ r: 1.2 }}
-                                        transition={{ delay: 0.5, duration: 0.5 }}
-                                      />
-                                      <motion.circle 
-                                        cx="65" cy="25" r="1.2" 
-                                        fill="#aaa6db"
-                                        initial={{ r: 0 }}
-                                        animate={{ r: 1.2 }}
-                                        transition={{ delay: 0.7, duration: 0.5 }}
-                                      />
-                                      <motion.circle 
-                                        cx="85" cy="33" r="1.2" 
-                                        fill="#d0cce9"
-                                        initial={{ r: 0 }}
-                                        animate={{ r: 1.2 }}
-                                        transition={{ delay: 0.9, duration: 0.5 }}
-                                      />
+                                      {/* Market segment markers - removed animation */}
+                                      <circle cx="20" cy="8" r="1.2" fill="#9b87f5" />
+                                      <circle cx="42" cy="15" r="1.2" fill="#6E59A5" />
+                                      <circle cx="65" cy="25" r="1.2" fill="#aaa6db" />
+                                      <circle cx="85" cy="33" r="1.2" fill="#d0cce9" />
                                     </svg>
                                     
                                     {/* Labels */}
@@ -584,385 +560,3 @@ const Hero = () => {
                                       <div>Majority</div>
                                     </div>
                                     <div className="absolute bottom-0 left-[85%] transform -translate-x-1/2 text-[10px] text-gray-600">
-                                      <div>Laggards</div>
-                                    </div>
-                                  </div>
-                                  
-                                  <div className="grid grid-cols-2 gap-2 text-xs">
-                                    {marketSegmentData.map((segment, idx) => (
-                                      <motion.div 
-                                        key={`market-segment-${idx}`}
-                                        initial={{ opacity: 0, y: 5 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.3 + (idx * 0.1), duration: 0.4 }}
-                                        className="bg-white rounded-md border border-gray-200 p-2 flex justify-between items-center"
-                                      >
-                                        <span className="text-gray-700">{segment.name}</span>
-                                        <div className="flex items-center gap-2">
-                                          <span className="font-medium">{segment.percentage}%</span>
-                                          <span className={segment.growth.includes('+') ? 'text-emerald-600' : 'text-red-500'}>
-                                            {segment.growth}
-                                          </span>
-                                        </div>
-                                      </motion.div>
-                                    ))}
-                                  </div>
-
-                                  <div className="mt-4 bg-indigo-50 rounded-md p-2 text-xs text-indigo-700 border border-indigo-100">
-                                    <div className="font-medium">Key Insight:</div>
-                                    <div className="text-[10px] mt-0.5">Early adopter segment growing 38% faster than industry average</div>
-                                  </div>
-                                </div>
-                              </div>
-                            )}
-
-                            {/* Competitor Analysis */}
-                            {activeChart === 3 && (
-                              <div className="h-full flex items-center justify-center">
-                                <div className="w-full max-w-md">
-                                  <div className="text-xs font-medium text-gray-700 mb-3">Competitor Analysis</div>
-                                  
-                                  <div className="grid grid-cols-4 gap-1 mb-4">
-                                    {competitorPerceptionData.map((comp, idx) => (
-                                      <motion.div
-                                        key={`competitor-${idx}`}
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.2 + (idx * 0.1), duration: 0.5 }}
-                                        className={`rounded-lg p-2 border ${
-                                          idx === 0 ? 'border-indigo-200 bg-indigo-50' : 'border-gray-200 bg-white'
-                                        } text-center`}
-                                      >
-                                        <div className={`text-xs font-medium mb-1 ${
-                                          idx === 0 ? 'text-indigo-700' : 'text-gray-700'
-                                        }`}>
-                                          {comp.name}
-                                        </div>
-                                        <div className={`text-lg font-bold ${
-                                          idx === 0 ? 'text-indigo-700' : 'text-gray-700'
-                                        }`}>
-                                          {comp.overall}
-                                        </div>
-                                        <div className="text-[10px] text-gray-500">Overall Score</div>
-                                      </motion.div>
-                                    ))}
-                                  </div>
-                                  
-                                  <div className="space-y-3">
-                                    {['innovation', 'reliability', 'value'].map((metric, metricIdx) => (
-                                      <div key={`metric-${metricIdx}`} className="space-y-1">
-                                        <div className="text-[10px] font-medium text-gray-600 capitalize">{metric}</div>
-                                        <div className="flex gap-1 h-3">
-                                          {competitorPerceptionData.map((comp, compIdx) => (
-                                            <motion.div 
-                                              key={`bar-${metricIdx}-${compIdx}`}
-                                              className="flex-1 rounded-sm overflow-hidden bg-gray-100"
-                                            >
-                                              <motion.div
-                                                className={`h-full ${
-                                                  compIdx === 0 ? 
-                                                    'bg-gradient-to-r from-indigo-500 to-indigo-400' : 
-                                                    `bg-gray-${300 + (compIdx * 100)}`
-                                                }`}
-                                                style={{
-                                                  backgroundColor: compIdx === 0 ? '' : `rgba(${120 + (compIdx * 30)}, ${120 + (compIdx * 25)}, ${140 + (compIdx * 20)}, 0.7)`
-                                                }}
-                                                initial={{ width: '0%' }}
-                                                animate={{ width: `${comp.metrics[metric]}%` }}
-                                                transition={{ duration: 1, delay: 0.3 + (metricIdx * 0.2) }}
-                                              />
-                                            </motion.div>
-                                          ))}
-                                        </div>
-                                      </div>
-                                    ))}
-                                  </div>
-                                  
-                                  <div className="mt-4 grid grid-cols-4 gap-1 text-center text-[10px] text-gray-500">
-                                    {competitorPerceptionData.map((comp, idx) => (
-                                      <div 
-                                        key={`legend-${idx}`}
-                                        className={idx === 0 ? 'text-indigo-600 font-medium' : ''}
-                                      >
-                                        {comp.name}
-                                      </div>
-                                    ))}
-                                  </div>
-                                </div>
-                              </div>
-                            )}
-                            
-                            {/* Sentiment Analysis */}
-                            {activeChart === 4 && (
-                              <div className="h-full flex items-center justify-center">
-                                <div className="w-full max-w-md flex space-x-4">
-                                  {/* Sentiment chart */}
-                                  <div className="relative w-44 h-44">
-                                    <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90">
-                                      <motion.circle
-                                        cx="50" cy="50" r="40"
-                                        fill="none"
-                                        stroke="#10b981"
-                                        strokeWidth="16"
-                                        strokeDasharray="251.2"
-                                        strokeDashoffset="62.8" // 25% of 251.2
-                                        initial={{ strokeDashoffset: 251.2 }}
-                                        animate={{ strokeDashoffset: 62.8 }}
-                                        transition={{ duration: 1.5, ease: "easeInOut" }}
-                                      />
-                                      <motion.circle
-                                        cx="50" cy="50" r="40"
-                                        fill="none"
-                                        stroke="#a1a1aa"
-                                        strokeWidth="16"
-                                        strokeDasharray="251.2"
-                                        strokeDashoffset="188.4" // 75% of 251.2
-                                        transform="rotate(-90 50 50)"
-                                        initial={{ strokeDashoffset: 251.2 }}
-                                        animate={{ strokeDashoffset: 188.4 }}
-                                        transition={{ duration: 1.5, ease: "easeInOut", delay: 0.2 }}
-                                      />
-                                      <circle cx="50" cy="50" r="32" fill="white" />
-                                      <text x="50" y="50" textAnchor="middle" dominantBaseline="middle" fontSize="16" fontWeight="bold" fill="#111827">75%</text>
-                                      <text x="50" y="64" textAnchor="middle" dominantBaseline="middle" fontSize="10" fill="#6b7280">Positive</text>
-                                    </svg>
-                                    
-                                    <div className="absolute bottom-0 left-0 right-0 text-center text-xs">
-                                      <div className="inline-flex items-center space-x-1.5 bg-white px-2 py-1 rounded shadow-sm border border-gray-100">
-                                        <div className="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
-                                        <span className="text-gray-500">25% Neutral/Negative</span>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  
-                                  {/* Sentiment details */}
-                                  <div className="flex-1 flex flex-col justify-center">
-                                    <div className="text-sm font-medium text-gray-900 mb-2">Brand Perception</div>
-                                    
-                                    {brandAttributeData.map((item, i) => (
-                                      <div key={`attribute-${i}`} className="mb-2">
-                                        <div className="flex justify-between text-xs mb-1">
-                                          <span className="text-gray-600">{item.attribute}</span>
-                                          <div className="flex items-center">
-                                            <span className="text-gray-900 font-medium mr-1">{item.percentage}%</span>
-                                            <span className={item.change.includes('+') ? 'text-emerald-600 text-[10px]' : 'text-red-500 text-[10px]'}>
-                                              {item.change}
-                                            </span>
-                                          </div>
-                                        </div>
-                                        <div className="w-full h-1.5 bg-gray-100 rounded-full">
-                                          <motion.div
-                                            className="h-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"
-                                            initial={{ width: 0 }}
-                                            animate={{ width: `${item.percentage}%` }}
-                                            transition={{ delay: 0.3 + (i * 0.2), duration: 1 }}
-                                          />
-                                        </div>
-                                      </div>
-                                    ))}
-                                    
-                                    <div className="text-xs text-gray-500 mt-2 bg-gray-50 p-2 rounded">
-                                      <div className="font-medium text-gray-700">Key Finding:</div>
-                                      <div>"Innovative" attribute grew 15% after new feature launch</div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            )}
-                          </motion.div>
-                        </AnimatePresence>
-                      </div>
-                    </div>
-                    
-                    {/* Right side insights panels */}
-                    <div className="flex flex-col space-y-4">
-                      {/* Key Themes Panel */}
-                      <div className="bg-gradient-to-br from-white to-gray-50 rounded-xl p-4 flex-1 border border-gray-100 shadow-sm">
-                        <div className="flex items-center justify-between mb-2">
-                          <div className="flex items-center space-x-1.5">
-                            <Layers className="h-4 w-4 text-gray-700" />
-                            <h3 className="font-medium text-sm text-gray-800">Key Themes</h3>
-                          </div>
-                        </div>
-                        
-                        <div className="space-y-2 mt-1">
-                          {[
-                            { theme: "Ease of integration", score: 92, change: "+12%" },
-                            { theme: "Data quality concerns", score: 78, change: "-4%" },
-                            { theme: "AI transparency", score: 84, change: "+16%" }
-                          ].map((item, i) => (
-                            <motion.div 
-                              key={`theme-${i}`}
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.2 + (i * 0.1), duration: 0.4 }}
-                              className="flex items-center justify-between bg-white px-3 py-2 rounded border border-gray-100"
-                            >
-                              <div className="flex items-center space-x-1.5">
-                                <span className="w-1 h-1 rounded-full bg-indigo-500"></span>
-                                <span className="text-xs text-gray-700">{item.theme}</span>
-                              </div>
-                              <div className="flex items-center">
-                                <span className="text-xs font-medium mr-2">{item.score}</span>
-                                <span className={`text-xs ${item.change.includes('+') ? 'text-emerald-600' : 'text-red-500'}`}>
-                                  {item.change}
-                                </span>
-                              </div>
-                            </motion.div>
-                          ))}
-                        </div>
-                        
-                        <div className="mt-2 pt-2 border-t border-gray-200">
-                          <div className="text-xs text-gray-500 leading-relaxed">
-                            Data collected from 1,204 respondents across enterprise, mid-market, and SMB segments.
-                          </div>
-                        </div>
-                      </div>
-                      
-                      {/* Regional Insights */}
-                      <div className="bg-gradient-to-br from-white to-blue-50/30 rounded-xl p-4 flex-1 border border-blue-100 shadow-sm">
-                        <div className="flex items-center justify-between mb-2">
-                          <div className="flex items-center space-x-1.5">
-                            <MapPin className="h-4 w-4 text-blue-600" />
-                            <h3 className="font-medium text-sm text-gray-800">Regional Insights</h3>
-                          </div>
-                        </div>
-                        
-                        <div className="grid grid-cols-2 gap-2 mt-1">
-                          {[
-                            { region: "North America", value: "42%", color: "bg-blue-100 text-blue-700" },
-                            { region: "Europe", value: "31%", color: "bg-emerald-100 text-emerald-700" },
-                            { region: "Asia Pacific", value: "18%", color: "bg-amber-100 text-amber-700" },
-                            { region: "Other", value: "9%", color: "bg-purple-100 text-purple-700" }
-                          ].map((item, i) => (
-                            <motion.div 
-                              key={`region-${i}`}
-                              initial={{ opacity: 0, scale: 0.95 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              transition={{ delay: 0.3 + (i * 0.1), duration: 0.4 }}
-                              className="flex flex-col items-center justify-center bg-white p-2 rounded border border-gray-100 shadow-sm"
-                            >
-                              <span className={`text-xs px-2 py-0.5 rounded-full ${item.color} mb-1`}>
-                                {item.value}
-                              </span>
-                              <span className="text-xs text-gray-700">{item.region}</span>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Dashboard footer */}
-                  <div className="mt-4 p-3 bg-gray-50 rounded-lg flex justify-between items-center">
-                    <div className="flex items-center space-x-3 text-xs text-gray-600">
-                      <div className="flex items-center space-x-1">
-                        <MessageSquareText className="h-3.5 w-3.5 text-gray-500" />
-                        <span>37,842 responses</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <Filter className="h-3.5 w-3.5 text-gray-500" />
-                        <span>16 data models</span>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center space-x-3">
-                      <motion.button 
-                        className="text-xs text-gray-700 bg-white px-3 py-1.5 rounded border border-gray-200 flex items-center space-x-1"
-                        whileHover={{ y: -1, boxShadow: "0 2px 5px rgba(0,0,0,0.05)" }}
-                        whileTap={{ y: 0 }}
-                      >
-                        <span>Update</span>
-                      </motion.button>
-                      <motion.button 
-                        className="text-xs text-white bg-indigo-600 px-3 py-1.5 rounded flex items-center space-x-1"
-                        whileHover={{ y: -1, boxShadow: "0 2px 5px rgba(0,0,0,0.1)" }}
-                        whileTap={{ y: 0 }}
-                      >
-                        <span>Download Report</span>
-                      </motion.button>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-              
-              {/* Floating insights */}
-              <motion.div 
-                className="absolute -right-4 top-12 p-3 bg-white rounded-lg shadow-xl border border-gray-100 w-[180px]"
-                initial={{ opacity: 0, scale: 0.9, x: 20 }}
-                animate={{ opacity: 1, scale: 1, x: 0 }}
-                transition={{ delay: 1.4, duration: 0.6 }}
-              >
-                <div className="flex items-center space-x-2">
-                  <div className="h-8 w-8 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600">
-                    <PanelRight className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-medium">+24%</h4>
-                    <p className="text-xs text-gray-500">Net Promoter Score</p>
-                  </div>
-                </div>
-              </motion.div>
-              
-              <motion.div 
-                className="absolute -left-4 bottom-12 p-3 bg-white rounded-lg shadow-xl border border-gray-100 w-[180px]"
-                initial={{ opacity: 0, scale: 0.9, x: -20 }}
-                animate={{ opacity: 1, scale: 1, x: 0 }}
-                transition={{ delay: 1.6, duration: 0.6 }}
-              >
-                <div className="flex items-center space-x-2">
-                  <div className="h-8 w-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
-                    <FileBarChart className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-medium">1,204</h4>
-                    <p className="text-xs text-gray-500">Interviews analyzed</p>
-                  </div>
-                </div>
-              </motion.div>
-              
-              {/* Data points floating around */}
-              {[1, 2, 3].map((_, i) => (
-                <motion.div
-                  key={`data-point-${i}`}
-                  className="absolute w-3 h-3 rounded-full bg-gradient-to-r from-indigo-400 to-purple-400 shadow-lg"
-                  style={{
-                    left: `${10 + i * 25}%`,
-                    top: `${(i % 3) * 25 + 10}%`,
-                    zIndex: 5
-                  }}
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ 
-                    scale: [0, 1.2, 1],
-                    opacity: [0, 0.8, 1]
-                  }}
-                  transition={{ 
-                    delay: 1.8 + (i * 0.2),
-                    duration: 0.8,
-                    times: [0, 0.7, 1]
-                  }}
-                >
-                  <motion.div 
-                    className="absolute inset-0 rounded-full bg-indigo-300 opacity-70"
-                    animate={{ 
-                      scale: [1, 2, 1],
-                      opacity: [0.7, 0, 0.7]
-                    }}
-                    transition={{
-                      repeat: Infinity,
-                      repeatType: "reverse",
-                      duration: 2 + i,
-                      delay: i * 0.3
-                    }}
-                  />
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default Hero;
