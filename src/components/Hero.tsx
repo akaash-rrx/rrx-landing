@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -19,7 +20,8 @@ import {
   ChartPie,
   MessageSquareText,
   PanelLeft,
-  PanelRight
+  PanelRight,
+  BarChart
 } from 'lucide-react';
 
 const Hero = () => {
@@ -35,10 +37,10 @@ const Hero = () => {
   ];
   
   const segmentData = [
-    { name: "Enterprise", count: 457, percentage: 38, color: "#9b87f5" },
-    { name: "Mid-Market", count: 324, percentage: 27, color: "#6E59A5" },
-    { name: "SMB", count: 278, percentage: 23, color: "#aaa6db" },
-    { name: "Startup", count: 145, percentage: 12, color: "#d0cce9" },
+    { name: "Enterprise", count: 457, percentage: 38, color: "#9b87f5", description: "Senior executives seeking comprehensive solutions" },
+    { name: "Mid-Market", count: 324, percentage: 27, color: "#6E59A5", description: "Growth-focused managers needing scalability" },
+    { name: "SMB", count: 278, percentage: 23, color: "#aaa6db", description: "Budget-conscious business owners" },
+    { name: "Startup", count: 145, percentage: 12, color: "#d0cce9", description: "Innovation-driven founders in early stages" },
   ];
   
   const demographicData = [
@@ -92,6 +94,11 @@ const Hero = () => {
       clearInterval(segmentInterval);
     }
   }, []);
+
+  // Handle tab clicks
+  const handleTabClick = (index) => {
+    setActiveChart(index);
+  };
 
   return (
     <section className="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden bg-gradient-to-br from-white via-gray-50 to-gray-100">
@@ -212,7 +219,7 @@ const Hero = () => {
                   <div className="flex justify-between items-center mb-4">
                     <div className="flex items-center space-x-2">
                       <LayoutDashboard className="h-5 w-5 text-indigo-600" />
-                      <span className="text-sm font-semibold text-gray-700">AI INTERVIEW INSIGHTS</span>
+                      <span className="text-sm font-semibold text-gray-700">RRX DASHBOARD</span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <span className="flex items-center text-xs text-indigo-600">
@@ -389,21 +396,39 @@ const Hero = () => {
                   <div className="grid grid-cols-3 gap-4">
                     <div className="col-span-2 bg-gray-50 rounded-xl p-4 relative overflow-hidden">
                       <div className="flex justify-between items-center mb-2">
-                        <h4 className="text-sm font-medium text-gray-700">Market Research Analysis</h4>
+                        <div className="flex items-center space-x-1.5">
+                          <BarChart className="h-4 w-4 text-indigo-600" />
+                          <h4 className="text-sm font-medium text-gray-700">Analysis</h4>
+                        </div>
                         <div className="flex items-center space-x-1 text-xs">
-                          <button className={`px-2 py-0.5 rounded ${activeChart === 0 ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500'}`}>
+                          <button 
+                            onClick={() => handleTabClick(0)} 
+                            className={`px-2 py-0.5 rounded cursor-pointer ${activeChart === 0 ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500 hover:bg-gray-100'}`}
+                          >
                             Topics
                           </button>
-                          <button className={`px-2 py-0.5 rounded ${activeChart === 1 ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500'}`}>
+                          <button 
+                            onClick={() => handleTabClick(1)} 
+                            className={`px-2 py-0.5 rounded cursor-pointer ${activeChart === 1 ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500 hover:bg-gray-100'}`}
+                          >
                             Demographics
                           </button>
-                          <button className={`px-2 py-0.5 rounded ${activeChart === 2 ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500'}`}>
+                          <button 
+                            onClick={() => handleTabClick(2)} 
+                            className={`px-2 py-0.5 rounded cursor-pointer ${activeChart === 2 ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500 hover:bg-gray-100'}`}
+                          >
                             Market
                           </button>
-                          <button className={`px-2 py-0.5 rounded ${activeChart === 3 ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500'}`}>
+                          <button 
+                            onClick={() => handleTabClick(3)} 
+                            className={`px-2 py-0.5 rounded cursor-pointer ${activeChart === 3 ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500 hover:bg-gray-100'}`}
+                          >
                             Competitors
                           </button>
-                          <button className={`px-2 py-0.5 rounded ${activeChart === 4 ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500'}`}>
+                          <button 
+                            onClick={() => handleTabClick(4)} 
+                            className={`px-2 py-0.5 rounded cursor-pointer ${activeChart === 4 ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500 hover:bg-gray-100'}`}
+                          >
                             Sentiment
                           </button>
                         </div>
@@ -420,55 +445,6 @@ const Hero = () => {
                             transition={{ duration: 0.5 }}
                             className="h-full w-full"
                           >
-                            {/* Topic Distribution Chart - Fixed positioning and scaling */}
-                            {activeChart === 0 && (
-                              <div className="h-full flex items-end justify-between w-full">
-                                {[
-                                  { name: "Product", value: 0.34, positive: 0.76, negative: 0.24 },
-                                  { name: "Pricing", value: 0.22, positive: 0.65, negative: 0.35 },
-                                  { name: "Support", value: 0.18, positive: 0.88, negative: 0.12 },
-                                  { name: "UX", value: 0.14, positive: 0.72, negative: 0.28 },
-                                  { name: "Features", value: 0.12, positive: 0.81, negative: 0.19 }
-                                ].map((item, i) => (
-                                  <div key={`topic-bar-${i}`} className="flex flex-col items-center w-1/5">
-                                    <div className="w-10 flex flex-col-reverse relative h-[100px]">
-                                      {/* Positive sentiment portion - Fixed scaling */}
-                                      <motion.div
-                                        className="w-10 bg-emerald-500/80 rounded-t-sm"
-                                        style={{ height: `${item.positive * 100 * item.value * 0.8}%` }}
-                                        initial={{ height: 0 }}
-                                        animate={{ height: `${item.positive * 100 * item.value * 0.8}%` }}
-                                        transition={{ delay: 0.3, duration: 1 }}
-                                      />
-                                      
-                                      {/* Negative sentiment portion - Fixed scaling */}
-                                      <motion.div
-                                        className="w-10 bg-red-400/80 rounded-t-sm"
-                                        style={{ height: `${item.negative * 100 * item.value * 0.8}%` }}
-                                        initial={{ height: 0 }}
-                                        animate={{ height: `${item.negative * 100 * item.value * 0.8}%` }}
-                                        transition={{ delay: 0.5, duration: 1 }}
-                                      />
-                                      
-                                      <div className="absolute -top-5 left-0 right-0 text-center">
-                                        <span className="text-xs font-medium text-gray-700">{Math.round(item.value * 100)}%</span>
-                                      </div>
-                                    </div>
-                                    <span className="text-xs text-gray-600 mt-2 text-center">{item.name}</span>
-                                    <div className="flex items-center space-x-1 mt-1">
-                                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
-                                      <span className="text-[10px] text-gray-500">{Math.round(item.positive * 100)}%</span>
-                                    </div>
-                                  </div>
-                                ))}
-                                
-                                <div className="absolute top-2 left-4 bg-white/80 px-2 py-1 text-xs rounded shadow-sm border border-gray-100">
-                                  <div className="font-medium text-gray-900">Topic Distribution</div>
-                                  <div className="text-gray-500 text-[10px]">By mention frequency & sentiment</div>
-                                </div>
-                              </div>
-                            )}
-                            
                             {/* Demographics Chart - Improved spacing and sizing */}
                             {activeChart === 1 && (
                               <div className="h-full flex items-center justify-center">
@@ -566,6 +542,112 @@ const Hero = () => {
                                 </div>
                               </div>
                             )}
+                            
+                            {/* Competitors Analysis Chart */}
+                            {activeChart === 3 && (
+                              <div className="h-full flex items-center justify-center">
+                                <div className="w-full">
+                                  <div className="text-xs font-medium text-gray-700 mb-2">Competitive Positioning</div>
+                                  <div className="flex flex-col space-y-2">
+                                    {competitorPerceptionData.map((competitor, i) => (
+                                      <div key={`competitor-${i}`} className="flex items-center">
+                                        <div className="w-24 text-xs text-gray-700 font-medium truncate pr-2">
+                                          {competitor.name}
+                                        </div>
+                                        <div className="flex-1">
+                                          <div className="flex items-center space-x-1">
+                                            <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                                              <motion.div
+                                                className={`h-full ${i === 0 ? 'bg-indigo-500' : 'bg-gray-400'}`}
+                                                style={{ width: `${competitor.overall}%` }}
+                                                initial={{ width: '0%' }}
+                                                animate={{ width: `${competitor.overall}%` }}
+                                                transition={{ delay: 0.1 * i, duration: 0.8 }}
+                                              />
+                                            </div>
+                                            <span className="text-xs font-medium text-gray-700 w-6 text-right">
+                                              {competitor.overall}
+                                            </span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                  
+                                  <div className="flex justify-between mt-2 text-[9px] text-gray-500">
+                                    <span>Innovation</span>
+                                    <span>Reliability</span>
+                                    <span>Value</span>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                            
+                            {/* Sentiment Analysis Chart */}
+                            {activeChart === 4 && (
+                              <div className="h-full flex items-center justify-center">
+                                <div className="w-full">
+                                  <div className="text-xs font-medium text-gray-700 mb-2">Brand Sentiment Trends</div>
+                                  <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                                    {brandAttributeData.slice(0, 4).map((item, i) => (
+                                      <div key={`attribute-${i}`} className="flex flex-col">
+                                        <div className="flex justify-between items-center text-xs mb-1">
+                                          <span className="text-gray-600">{item.attribute}</span>
+                                          <div className="flex items-center">
+                                            <span className={`text-xs mr-1 ${item.change.includes('+') ? 'text-emerald-600' : 'text-red-500'}`}>
+                                              {item.change}
+                                            </span>
+                                            <span className="font-medium text-gray-800">{item.percentage}%</span>
+                                          </div>
+                                        </div>
+                                        <div className="w-full h-1.5 bg-gray-100 rounded-full">
+                                          <motion.div
+                                            className="h-1.5 bg-indigo-500 rounded-full"
+                                            initial={{ width: '0%' }}
+                                            animate={{ width: `${item.percentage}%` }}
+                                            transition={{ delay: 0.1 * i, duration: 0.8 }}
+                                          />
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                            
+                            {/* Topics - Simple text content instead of chart */}
+                            {activeChart === 0 && (
+                              <div className="h-full flex items-center justify-center">
+                                <div className="w-full">
+                                  <div className="text-xs font-medium text-gray-700 mb-2">Key Topics by Mention Frequency</div>
+                                  <div className="grid grid-cols-2 gap-2">
+                                    {topicData.map((topic, i) => (
+                                      <div key={`topic-summary-${i}`} className="bg-white p-2 rounded border border-gray-100 shadow-sm">
+                                        <div className="flex justify-between items-center text-xs">
+                                          <span className="font-medium text-gray-800">{topic.name}</span>
+                                          <span className="text-indigo-600">{topic.value}%</span>
+                                        </div>
+                                        <div className="w-full h-1 bg-gray-100 rounded-full mt-1 mb-1">
+                                          <motion.div 
+                                            className="h-1 bg-indigo-400 rounded-full"
+                                            initial={{ width: '0%' }}
+                                            animate={{ width: `${topic.value}%` }}
+                                            transition={{ delay: i * 0.1, duration: 0.8 }}
+                                          />
+                                        </div>
+                                        <div className="flex flex-wrap gap-1 mt-1">
+                                          {topic.keywords.slice(0, 2).map((kw, idx) => (
+                                            <span key={idx} className="text-[9px] bg-gray-50 px-1 py-0.5 rounded text-gray-600">
+                                              {kw}
+                                            </span>
+                                          ))}
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+                            )}
                           </motion.div>
                         </AnimatePresence>
                       </div>
@@ -588,6 +670,9 @@ const Hero = () => {
                           <div className="w-full h-1.5 bg-gray-100 rounded-full mt-1">
                             <div className="h-1.5 bg-indigo-500 rounded-full" style={{ width: '42%' }} />
                           </div>
+                          <div className="text-[9px] text-gray-500 mt-1">
+                            Enterprise decision-makers focused on integration
+                          </div>
                         </div>
                         
                         <div className="bg-white p-2 rounded border border-gray-100 shadow-sm">
@@ -598,6 +683,9 @@ const Hero = () => {
                           <div className="w-full h-1.5 bg-gray-100 rounded-full mt-1">
                             <div className="h-1.5 bg-indigo-500 rounded-full" style={{ width: '28%' }} />
                           </div>
+                          <div className="text-[9px] text-gray-500 mt-1">
+                            Mid-market customers with compliance concerns
+                          </div>
                         </div>
                         
                         <div className="bg-white p-2 rounded border border-gray-100 shadow-sm">
@@ -607,6 +695,9 @@ const Hero = () => {
                           </div>
                           <div className="w-full h-1.5 bg-gray-100 rounded-full mt-1">
                             <div className="h-1.5 bg-indigo-500 rounded-full" style={{ width: '21%' }} />
+                          </div>
+                          <div className="text-[9px] text-gray-500 mt-1">
+                            Fast-growing technology adopters seeking scalability
                           </div>
                         </div>
                       </div>
