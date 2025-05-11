@@ -9,6 +9,7 @@ import CaseStudies from '@/components/CaseStudies';
 import CallToAction from '@/components/CallToAction';
 import ContactForm from '@/components/ContactForm';
 import Footer from '@/components/Footer';
+import Testimonials from '@/components/Testimonials';
 
 const Index = () => {
   return (
@@ -19,6 +20,7 @@ const Index = () => {
       <Differentiators />
       <Approach />
       <CaseStudies />
+      <Testimonials />
       <CallToAction />
       <ContactForm />
       <Footer />

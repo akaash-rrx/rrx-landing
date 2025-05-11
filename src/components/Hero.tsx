@@ -1,22 +1,33 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ArrowRight } from 'lucide-react';
+import { ChevronRight, ArrowRight, BarChart2, LineChart, PieChart } from 'lucide-react';
 
 const Hero = () => {
   const [activeInsight, setActiveInsight] = useState(0);
+  const [activeChart, setActiveChart] = useState(0);
   const insights = [
-    { title: "Customer Sentiment", value: "+87%", desc: "positive sentiment" },
-    { title: "Decision Speed", value: "48h", desc: "turnaround time" },
-    { title: "Actionable Insights", value: "100%", desc: "structured data" },
-    { title: "Research ROI", value: "3.5x", desc: "industry average" },
+    { title: "Customer Sentiment", value: "+87%", desc: "positive sentiment", color: "from-indigo-600 to-purple-600" },
+    { title: "Decision Speed", value: "48h", desc: "turnaround time", color: "from-blue-600 to-cyan-600" },
+    { title: "Actionable Insights", value: "100%", desc: "structured data", color: "from-emerald-600 to-teal-600" },
+    { title: "Research ROI", value: "3.5x", desc: "industry average", color: "from-violet-600 to-indigo-600" },
   ];
+  
+  const chartTypes = ['demographics', 'sentiment', 'engagement'];
   
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveInsight((prev) => (prev + 1) % insights.length);
     }, 3000);
-    return () => clearInterval(interval);
+    
+    const chartInterval = setInterval(() => {
+      setActiveChart((prev) => (prev + 1) % chartTypes.length);
+    }, 5000);
+    
+    return () => {
+      clearInterval(interval);
+      clearInterval(chartInterval);
+    }
   }, []);
 
   return (
@@ -45,7 +56,7 @@ const Hero = () => {
               transition={{ delay: 0.2, duration: 0.5 }}
             >
               <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-indigo-50 text-indigo-700 text-sm font-medium tracking-wider">
-                <span className="w-2 h-2 bg-indigo-600 rounded-full mr-2"></span>
+                <span className="w-2 h-2 bg-indigo-600 rounded-full mr-2 animate-pulse"></span>
                 FOR RESEARCHERS, BY RESEARCHERS
               </span>
             </motion.div>
@@ -57,7 +68,7 @@ const Hero = () => {
               transition={{ delay: 0.4, duration: 0.8 }}
             >
               Your new research <br className="hidden lg:block" />
-              <span className="relative">
+              <span className="relative inline-block">
                 intelligence
                 <motion.span 
                   className="absolute -bottom-1 left-0 w-full h-[6px] bg-indigo-500 rounded-full opacity-60"
@@ -147,10 +158,76 @@ const Hero = () => {
                         className="text-center py-6"
                       >
                         <h3 className="text-xl text-gray-700 mb-6">{insights[activeInsight].title}</h3>
-                        <span className="text-5xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                        <span className={`text-5xl font-bold bg-gradient-to-r ${insights[activeInsight].color} bg-clip-text text-transparent`}>
                           {insights[activeInsight].value}
                         </span>
                         <p className="text-gray-500 mt-2">{insights[activeInsight].desc}</p>
+                        
+                        <div className="mt-6 flex justify-center">
+                          {activeChart === 0 && (
+                            <div className="h-[80px] w-[200px] mx-auto">
+                              <div className="flex items-end justify-between h-full">
+                                {[0.3, 0.5, 0.8, 0.6, 0.9, 0.7, 0.4].map((value, i) => (
+                                  <motion.div
+                                    key={i}
+                                    className="w-4 bg-gradient-to-t from-indigo-500 to-purple-500 rounded-t-sm"
+                                    style={{ height: `${value * 100}%` }}
+                                    initial={{ height: 0 }}
+                                    animate={{ height: `${value * 100}%` }}
+                                    transition={{ delay: i * 0.1, duration: 0.5 }}
+                                  />
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                          
+                          {activeChart === 1 && (
+                            <div className="h-[80px] w-[200px] mx-auto relative">
+                              <svg viewBox="0 0 200 80" className="w-full h-full">
+                                <motion.path
+                                  d="M0,40 C20,20 40,60 60,40 C80,20 100,60 120,40 C140,20 160,60 180,40 C200,20 220,60 240,40"
+                                  fill="none"
+                                  stroke="url(#gradient)"
+                                  strokeWidth="3"
+                                  initial={{ pathLength: 0 }}
+                                  animate={{ pathLength: 1 }}
+                                  transition={{ duration: 1.5, ease: "easeInOut" }}
+                                />
+                                <defs>
+                                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stopColor="#9b87f5" />
+                                    <stop offset="100%" stopColor="#6E59A5" />
+                                  </linearGradient>
+                                </defs>
+                              </svg>
+                            </div>
+                          )}
+                          
+                          {activeChart === 2 && (
+                            <div className="h-[80px] w-[200px] mx-auto flex justify-center items-center">
+                              <div className="relative w-[80px] h-[80px]">
+                                <motion.div
+                                  className="absolute inset-0 border-4 border-purple-300 rounded-full"
+                                  style={{ borderRightColor: 'transparent', borderBottomColor: 'transparent' }}
+                                  animate={{ rotate: 360 }}
+                                  transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
+                                />
+                                <motion.div
+                                  className="absolute inset-[10px] border-4 border-indigo-500 rounded-full"
+                                  style={{ borderLeftColor: 'transparent', borderTopColor: 'transparent' }}
+                                  animate={{ rotate: -360 }}
+                                  transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
+                                />
+                                <motion.div
+                                  className="absolute inset-[20px] border-4 border-blue-600 rounded-full"
+                                  style={{ borderRightColor: 'transparent', borderBottomColor: 'transparent' }}
+                                  animate={{ rotate: 360 }}
+                                  transition={{ repeat: Infinity, duration: 5, ease: "linear" }}
+                                />
+                              </div>
+                            </div>
+                          )}
+                        </div>
                       </motion.div>
                     </AnimatePresence>
                   </div>
@@ -169,37 +246,95 @@ const Hero = () => {
                 </div>
               </motion.div>
               
-              {/* Secondary decorative elements */}
+              {/* Secondary decorative elements with media */}
               <motion.div 
-                className="absolute right-[10%] top-[5%] w-[150px] h-[150px] rounded-xl rotate-12 bg-gradient-to-r from-indigo-100 to-purple-100 shadow-lg"
+                className="absolute right-[10%] top-[5%] w-[150px] h-[150px] rounded-xl rotate-12 bg-gradient-to-r from-indigo-100 to-purple-100 shadow-lg overflow-hidden"
                 initial={{ opacity: 0, rotate: 0 }}
                 animate={{ opacity: 0.7, rotate: 12 }}
                 transition={{ duration: 0.8, delay: 1.2 }}
-              />
+              >
+                <div className="absolute inset-0 flex items-center justify-center p-4">
+                  <BarChart2 className="w-12 h-12 text-indigo-800/50" />
+                  <div className="absolute bottom-2 left-2 right-2 h-[30px] bg-indigo-500/20 rounded flex items-center justify-center">
+                    <span className="text-[10px] text-indigo-900 font-medium">SENTIMENT ANALYSIS</span>
+                  </div>
+                </div>
+              </motion.div>
               
               <motion.div 
-                className="absolute left-[5%] bottom-[15%] w-[180px] h-[180px] rounded-xl -rotate-6 bg-gradient-to-r from-blue-50 to-cyan-50 shadow-lg"
+                className="absolute left-[5%] bottom-[15%] w-[180px] h-[180px] rounded-xl -rotate-6 bg-gradient-to-r from-blue-50 to-cyan-50 shadow-lg overflow-hidden"
                 initial={{ opacity: 0, rotate: 0 }}
                 animate={{ opacity: 0.7, rotate: -6 }}
                 transition={{ duration: 0.8, delay: 1.4 }}
-              />
+              >
+                <div className="absolute inset-0 flex items-center justify-center p-4">
+                  <LineChart className="w-12 h-12 text-blue-800/50" />
+                  <div className="absolute bottom-2 left-2 right-2 h-[30px] bg-blue-500/20 rounded flex items-center justify-center">
+                    <span className="text-[10px] text-blue-900 font-medium">TREND FORECASTING</span>
+                  </div>
+                </div>
+              </motion.div>
               
               <motion.div
-                className="absolute right-[20%] bottom-[0%] p-4 bg-white rounded-lg shadow-lg border border-gray-100"
+                className="absolute right-[20%] bottom-[5%] p-4 bg-white rounded-lg shadow-lg border border-gray-100 overflow-hidden"
                 initial={{ y: 40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.7, delay: 1.6 }}
               >
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full flex items-center justify-center bg-blue-100 text-blue-600">
-                    <span className="font-bold">AI</span>
+                  <div className="h-10 w-10 rounded-full flex items-center justify-center bg-gradient-to-br from-indigo-100 to-purple-100 text-indigo-600">
+                    <PieChart className="h-5 w-5" />
                   </div>
                   <div>
-                    <h4 className="font-medium">AI-Powered</h4>
-                    <p className="text-sm text-gray-500">Advanced ML processing</p>
+                    <h4 className="font-medium">ML-Powered</h4>
+                    <p className="text-sm text-gray-500">Advanced processing</p>
                   </div>
                 </div>
+                <div className="mt-2 h-[3px] w-full bg-gray-100 overflow-hidden">
+                  <motion.div 
+                    className="h-full bg-gradient-to-r from-indigo-500 to-purple-500" 
+                    initial={{ width: '0%' }}
+                    animate={{ width: '85%' }}
+                    transition={{ delay: 2, duration: 1.5 }}
+                  />
+                </div>
               </motion.div>
+              
+              {/* Data points floating around */}
+              {[1, 2, 3, 4, 5].map((_, i) => (
+                <motion.div
+                  key={`data-point-${i}`}
+                  className="absolute w-3 h-3 rounded-full bg-gradient-to-r from-indigo-400 to-purple-400 shadow-lg"
+                  style={{
+                    left: `${10 + i * 20}%`,
+                    top: `${(i % 3) * 20 + 10}%`,
+                  }}
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ 
+                    scale: [0, 1.2, 1],
+                    opacity: [0, 0.8, 1]
+                  }}
+                  transition={{ 
+                    delay: 1.8 + (i * 0.2),
+                    duration: 0.8,
+                    times: [0, 0.7, 1]
+                  }}
+                >
+                  <motion.div 
+                    className="absolute inset-0 rounded-full bg-indigo-300 opacity-70"
+                    animate={{ 
+                      scale: [1, 2, 1],
+                      opacity: [0.7, 0, 0.7]
+                    }}
+                    transition={{
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                      duration: 2 + i,
+                      delay: i * 0.3
+                    }}
+                  />
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </div>
