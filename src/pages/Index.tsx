@@ -6,7 +6,6 @@ import Offering from '@/components/Offering';
 import Differentiators from '@/components/Differentiators';
 import Approach from '@/components/Approach';
 import CaseStudies from '@/components/CaseStudies';
-import Testimonials from '@/components/Testimonials';
 import CallToAction from '@/components/CallToAction';
 import ContactForm from '@/components/ContactForm';
 import Footer from '@/components/Footer';
@@ -20,7 +19,6 @@ const Index = () => {
       <Differentiators />
       <Approach />
       <CaseStudies />
-      <Testimonials />
       <CallToAction />
       <ContactForm />
       <Footer />
