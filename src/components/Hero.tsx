@@ -423,8 +423,8 @@ const Hero = () => {
                         </div>
                       </div>
                       
-                      {/* Fixed height container for charts */}
-                      <div className="h-[165px] px-2">
+                      {/* Fixed height container for charts - MOVED BELOW THE TABS */}
+                      <div className="h-[165px] px-2 mt-4">
                         <AnimatePresence mode="wait">
                           <motion.div 
                             key={`chart-${activeChart}`}
