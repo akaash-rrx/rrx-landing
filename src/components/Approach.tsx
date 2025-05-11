@@ -7,7 +7,7 @@ const Approach = () => {
     {
       number: '01',
       title: 'Define the decision',
-      description: 'Tell us what's at stake.',
+      description: 'Tell us what\'s at stake.',
     },
     {
       number: '02',
