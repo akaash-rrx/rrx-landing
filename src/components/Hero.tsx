@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -430,7 +431,7 @@ const Hero = () => {
                   <div className="grid grid-cols-3 gap-3">
                     <div className="col-span-2 bg-gray-50 rounded-xl p-3 relative overflow-hidden">
                       {/* Analysis header and tabs */}
-                      <div className="flex justify-between items-center mb-3">
+                      <div className="flex justify-between items-center mb-4">
                         <div className="flex items-center space-x-1.5">
                           <LineChart className="h-4 w-4 text-indigo-600" />
                           <h4 className="text-sm font-medium text-gray-700">Analysis</h4>
@@ -458,7 +459,7 @@ const Hero = () => {
                       </div>
                       
                       {/* Fixed height container for charts - reduced height */}
-                      <div className="h-[170px] px-2">
+                      <div className="h-[170px] px-2 mt-6">
                         <AnimatePresence mode="wait">
                           <motion.div 
                             key={`chart-${activeChart}`}
@@ -468,7 +469,7 @@ const Hero = () => {
                             transition={{ duration: 0.5 }}
                             className="h-full w-full"
                           >
-                            {/* Insights Trends Chart - Fixed title alignment */}
+                            {/* Insights Trends Chart - Moved down with mt-6 */}
                             {activeChart === 0 && (
                               <div className="h-full flex items-center justify-center">
                                 <div className="w-full">
@@ -476,8 +477,8 @@ const Hero = () => {
                                     <div className="text-xs font-medium text-gray-700">Customer Sentiment Analysis</div>
                                   </div>
                                   
-                                  {/* SVG Area Chart - moved down by adjusting margins */}
-                                  <div className="relative h-20 mt-3">
+                                  {/* SVG Area Chart */}
+                                  <div className="relative h-20">
                                     <svg width="100%" height="100%" viewBox="0 0 600 100">
                                       {/* Gradient definitions */}
                                       <defs>
@@ -570,3 +571,156 @@ const Hero = () => {
                                       <div className="text-xs font-medium text-emerald-600 mt-0.5">+5.4 pts</div>
                                     </div>
                                   </div>
+                                </div>
+                              </div>
+                            )}
+
+                            {/* Market Adoption Curve */}
+                            {activeChart === 1 && (
+                              <div className="h-full flex items-center justify-center">
+                                <div className="w-full">
+                                  <div className="text-xs font-medium text-gray-700 mb-2">Market Adoption Analysis</div>
+                                  <div className="relative h-24">
+                                    {/* Market chart would go here */}
+                                    <svg width="100%" height="100%" viewBox="0 0 600 100">
+                                      <path d="M0,90 C150,90 100,30 300,30 C500,30 450,90 600,90" stroke="#6366f1" strokeWidth="2" fill="none" />
+                                      <path d="M0,90 C150,90 100,30 300,30 C500,30 450,90 600,90 L600,100 L0,100 Z" fill="url(#marketGradient)" />
+                                      <defs>
+                                        <linearGradient id="marketGradient" x1="0" y1="0" x2="0" y2="1">
+                                          <stop offset="0%" stopColor="rgba(99, 102, 241, 0.3)" />
+                                          <stop offset="100%" stopColor="rgba(99, 102, 241, 0.05)" />
+                                        </linearGradient>
+                                      </defs>
+                                    </svg>
+                                  </div>
+                                  <div className="grid grid-cols-4 gap-1 mt-2">
+                                    {marketSegmentData.map((segment, idx) => (
+                                      <div key={`market-segment-${idx}`} className="text-center">
+                                        <div className="text-[10px] text-gray-500">{segment.name}</div>
+                                        <div className="text-xs font-medium text-gray-800">{segment.percentage}%</div>
+                                        <div className={`text-[10px] ${segment.growth.includes('+') ? 'text-emerald-600' : 'text-red-500'}`}>
+                                          {segment.growth}
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+
+                            {/* Brand Association Analysis */}
+                            {activeChart === 2 && (
+                              <div className="h-full flex items-center justify-center">
+                                <div className="w-full">
+                                  <div className="flex justify-between items-center mb-2">
+                                    <div className="text-xs font-medium text-gray-700">Brand Association - {activeAttribute}</div>
+                                    <div className="text-xs text-indigo-600">
+                                      <span className="font-medium">
+                                        {brandAssociationData["Your Product"].find(item => item.attribute === activeAttribute)?.score.toFixed(1)}/5.0
+                                      </span>
+                                    </div>
+                                  </div>
+                                  
+                                  <div className="relative h-24 flex justify-center">
+                                    <svg width="100%" height="100%" viewBox="0 0 300 100">
+                                      <g transform="translate(150, 50)">
+                                        {/* Radar chart background */}
+                                        <circle cx="0" cy="0" r="40" fill="none" stroke="#f1f1f1" strokeWidth="1" />
+                                        <circle cx="0" cy="0" r="30" fill="none" stroke="#f1f1f1" strokeWidth="1" />
+                                        <circle cx="0" cy="0" r="20" fill="none" stroke="#f1f1f1" strokeWidth="1" />
+                                        <circle cx="0" cy="0" r="10" fill="none" stroke="#f1f1f1" strokeWidth="1" />
+                                        
+                                        {/* Your product */}
+                                        <path 
+                                          d="M0,-40 L38,13 L24,34 L-24,34 L-38,13 Z" 
+                                          fill="rgba(99, 102, 241, 0.2)" 
+                                          stroke="#6366f1" 
+                                          strokeWidth="2"
+                                        />
+                                        
+                                        {/* Competitor A */}
+                                        <path 
+                                          d="M0,-33 L31,11 L19,27 L-19,27 L-31,11 Z" 
+                                          fill="none" 
+                                          stroke="#94a3b8" 
+                                          strokeWidth="1"
+                                          strokeDasharray="3,2"
+                                        />
+                                        
+                                        {/* Competitor B */}
+                                        <path 
+                                          d="M0,-36 L36,12 L15,22 L-28,40 L-30,10 Z" 
+                                          fill="none" 
+                                          stroke="#cbd5e1" 
+                                          strokeWidth="1"
+                                          strokeDasharray="2,2"
+                                        />
+                                      </g>
+                                    </svg>
+                                  </div>
+
+                                  <div className="flex justify-between text-xs mt-1">
+                                    <div className="flex items-center space-x-1">
+                                      <div className="w-2 h-2 bg-indigo-500"></div>
+                                      <span className="text-gray-700">Your Product</span>
+                                    </div>
+                                    <div className="flex items-center space-x-1">
+                                      <div className="w-2 h-2 bg-gray-400"></div>
+                                      <span className="text-gray-500">Competitors</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </motion.div>
+                        </AnimatePresence>
+                      </div>
+                    </div>
+                    
+                    {/* Right side panel - Brand attributes */}
+                    <div className="bg-gray-50 rounded-xl p-3">
+                      <div className="flex items-center space-x-1.5 mb-2">
+                        <ChartPie className="h-4 w-4 text-indigo-600" />
+                        <h4 className="text-sm font-medium text-gray-700">Brand Attributes</h4>
+                      </div>
+                      
+                      <div className="space-y-2.5">
+                        {brandAttributeData.slice(0, 3).map((attr, idx) => (
+                          <div key={`attr-${idx}`} className="bg-white rounded-md p-2 border border-gray-100">
+                            <div className="flex justify-between items-baseline mb-1">
+                              <div className="text-xs font-medium text-gray-800">{attr.attribute}</div>
+                              <div className="flex items-center text-xs">
+                                <span className={`mr-1 ${attr.change.includes('+') ? 'text-emerald-500' : 'text-red-500'}`}>
+                                  {attr.change}
+                                </span>
+                                <span>{attr.percentage}%</span>
+                              </div>
+                            </div>
+                            <div className="w-full h-1.5 bg-gray-100 rounded-full">
+                              <div 
+                                className="h-1.5 rounded-full bg-indigo-500/80" 
+                                style={{ width: `${attr.percentage}%` }}
+                              ></div>
+                            </div>
+                          </div>
+                        ))}
+                        
+                        <div className="text-center">
+                          <span className="text-xs text-indigo-600 cursor-pointer hover:underline">
+                            View All Attributes
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
