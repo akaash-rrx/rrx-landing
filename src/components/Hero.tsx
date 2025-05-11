@@ -49,8 +49,30 @@ const Hero = () => {
     { label: "18-24", value: 8 },
     { label: "55+", value: 6 },
   ];
+
+  const marketSegmentData = [
+    { name: "Early Adopters", percentage: 18, growth: "+5.2%" },
+    { name: "Technology Enthusiasts", percentage: 23, growth: "+3.8%" },
+    { name: "Pragmatists", percentage: 42, growth: "+1.5%" },
+    { name: "Conservatives", percentage: 17, growth: "-2.1%" },
+  ];
   
-  const chartTypes = ['topics', 'demographics', 'sentiment'];
+  const competitorPerceptionData = [
+    { name: "Your Product", metrics: { innovation: 86, reliability: 92, value: 78 }, overall: 85 },
+    { name: "Competitor A", metrics: { innovation: 74, reliability: 68, value: 82 }, overall: 75 },
+    { name: "Competitor B", metrics: { innovation: 91, reliability: 65, value: 69 }, overall: 72 },
+    { name: "Competitor C", metrics: { innovation: 62, reliability: 88, value: 75 }, overall: 70 },
+  ];
+
+  const brandAttributeData = [
+    { attribute: "Innovative", percentage: 72, change: "+8%" },
+    { attribute: "Reliable", percentage: 84, change: "+12%" },
+    { attribute: "User-friendly", percentage: 79, change: "+6%" },
+    { attribute: "Cost-effective", percentage: 65, change: "+3%" },
+    { attribute: "Forward-thinking", percentage: 77, change: "+15%" }
+  ];
+  
+  const chartTypes = ['topics', 'demographics', 'market', 'competitors', 'sentiment'];
   
   useEffect(() => {
     const chartInterval = setInterval(() => {
@@ -104,7 +126,7 @@ const Hero = () => {
             </motion.div>
             
             <motion.h1 
-              className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 bg-clip-text text-transparent"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 bg-clip-text text-transparent"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
@@ -112,7 +134,7 @@ const Hero = () => {
               Your new research <br className="hidden lg:block" />
               <span className="relative inline-block">
                 <motion.span 
-                  className="relative z-10 text-gray-900" // Changed to visible text color
+                  className="relative z-10 text-gray-900" 
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.6, duration: 0.8 }}
@@ -140,7 +162,7 @@ const Hero = () => {
             </motion.p>
             
             <motion.div 
-              className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-4 mb-8" // Added bottom margin to prevent overlap
+              className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-4 mb-10"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.6 }}
@@ -368,7 +390,7 @@ const Hero = () => {
                   <div className="grid grid-cols-3 gap-6 h-[280px]">
                     <div className="col-span-2 bg-gray-50 rounded-xl p-4 relative overflow-hidden">
                       <div className="flex justify-between items-center mb-2">
-                        <h4 className="text-sm font-medium text-gray-700">Sentiment & Topic Analysis</h4>
+                        <h4 className="text-sm font-medium text-gray-700">Market Research Analysis</h4>
                         <div className="flex items-center space-x-1 text-xs">
                           <button className={`px-2 py-1 rounded ${activeChart === 0 ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500'}`}>
                             Topics
@@ -377,6 +399,12 @@ const Hero = () => {
                             Demographics
                           </button>
                           <button className={`px-2 py-1 rounded ${activeChart === 2 ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500'}`}>
+                            Market
+                          </button>
+                          <button className={`px-2 py-1 rounded ${activeChart === 3 ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500'}`}>
+                            Competitors
+                          </button>
+                          <button className={`px-2 py-1 rounded ${activeChart === 4 ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500'}`}>
                             Sentiment
                           </button>
                         </div>
@@ -487,9 +515,185 @@ const Hero = () => {
                                 </div>
                               </div>
                             )}
+
+                            {/* Market Segmentation Chart */}
+                            {activeChart === 2 && (
+                              <div className="h-full flex items-center justify-center">
+                                <div className="w-full max-w-md">
+                                  <div className="text-xs font-medium text-gray-700 mb-3">Market Adoption Curve</div>
+                                  <div className="relative h-32 mb-4">
+                                    <svg viewBox="0 0 100 40" className="w-full h-full" preserveAspectRatio="none">
+                                      {/* Bell curve path */}
+                                      <defs>
+                                        <linearGradient id="bellGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                          <stop offset="0%" stopColor="#9b87f5" stopOpacity="0.7" />
+                                          <stop offset="50%" stopColor="#6E59A5" stopOpacity="0.8" />
+                                          <stop offset="100%" stopColor="#d0cce9" stopOpacity="0.7" />
+                                        </linearGradient>
+                                      </defs>
+                                      <path 
+                                        d="M0,40 C10,40 15,5 25,5 C35,5 40,15 50,15 C60,15 65,25 75,25 C85,25 90,35 100,35 L100,40 L0,40 Z" 
+                                        fill="url(#bellGradient)"
+                                      />
+                                      <path 
+                                        d="M0,40 C10,40 15,5 25,5 C35,5 40,15 50,15 C60,15 65,25 75,25 C85,25 90,35 100,35" 
+                                        fill="none"
+                                        stroke="#6E59A5"
+                                        strokeWidth="0.5"
+                                      />
+                                      
+                                      {/* Market segment markers */}
+                                      <motion.circle 
+                                        cx="20" cy="8" r="1.2"
+                                        fill="#9b87f5" 
+                                        initial={{ r: 0 }}
+                                        animate={{ r: 1.2 }}
+                                        transition={{ delay: 0.3, duration: 0.5 }}
+                                      />
+                                      <motion.circle 
+                                        cx="42" cy="15" r="1.2" 
+                                        fill="#6E59A5"
+                                        initial={{ r: 0 }}
+                                        animate={{ r: 1.2 }}
+                                        transition={{ delay: 0.5, duration: 0.5 }}
+                                      />
+                                      <motion.circle 
+                                        cx="65" cy="25" r="1.2" 
+                                        fill="#aaa6db"
+                                        initial={{ r: 0 }}
+                                        animate={{ r: 1.2 }}
+                                        transition={{ delay: 0.7, duration: 0.5 }}
+                                      />
+                                      <motion.circle 
+                                        cx="85" cy="33" r="1.2" 
+                                        fill="#d0cce9"
+                                        initial={{ r: 0 }}
+                                        animate={{ r: 1.2 }}
+                                        transition={{ delay: 0.9, duration: 0.5 }}
+                                      />
+                                    </svg>
+                                    
+                                    {/* Labels */}
+                                    <div className="absolute bottom-0 left-[18%] transform -translate-x-1/2 text-[10px] text-gray-600">
+                                      <div>Innovators</div>
+                                    </div>
+                                    <div className="absolute bottom-0 left-[42%] transform -translate-x-1/2 text-[10px] text-gray-600">
+                                      <div>Early Adopters</div>
+                                    </div>
+                                    <div className="absolute bottom-0 left-[65%] transform -translate-x-1/2 text-[10px] text-gray-600">
+                                      <div>Majority</div>
+                                    </div>
+                                    <div className="absolute bottom-0 left-[85%] transform -translate-x-1/2 text-[10px] text-gray-600">
+                                      <div>Laggards</div>
+                                    </div>
+                                  </div>
+                                  
+                                  <div className="grid grid-cols-2 gap-2 text-xs">
+                                    {marketSegmentData.map((segment, idx) => (
+                                      <motion.div 
+                                        key={`market-segment-${idx}`}
+                                        initial={{ opacity: 0, y: 5 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.3 + (idx * 0.1), duration: 0.4 }}
+                                        className="bg-white rounded-md border border-gray-200 p-2 flex justify-between items-center"
+                                      >
+                                        <span className="text-gray-700">{segment.name}</span>
+                                        <div className="flex items-center gap-2">
+                                          <span className="font-medium">{segment.percentage}%</span>
+                                          <span className={segment.growth.includes('+') ? 'text-emerald-600' : 'text-red-500'}>
+                                            {segment.growth}
+                                          </span>
+                                        </div>
+                                      </motion.div>
+                                    ))}
+                                  </div>
+
+                                  <div className="mt-4 bg-indigo-50 rounded-md p-2 text-xs text-indigo-700 border border-indigo-100">
+                                    <div className="font-medium">Key Insight:</div>
+                                    <div className="text-[10px] mt-0.5">Early adopter segment growing 38% faster than industry average</div>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+
+                            {/* Competitor Analysis */}
+                            {activeChart === 3 && (
+                              <div className="h-full flex items-center justify-center">
+                                <div className="w-full max-w-md">
+                                  <div className="text-xs font-medium text-gray-700 mb-3">Competitor Analysis</div>
+                                  
+                                  <div className="grid grid-cols-4 gap-1 mb-4">
+                                    {competitorPerceptionData.map((comp, idx) => (
+                                      <motion.div
+                                        key={`competitor-${idx}`}
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.2 + (idx * 0.1), duration: 0.5 }}
+                                        className={`rounded-lg p-2 border ${
+                                          idx === 0 ? 'border-indigo-200 bg-indigo-50' : 'border-gray-200 bg-white'
+                                        } text-center`}
+                                      >
+                                        <div className={`text-xs font-medium mb-1 ${
+                                          idx === 0 ? 'text-indigo-700' : 'text-gray-700'
+                                        }`}>
+                                          {comp.name}
+                                        </div>
+                                        <div className={`text-lg font-bold ${
+                                          idx === 0 ? 'text-indigo-700' : 'text-gray-700'
+                                        }`}>
+                                          {comp.overall}
+                                        </div>
+                                        <div className="text-[10px] text-gray-500">Overall Score</div>
+                                      </motion.div>
+                                    ))}
+                                  </div>
+                                  
+                                  <div className="space-y-3">
+                                    {['innovation', 'reliability', 'value'].map((metric, metricIdx) => (
+                                      <div key={`metric-${metricIdx}`} className="space-y-1">
+                                        <div className="text-[10px] font-medium text-gray-600 capitalize">{metric}</div>
+                                        <div className="flex gap-1 h-3">
+                                          {competitorPerceptionData.map((comp, compIdx) => (
+                                            <motion.div 
+                                              key={`bar-${metricIdx}-${compIdx}`}
+                                              className="flex-1 rounded-sm overflow-hidden bg-gray-100"
+                                            >
+                                              <motion.div
+                                                className={`h-full ${
+                                                  compIdx === 0 ? 
+                                                    'bg-gradient-to-r from-indigo-500 to-indigo-400' : 
+                                                    `bg-gray-${300 + (compIdx * 100)}`
+                                                }`}
+                                                style={{
+                                                  backgroundColor: compIdx === 0 ? '' : `rgba(${120 + (compIdx * 30)}, ${120 + (compIdx * 25)}, ${140 + (compIdx * 20)}, 0.7)`
+                                                }}
+                                                initial={{ width: '0%' }}
+                                                animate={{ width: `${comp.metrics[metric]}%` }}
+                                                transition={{ duration: 1, delay: 0.3 + (metricIdx * 0.2) }}
+                                              />
+                                            </motion.div>
+                                          ))}
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                  
+                                  <div className="mt-4 grid grid-cols-4 gap-1 text-center text-[10px] text-gray-500">
+                                    {competitorPerceptionData.map((comp, idx) => (
+                                      <div 
+                                        key={`legend-${idx}`}
+                                        className={idx === 0 ? 'text-indigo-600 font-medium' : ''}
+                                      >
+                                        {comp.name}
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+                            )}
                             
                             {/* Sentiment Analysis */}
-                            {activeChart === 2 && (
+                            {activeChart === 4 && (
                               <div className="h-full flex items-center justify-center">
                                 <div className="w-full max-w-md flex space-x-4">
                                   {/* Sentiment chart */}
@@ -533,27 +737,24 @@ const Hero = () => {
                                   
                                   {/* Sentiment details */}
                                   <div className="flex-1 flex flex-col justify-center">
-                                    <div className="text-sm font-medium text-gray-900 mb-2">Sentiment Breakdown</div>
+                                    <div className="text-sm font-medium text-gray-900 mb-2">Brand Perception</div>
                                     
-                                    {[
-                                      { label: "Positive", value: 75, color: "#10b981" },
-                                      { label: "Neutral", value: 18, color: "#a1a1aa" },
-                                      { label: "Negative", value: 7, color: "#f87171" }
-                                    ].map((item, i) => (
-                                      <div key={`sentiment-${i}`} className="mb-2">
+                                    {brandAttributeData.map((item, i) => (
+                                      <div key={`attribute-${i}`} className="mb-2">
                                         <div className="flex justify-between text-xs mb-1">
+                                          <span className="text-gray-600">{item.attribute}</span>
                                           <div className="flex items-center">
-                                            <div className="w-1.5 h-1.5 rounded-full mr-1.5" style={{ backgroundColor: item.color }}></div>
-                                            <span className="text-gray-600">{item.label}</span>
+                                            <span className="text-gray-900 font-medium mr-1">{item.percentage}%</span>
+                                            <span className={item.change.includes('+') ? 'text-emerald-600 text-[10px]' : 'text-red-500 text-[10px]'}>
+                                              {item.change}
+                                            </span>
                                           </div>
-                                          <span className="text-gray-900 font-medium">{item.value}%</span>
                                         </div>
                                         <div className="w-full h-1.5 bg-gray-100 rounded-full">
                                           <motion.div
-                                            className="h-1.5 rounded-full"
-                                            style={{ backgroundColor: item.color }}
+                                            className="h-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"
                                             initial={{ width: 0 }}
-                                            animate={{ width: `${item.value}%` }}
+                                            animate={{ width: `${item.percentage}%` }}
                                             transition={{ delay: 0.3 + (i * 0.2), duration: 1 }}
                                           />
                                         </div>
@@ -562,7 +763,7 @@ const Hero = () => {
                                     
                                     <div className="text-xs text-gray-500 mt-2 bg-gray-50 p-2 rounded">
                                       <div className="font-medium text-gray-700">Key Finding:</div>
-                                      <div>Product usability correlates strongly with positive sentiment (r=0.82)</div>
+                                      <div>"Innovative" attribute grew 15% after new feature launch</div>
                                     </div>
                                   </div>
                                 </div>
