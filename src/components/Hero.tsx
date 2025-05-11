@@ -86,20 +86,22 @@ const Hero = () => {
               transition={{ delay: 0.4, duration: 0.8 }}
             >
               Your new research <br className="hidden lg:block" />
-              <motion.span 
-                className="relative inline-block"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.6, duration: 0.8 }}
-              >
-                <span className="relative z-10">intelligence</span>
+              <span className="relative inline-block">
+                <motion.span 
+                  className="relative z-10 text-gray-900" // Changed to visible text color
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.6, duration: 0.8 }}
+                >
+                  intelligence
+                </motion.span>
                 <motion.span 
                   className="absolute -bottom-1 left-0 w-full h-[6px] bg-indigo-500 rounded-full opacity-60"
                   initial={{ width: 0 }}
                   animate={{ width: "100%" }}
                   transition={{ delay: 1.2, duration: 0.8 }}
                 />
-              </motion.span> engine.
+              </span> engine.
             </motion.h1>
             
             <motion.p 
@@ -114,7 +116,7 @@ const Hero = () => {
             </motion.p>
             
             <motion.div 
-              className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-4"
+              className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-4 mb-8" // Added bottom margin to prevent overlap
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.6 }}
