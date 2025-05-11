@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -397,7 +396,7 @@ const Hero = () => {
                   <div className="grid grid-cols-3 gap-4">
                     <div className="col-span-2 bg-gray-50 rounded-xl p-4 relative overflow-hidden">
                       {/* Analysis header and tabs - now with more separation from content */}
-                      <div className="flex justify-between items-center mb-8">
+                      <div className="flex justify-between items-center mb-10">
                         <div className="flex items-center space-x-1.5">
                           <LineChart className="h-4 w-4 text-indigo-600" />
                           <h4 className="text-sm font-medium text-gray-700">Analysis</h4>
@@ -425,7 +424,7 @@ const Hero = () => {
                       </div>
                       
                       {/* Fixed height container for charts - Increased top margin for better separation */}
-                      <div className="h-[165px] px-2 mt-10">
+                      <div className="h-[165px] px-2 mt-14">
                         <AnimatePresence mode="wait">
                           <motion.div 
                             key={`chart-${activeChart}`}
@@ -548,15 +547,15 @@ const Hero = () => {
                                   </div>
                                   
                                   <div className="mt-2 grid grid-cols-3 gap-2">
-                                    <div className="text-center bg-gray-50 rounded-md px-2 py-1 border border-gray-100">
+                                    <div className="text-center bg-gray-50 rounded-md px-2 py-1 border border-gray-200">
                                       <div className="text-[10px] text-gray-500">Key Sentiment Driver</div>
                                       <div className="text-xs font-medium text-gray-800 mt-0.5">Product Reliability</div>
                                     </div>
-                                    <div className="text-center bg-gray-50 rounded-md px-2 py-1 border border-gray-100">
+                                    <div className="text-center bg-gray-50 rounded-md px-2 py-1 border border-gray-200">
                                       <div className="text-[10px] text-gray-500">Sentiment Score</div>
                                       <div className="text-xs font-medium text-emerald-600 mt-0.5">+32 NPS</div>
                                     </div>
-                                    <div className="text-center bg-gray-50 rounded-md px-2 py-1 border border-gray-100">
+                                    <div className="text-center bg-gray-50 rounded-md px-2 py-1 border border-gray-200">
                                       <div className="text-[10px] text-gray-500">Q/Q Change</div>
                                       <div className="text-xs font-medium text-emerald-600 mt-0.5">+5.4 pts</div>
                                     </div>
