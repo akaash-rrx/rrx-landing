@@ -396,7 +396,7 @@ const Hero = () => {
                   {/* Main visualization area - Improved height and visibility */}
                   <div className="grid grid-cols-3 gap-4">
                     <div className="col-span-2 bg-gray-50 rounded-xl p-4 relative overflow-hidden">
-                      <div className="flex justify-between items-center mb-3">
+                      <div className="flex justify-between items-center mb-6">
                         <div className="flex items-center space-x-1.5">
                           <LineChart className="h-4 w-4 text-indigo-600" />
                           <h4 className="text-sm font-medium text-gray-700">Analysis</h4>
@@ -423,8 +423,8 @@ const Hero = () => {
                         </div>
                       </div>
                       
-                      {/* Fixed height container for charts - MOVED BELOW THE TABS */}
-                      <div className="h-[165px] px-2 mt-4">
+                      {/* Fixed height container for charts - MOVED FURTHER DOWN with more margin */}
+                      <div className="h-[165px] px-2 mt-6">
                         <AnimatePresence mode="wait">
                           <motion.div 
                             key={`chart-${activeChart}`}
@@ -656,8 +656,8 @@ const Hero = () => {
                                       {/* Axis lines */}
                                       <line x1="100" y1="10" x2="100" y2="110" stroke="#e5e7eb" strokeWidth="0.5" />
                                       <line x1="50" y1="60" x2="150" y2="60" stroke="#e5e7eb" strokeWidth="0.5" />
-                                      <line x1="65" y1="25" x2="135" y2="95" stroke="#e5e7eb" strokeWidth="0.5" dasharray="2,2" />
-                                      <line x1="65" y1="95" x2="135" y2="25" stroke="#e5e7eb" strokeWidth="0.5" dasharray="2,2" />
+                                      <line x1="65" y1="25" x2="135" y2="95" stroke="#e5e7eb" strokeWidth="0.5" strokeDasharray="2,2" />
+                                      <line x1="65" y1="95" x2="135" y2="25" stroke="#e5e7eb" strokeWidth="0.5" strokeDasharray="2,2" />
                                       
                                       {/* Axis labels */}
                                       <text x="100" y="5" textAnchor="middle" fontSize="7" fill="#6B7280">Innovation</text>
