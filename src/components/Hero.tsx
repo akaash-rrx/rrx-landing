@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -397,7 +396,7 @@ const Hero = () => {
                   <div className="grid grid-cols-3 gap-4">
                     <div className="col-span-2 bg-gray-50 rounded-xl p-4 relative overflow-hidden">
                       {/* Analysis header and tabs - with more separation from content */}
-                      <div className="flex justify-between items-center mb-6">
+                      <div className="flex justify-between items-center mb-14">
                         <div className="flex items-center space-x-1.5">
                           <LineChart className="h-4 w-4 text-indigo-600" />
                           <h4 className="text-sm font-medium text-gray-700">Analysis</h4>
@@ -424,8 +423,8 @@ const Hero = () => {
                         </div>
                       </div>
                       
-                      {/* Fixed height container for charts */}
-                      <div className="h-[190px] px-2">
+                      {/* Fixed height container for charts - Further increased top margin for better separation */}
+                      <div className="h-[190px] px-2 mt-10">
                         <AnimatePresence mode="wait">
                           <motion.div 
                             key={`chart-${activeChart}`}
@@ -439,12 +438,12 @@ const Hero = () => {
                             {activeChart === 0 && (
                               <div className="h-full flex items-center justify-center">
                                 <div className="w-full">
-                                  <div className="flex justify-between mb-2">
+                                  <div className="flex justify-between mb-4">
                                     <div className="text-xs font-medium text-gray-700">Customer Sentiment Analysis</div>
                                   </div>
                                   
                                   {/* SVG Area Chart */}
-                                  <div className="relative h-24 mt-2">
+                                  <div className="relative h-24 mt-6">
                                     <svg className="w-full h-full" viewBox="0 0 600 100" preserveAspectRatio="none">
                                       {/* Gradient definitions */}
                                       <defs>
@@ -508,7 +507,7 @@ const Hero = () => {
                                     </svg>
                                   </div>
                                   
-                                  <div className="flex items-center justify-end text-xs space-x-3 mt-8">
+                                  <div className="flex items-center justify-end text-xs space-x-3 mt-5">
                                     <div className="flex items-center space-x-1">
                                       <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
                                       <span className="text-gray-600">Positive</span>
@@ -523,7 +522,7 @@ const Hero = () => {
                                     </div>
                                   </div>
                                   
-                                  <div className="mt-2 grid grid-cols-3 gap-2">
+                                  <div className="mt-6 grid grid-cols-3 gap-2">
                                     <div className="text-center bg-gray-50 rounded-md px-2 py-1 border border-gray-200">
                                       <div className="text-[10px] text-gray-500">Key Sentiment Driver</div>
                                       <div className="text-xs font-medium text-gray-800 mt-0.5">Product Reliability</div>
@@ -541,7 +540,7 @@ const Hero = () => {
                               </div>
                             )}
 
-                            {/* Market Adoption Curve - Restored to original appearance */}
+                            {/* Market Adoption Curve */}
                             {activeChart === 1 && (
                               <div className="h-full flex items-center justify-center">
                                 <div className="w-full">
@@ -572,7 +571,7 @@ const Hero = () => {
                                     </svg>
                                   </div>
                                   
-                                  <div className="grid grid-cols-2 gap-3 mt-6 text-xs">
+                                  <div className="grid grid-cols-2 gap-3 mt-12 text-xs">
                                     <div className="bg-white p-1.5 rounded-md border border-gray-100 shadow-sm">
                                       <div className="flex justify-between items-center">
                                         <div className="text-[10px] text-gray-500">Market Penetration</div>
@@ -596,79 +595,78 @@ const Hero = () => {
                               </div>
                             )}
                             
-                            {/* New Competitive Brand Association Chart - More research oriented */}
+                            {/* Enhanced Competitors Analysis Chart */}
                             {activeChart === 2 && (
                               <div className="h-full flex items-center justify-center">
                                 <div className="w-full">
-                                  <div className="flex justify-between mb-2">
-                                    <div className="text-xs font-medium text-gray-700">Brand Association Map</div>
-                                    <div className="text-[10px] text-gray-500">n=1,204 respondents</div>
+                                  <div className="flex justify-between mb-1">
+                                    <div className="text-xs font-medium text-gray-700">Competitive Positioning Matrix</div>
+                                    <div className="text-[10px] text-gray-500">3-Factor Analysis</div>
                                   </div>
                                   
-                                  {/* Brand Association Chart */}
-                                  <div className="relative h-28 mx-auto">
-                                    <svg viewBox="0 0 400 150" className="w-full h-full">
-                                      {/* Coordinate System */}
-                                      <line x1="200" y1="20" x2="200" y2="130" stroke="#e5e7eb" strokeWidth="1" />
-                                      <line x1="100" y1="75" x2="300" y2="75" stroke="#e5e7eb" strokeWidth="1" />
+                                  {/* Radar chart simulation */}
+                                  <div className="relative h-28 mt-1 mx-auto" style={{width: "280px"}}>
+                                    <svg viewBox="0 0 200 120" className="w-full h-full">
+                                      {/* Background shapes */}
+                                      <polygon points="100,10 57,40 57,80 100,110 143,80 143,40" fill="none" stroke="#e5e7eb" strokeWidth="1" />
+                                      <polygon points="100,25 67,47.5 67,72.5 100,95 133,72.5 133,47.5" fill="none" stroke="#e5e7eb" strokeWidth="1" />
+                                      <polygon points="100,40 77,55 77,65 100,80 123,65 123,55" fill="none" stroke="#e5e7eb" strokeWidth="1" />
+                                      <line x1="100" y1="10" x2="100" y2="110" stroke="#e5e7eb" strokeWidth="1" />
+                                      <line x1="57" y1="40" x2="143" y2="80" stroke="#e5e7eb" strokeWidth="1" />
+                                      <line x1="57" y1="80" x2="143" y2="40" stroke="#e5e7eb" strokeWidth="1" />
                                       
-                                      {/* Axis Labels */}
-                                      <text x="200" y="15" fontSize="8" textAnchor="middle" fill="#6b7280">Premium</text>
-                                      <text x="200" y="145" fontSize="8" textAnchor="middle" fill="#6b7280">Budget</text>
-                                      <text x="90" y="75" fontSize="8" textAnchor="end" fill="#6b7280">Traditional</text>
-                                      <text x="310" y="75" fontSize="8" textAnchor="start" fill="#6b7280">Innovative</text>
+                                      {/* Axis labels */}
+                                      <text x="100" y="5" fontSize="7" textAnchor="middle" fill="#6b7280">Innovation</text>
+                                      <text x="45" y="40" fontSize="7" textAnchor="end" fill="#6b7280">Value</text>
+                                      <text x="45" y="85" fontSize="7" textAnchor="end" fill="#6b7280">Price</text>
+                                      <text x="100" y="120" fontSize="7" textAnchor="middle" fill="#6b7280">Support</text>
+                                      <text x="155" y="85" fontSize="7" textAnchor="start" fill="#6b7280">Usability</text>
+                                      <text x="155" y="40" fontSize="7" textAnchor="start" fill="#6b7280">Reliability</text>
                                       
-                                      {/* Background Quadrant Labels */}
-                                      <text x="150" y="45" fontSize="6" textAnchor="middle" fill="#9ca3af">Premium Traditional</text>
-                                      <text x="250" y="45" fontSize="6" textAnchor="middle" fill="#9ca3af">Premium Innovative</text>
-                                      <text x="150" y="105" fontSize="6" textAnchor="middle" fill="#9ca3af">Budget Traditional</text>
-                                      <text x="250" y="105" fontSize="6" textAnchor="middle" fill="#9ca3af">Budget Innovative</text>
-                                      
-                                      {/* Data Points */}
-                                      {/* Your Company */}
-                                      <circle cx="245" cy="45" r="18" fill="rgba(79, 70, 229, 0.1)" stroke="#4f46e5" strokeWidth="1" />
-                                      <text x="245" y="45" fontSize="7" textAnchor="middle" fill="#4f46e5" fontWeight="bold">Your Product</text>
-                                      <text x="245" y="53" fontSize="6" textAnchor="middle" fill="#4f46e5">(85%)</text>
+                                      {/* Your Product */}
+                                      <polygon points="100,15 63,45 65,82 100,102 138,78 137,42" fill="rgba(79, 70, 229, 0.2)" stroke="#4f46e5" strokeWidth="1.5" />
+                                      <circle cx="100" cy="15" r="3" fill="#4f46e5" />
+                                      <circle cx="63" cy="45" r="3" fill="#4f46e5" />
+                                      <circle cx="65" cy="82" r="3" fill="#4f46e5" />
+                                      <circle cx="100" cy="102" r="3" fill="#4f46e5" />
+                                      <circle cx="138" cy="78" r="3" fill="#4f46e5" />
+                                      <circle cx="137" cy="42" r="3" fill="#4f46e5" />
                                       
                                       {/* Competitor A */}
-                                      <circle cx="180" cy="40" r="14" fill="rgba(245, 158, 11, 0.1)" stroke="#f59e0b" strokeWidth="1" strokeDasharray="2,1" />
-                                      <text x="180" y="40" fontSize="7" textAnchor="middle" fill="#f59e0b">Competitor A</text>
-                                      <text x="180" y="48" fontSize="6" textAnchor="middle" fill="#f59e0b">(75%)</text>
-                                      
-                                      {/* Competitor B */}
-                                      <circle cx="255" cy="80" r="14" fill="rgba(16, 185, 129, 0.1)" stroke="#10b981" strokeWidth="1" strokeDasharray="2,1" />
-                                      <text x="255" y="80" fontSize="7" textAnchor="middle" fill="#10b981">Competitor B</text>
-                                      <text x="255" y="88" fontSize="6" textAnchor="middle" fill="#10b981">(72%)</text>
-                                      
-                                      {/* Competitor C */}
-                                      <circle cx="150" cy="65" r="13" fill="rgba(124, 58, 237, 0.1)" stroke="#7c3aed" strokeWidth="1" strokeDasharray="2,1" />
-                                      <text x="150" y="65" fontSize="7" textAnchor="middle" fill="#7c3aed">Competitor C</text>
-                                      <text x="150" y="73" fontSize="6" textAnchor="middle" fill="#7c3aed">(70%)</text>
-                                      
-                                      {/* Lines indicating relationships and distances */}
-                                      <line x1="245" y1="45" x2="180" y2="40" stroke="#e5e7eb" strokeWidth="0.5" strokeDasharray="2,1" />
-                                      <line x1="245" y1="45" x2="255" y2="80" stroke="#e5e7eb" strokeWidth="0.5" strokeDasharray="2,1" />
-                                      <line x1="245" y1="45" x2="150" y2="65" stroke="#e5e7eb" strokeWidth="0.5" strokeDasharray="2,1" />
+                                      <polygon points="100,25 72,50 70,75 100,95 125,80 128,48" fill="rgba(245, 158, 11, 0.1)" stroke="#f59e0b" strokeWidth="1" strokeDasharray="2,2" />
                                     </svg>
+                                    
+                                    <div className="absolute top-2 right-3 bg-white/90 px-1.5 py-1 rounded border border-gray-100 shadow-sm">
+                                      <div className="flex items-center space-x-2">
+                                        <div className="flex items-center space-x-1">
+                                          <div className="w-2 h-2 rounded-full bg-indigo-600"></div>
+                                          <span className="text-[9px] text-gray-600">You</span>
+                                        </div>
+                                        <div className="flex items-center space-x-1">
+                                          <div className="w-2 h-2 rounded-full bg-amber-500"></div>
+                                          <span className="text-[9px] text-gray-600">Comp A</span>
+                                        </div>
+                                      </div>
+                                    </div>
                                   </div>
                                   
-                                  <div className="grid grid-cols-2 gap-2 mt-4 text-xs">
+                                  <div className="grid grid-cols-2 gap-2 mt-12 text-xs">
                                     <div className="bg-white p-1.5 rounded border border-gray-100 shadow-sm">
                                       <div className="flex justify-between items-center">
-                                        <span className="text-[10px] text-gray-500">Primary Association</span>
-                                        <span className="text-[11px] font-medium text-indigo-600">Innovation Leader</span>
+                                        <span className="text-[10px] text-gray-500">Overall Score</span>
+                                        <span className="text-[11px] font-medium text-indigo-600">85/100</span>
                                       </div>
                                       <div className="w-full h-1 bg-gray-100 rounded-full mt-1">
-                                        <div className="h-1 bg-indigo-500 rounded-full" style={{width: "86%"}}></div>
+                                        <div className="h-1 bg-indigo-500 rounded-full" style={{width: "85%"}}></div>
                                       </div>
                                     </div>
                                     <div className="bg-white p-1.5 rounded border border-gray-100 shadow-sm">
                                       <div className="flex justify-between items-center">
-                                        <span className="text-[10px] text-gray-500">Perception Distance</span>
-                                        <span className="text-[11px] font-medium text-emerald-600">+14.2 pts</span>
+                                        <span className="text-[10px] text-gray-500">Competitive Edge</span>
+                                        <span className="text-[11px] font-medium text-emerald-600">+13% vs Avg</span>
                                       </div>
                                       <div className="text-[9px] text-gray-600 mt-0.5">
-                                        Clear differentiation from competitors
+                                        Leading in innovation and reliability
                                       </div>
                                     </div>
                                   </div>
