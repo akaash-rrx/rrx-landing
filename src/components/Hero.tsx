@@ -396,7 +396,7 @@ const Hero = () => {
                   <div className="grid grid-cols-3 gap-4">
                     <div className="col-span-2 bg-gray-50 rounded-xl p-4 relative overflow-hidden">
                       {/* Analysis header and tabs - with more separation from content */}
-                      <div className="flex justify-between items-center mb-12">
+                      <div className="flex justify-between items-center mb-14">
                         <div className="flex items-center space-x-1.5">
                           <LineChart className="h-4 w-4 text-indigo-600" />
                           <h4 className="text-sm font-medium text-gray-700">Analysis</h4>
@@ -424,7 +424,7 @@ const Hero = () => {
                       </div>
                       
                       {/* Fixed height container for charts - Further increased top margin for better separation */}
-                      <div className="h-[165px] px-2 mt-16">
+                      <div className="h-[190px] px-2 mt-10">
                         <AnimatePresence mode="wait">
                           <motion.div 
                             key={`chart-${activeChart}`}
@@ -434,34 +434,92 @@ const Hero = () => {
                             transition={{ duration: 0.5 }}
                             className="h-full w-full"
                           >
-                            {/* Insights Trends Chart - Replacing both Topics and Demographics */}
+                            {/* Insights Trends Chart */}
                             {activeChart === 0 && (
                               <div className="h-full flex items-center justify-center">
                                 <div className="w-full">
                                   <div className="flex justify-between mb-4">
-                                    <div className="text-xs font-medium text-gray-700">Customer Sentiment Trends</div>
-                                    <div className="flex items-center text-xs space-x-3">
-                                      <div className="flex items-center space-x-1">
-                                        <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
-                                        <span className="text-gray-600">Positive</span>
-                                      </div>
-                                      <div className="flex items-center space-x-1">
-                                        <div className="w-2 h-2 rounded-full bg-red-400"></div>
-                                        <span className="text-gray-600">Negative</span>
-                                      </div>
-                                      <div className="flex items-center space-x-1">
-                                        <div className="w-2 h-2 rounded-full bg-gray-400"></div>
-                                        <span className="text-gray-600">Neutral</span>
-                                      </div>
-                                    </div>
+                                    <div className="text-xs font-medium text-gray-700">Customer Sentiment Analysis</div>
                                   </div>
                                   
                                   {/* SVG Area Chart */}
-                                  <div className="relative h-24 mt-2">
-                                    {/* ... keep existing code (SVG chart) */}
+                                  <div className="relative h-24 mt-6">
                                     <svg className="w-full h-full" viewBox="0 0 600 100" preserveAspectRatio="none">
-                                      {/* ... keep existing code (gradient definitions, grid lines, chart paths) */}
+                                      {/* Gradient definitions */}
+                                      <defs>
+                                        <linearGradient id="positiveGradient" x1="0" y1="0" x2="0" y2="1">
+                                          <stop offset="0%" stopColor="rgba(16, 185, 129, 0.3)" />
+                                          <stop offset="100%" stopColor="rgba(16, 185, 129, 0.05)" />
+                                        </linearGradient>
+                                        <linearGradient id="negativeGradient" x1="0" y1="0" x2="0" y2="1">
+                                          <stop offset="0%" stopColor="rgba(239, 68, 68, 0.3)" />
+                                          <stop offset="100%" stopColor="rgba(239, 68, 68, 0.05)" />
+                                        </linearGradient>
+                                        <linearGradient id="neutralGradient" x1="0" y1="0" x2="0" y2="1">
+                                          <stop offset="0%" stopColor="rgba(156, 163, 175, 0.3)" />
+                                          <stop offset="100%" stopColor="rgba(156, 163, 175, 0.05)" />
+                                        </linearGradient>
+                                      </defs>
+
+                                      {/* Grid lines */}
+                                      <line x1="0" y1="0" x2="600" y2="0" stroke="#f1f1f1" />
+                                      <line x1="0" y1="50" x2="600" y2="50" stroke="#f1f1f1" />
+                                      <line x1="0" y1="100" x2="600" y2="100" stroke="#f1f1f1" />
+
+                                      {/* Positive sentiment area */}
+                                      <path 
+                                        d="M0,65 L100,58 L200,62 L300,55 L400,52 L500,48 L600,48 L600,100 L0,100 Z" 
+                                        fill="url(#positiveGradient)" 
+                                        strokeWidth="0"
+                                      />
+                                      <path 
+                                        d="M0,65 L100,58 L200,62 L300,55 L400,52 L500,48 L600,48" 
+                                        fill="none" 
+                                        stroke="#10b981" 
+                                        strokeWidth="2"
+                                      />
+
+                                      {/* Negative sentiment area */}
+                                      <path 
+                                        d="M0,80 L100,82 L200,76 L300,85 L400,88 L500,90 L600,90 L600,100 L0,100 Z" 
+                                        fill="url(#negativeGradient)" 
+                                        strokeWidth="0"
+                                      />
+                                      <path 
+                                        d="M0,80 L100,82 L200,76 L300,85 L400,88 L500,90 L600,90" 
+                                        fill="none" 
+                                        stroke="#ef4444" 
+                                        strokeWidth="2"
+                                      />
+
+                                      {/* Neutral sentiment area */}
+                                      <path 
+                                        d="M0,55 L100,60 L200,62 L300,60 L400,60 L500,62 L600,62 L600,100 L0,100 Z" 
+                                        fill="url(#neutralGradient)" 
+                                        strokeWidth="0"
+                                      />
+                                      <path 
+                                        d="M0,55 L100,60 L200,62 L300,60 L400,60 L500,62 L600,62" 
+                                        fill="none" 
+                                        stroke="#9ca3af" 
+                                        strokeWidth="2"
+                                      />
                                     </svg>
+                                  </div>
+                                  
+                                  <div className="flex items-center justify-end text-xs space-x-3 mt-5">
+                                    <div className="flex items-center space-x-1">
+                                      <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
+                                      <span className="text-gray-600">Positive</span>
+                                    </div>
+                                    <div className="flex items-center space-x-1">
+                                      <div className="w-2 h-2 rounded-full bg-red-400"></div>
+                                      <span className="text-gray-600">Negative</span>
+                                    </div>
+                                    <div className="flex items-center space-x-1">
+                                      <div className="w-2 h-2 rounded-full bg-gray-400"></div>
+                                      <span className="text-gray-600">Neutral</span>
+                                    </div>
                                   </div>
                                   
                                   <div className="mt-6 grid grid-cols-3 gap-2">
@@ -482,21 +540,38 @@ const Hero = () => {
                               </div>
                             )}
 
-                            {/* Market Adoption Curve - Enhanced with text */}
+                            {/* Market Adoption Curve */}
                             {activeChart === 1 && (
                               <div className="h-full flex items-center justify-center">
                                 <div className="w-full">
                                   <div className="text-xs font-medium text-gray-700 mb-2">Market Adoption Analysis</div>
                                   <div className="relative h-24 mb-1">
-                                    {/* ... keep existing code (SVG for market curve) */}
                                     <svg viewBox="0 0 100 40" className="w-full h-full" preserveAspectRatio="none">
-                                      {/* ... keep existing code (bell curve SVG elements) */}
-                                    </svg>
+                                      {/* Background grid lines */}
+                                      <line x1="0" y1="39" x2="100" y2="39" stroke="#f1f1f1" strokeWidth="0.5" />
+                                      <line x1="25" y1="0" x2="25" y2="40" stroke="#f1f1f1" strokeWidth="0.5" />
+                                      <line x1="50" y1="0" x2="50" y2="40" stroke="#f1f1f1" strokeWidth="0.5" />
+                                      <line x1="75" y1="0" x2="75" y2="40" stroke="#f1f1f1" strokeWidth="0.5" />
                                       
-                                    {/* ... keep existing code (label positioning) */}
+                                      {/* Bell curve */}
+                                      <path d="M5,38 C15,38 20,35 25,20 C30,5 35,3 40,3 C45,3 50,10 55,10 C60,10 65,5 70,10 C75,15 80,25 85,30 C90,35 95,37 100,38" fill="none" stroke="#9b87f5" strokeWidth="2" />
+                                      
+                                      {/* Areas under the bell curve */}
+                                      <path d="M5,38 C15,38 20,35 25,20 C30,5 35,3 40,3 L40,39 L5,39 Z" fill="rgba(155, 135, 245, 0.1)" />
+                                      <path d="M40,3 C45,3 50,10 55,10 C60,10 65,5 70,10 L70,39 L40,39 Z" fill="rgba(155, 135, 245, 0.2)" />
+                                      <path d="M70,10 C75,15 80,25 85,30 C90,35 95,37 100,38 L100,39 L70,39 Z" fill="rgba(155, 135, 245, 0.05)" />
+                                      
+                                      {/* Current position marker */}
+                                      <circle cx="40" cy="3" r="2" fill="#6E59A5" />
+                                      
+                                      {/* Labels */}
+                                      <text x="12" y="33" fontSize="3" textAnchor="middle" fill="#6E59A5">Early Adopters</text>
+                                      <text x="55" y="33" fontSize="3" textAnchor="middle" fill="#6E59A5">Early Majority</text>
+                                      <text x="85" y="33" fontSize="3" textAnchor="middle" fill="#6E59A5">Late Majority</text>
+                                    </svg>
                                   </div>
                                   
-                                  <div className="grid grid-cols-2 gap-3 mt-8 text-xs">
+                                  <div className="grid grid-cols-2 gap-3 mt-12 text-xs">
                                     <div className="bg-white p-1.5 rounded-md border border-gray-100 shadow-sm">
                                       <div className="flex justify-between items-center">
                                         <div className="text-[10px] text-gray-500">Market Penetration</div>
@@ -520,7 +595,7 @@ const Hero = () => {
                               </div>
                             )}
                             
-                            {/* Enhanced Competitors Analysis Chart - More complex */}
+                            {/* Enhanced Competitors Analysis Chart */}
                             {activeChart === 2 && (
                               <div className="h-full flex items-center justify-center">
                                 <div className="w-full">
@@ -531,17 +606,51 @@ const Hero = () => {
                                   
                                   {/* Radar chart simulation */}
                                   <div className="relative h-28 mt-1 mx-auto" style={{width: "280px"}}>
-                                    {/* ... keep existing code (SVG radar chart) */}
                                     <svg viewBox="0 0 200 120" className="w-full h-full">
-                                      {/* ... keep existing code (radar chart SVG elements) */}
+                                      {/* Background shapes */}
+                                      <polygon points="100,10 57,40 57,80 100,110 143,80 143,40" fill="none" stroke="#e5e7eb" strokeWidth="1" />
+                                      <polygon points="100,25 67,47.5 67,72.5 100,95 133,72.5 133,47.5" fill="none" stroke="#e5e7eb" strokeWidth="1" />
+                                      <polygon points="100,40 77,55 77,65 100,80 123,65 123,55" fill="none" stroke="#e5e7eb" strokeWidth="1" />
+                                      <line x1="100" y1="10" x2="100" y2="110" stroke="#e5e7eb" strokeWidth="1" />
+                                      <line x1="57" y1="40" x2="143" y2="80" stroke="#e5e7eb" strokeWidth="1" />
+                                      <line x1="57" y1="80" x2="143" y2="40" stroke="#e5e7eb" strokeWidth="1" />
+                                      
+                                      {/* Axis labels */}
+                                      <text x="100" y="5" fontSize="7" textAnchor="middle" fill="#6b7280">Innovation</text>
+                                      <text x="45" y="40" fontSize="7" textAnchor="end" fill="#6b7280">Value</text>
+                                      <text x="45" y="85" fontSize="7" textAnchor="end" fill="#6b7280">Price</text>
+                                      <text x="100" y="120" fontSize="7" textAnchor="middle" fill="#6b7280">Support</text>
+                                      <text x="155" y="85" fontSize="7" textAnchor="start" fill="#6b7280">Usability</text>
+                                      <text x="155" y="40" fontSize="7" textAnchor="start" fill="#6b7280">Reliability</text>
+                                      
+                                      {/* Your Product */}
+                                      <polygon points="100,15 63,45 65,82 100,102 138,78 137,42" fill="rgba(79, 70, 229, 0.2)" stroke="#4f46e5" strokeWidth="1.5" />
+                                      <circle cx="100" cy="15" r="3" fill="#4f46e5" />
+                                      <circle cx="63" cy="45" r="3" fill="#4f46e5" />
+                                      <circle cx="65" cy="82" r="3" fill="#4f46e5" />
+                                      <circle cx="100" cy="102" r="3" fill="#4f46e5" />
+                                      <circle cx="138" cy="78" r="3" fill="#4f46e5" />
+                                      <circle cx="137" cy="42" r="3" fill="#4f46e5" />
+                                      
+                                      {/* Competitor A */}
+                                      <polygon points="100,25 72,50 70,75 100,95 125,80 128,48" fill="rgba(245, 158, 11, 0.1)" stroke="#f59e0b" strokeWidth="1" strokeDasharray="2,2" />
                                     </svg>
                                     
                                     <div className="absolute top-2 right-3 bg-white/90 px-1.5 py-1 rounded border border-gray-100 shadow-sm">
-                                      {/* ... keep existing code (chart legend) */}
+                                      <div className="flex items-center space-x-2">
+                                        <div className="flex items-center space-x-1">
+                                          <div className="w-2 h-2 rounded-full bg-indigo-600"></div>
+                                          <span className="text-[9px] text-gray-600">You</span>
+                                        </div>
+                                        <div className="flex items-center space-x-1">
+                                          <div className="w-2 h-2 rounded-full bg-amber-500"></div>
+                                          <span className="text-[9px] text-gray-600">Comp A</span>
+                                        </div>
+                                      </div>
                                     </div>
                                   </div>
                                   
-                                  <div className="grid grid-cols-2 gap-2 mt-8 text-xs">
+                                  <div className="grid grid-cols-2 gap-2 mt-12 text-xs">
                                     <div className="bg-white p-1.5 rounded border border-gray-100 shadow-sm">
                                       <div className="flex justify-between items-center">
                                         <span className="text-[10px] text-gray-500">Overall Score</span>
