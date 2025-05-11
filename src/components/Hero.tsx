@@ -396,7 +396,8 @@ const Hero = () => {
                   {/* Main visualization area - Improved height and visibility */}
                   <div className="grid grid-cols-3 gap-4">
                     <div className="col-span-2 bg-gray-50 rounded-xl p-4 relative overflow-hidden">
-                      <div className="flex justify-between items-center mb-6">
+                      {/* Analysis header and tabs - now with more separation from content */}
+                      <div className="flex justify-between items-center mb-8">
                         <div className="flex items-center space-x-1.5">
                           <LineChart className="h-4 w-4 text-indigo-600" />
                           <h4 className="text-sm font-medium text-gray-700">Analysis</h4>
@@ -423,8 +424,8 @@ const Hero = () => {
                         </div>
                       </div>
                       
-                      {/* Fixed height container for charts - MOVED FURTHER DOWN with more margin */}
-                      <div className="h-[165px] px-2 mt-6">
+                      {/* Fixed height container for charts - Increased top margin for better separation */}
+                      <div className="h-[165px] px-2 mt-10">
                         <AnimatePresence mode="wait">
                           <motion.div 
                             key={`chart-${activeChart}`}
