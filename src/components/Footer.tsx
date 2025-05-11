@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-12">
           <div className="md:col-span-2">
             <img 
-              src="/lovable-uploads/2dd9ae1f-07f0-4ca0-809e-81361dde7322.png" 
+              src="/lovable-uploads/8477b20d-77d0-479d-8b97-3d1a9bb79c36.png" 
               alt="RRX Research" 
               className="h-10 mb-6" 
             />
