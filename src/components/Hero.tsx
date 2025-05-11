@@ -43,12 +43,20 @@ const Hero = () => {
     { name: "Startup", count: 145, percentage: 12, color: "#d0cce9", description: "Innovation-driven founders in early stages" },
   ];
   
-  const demographicData = [
-    { label: "25-34", value: 37 },
-    { label: "35-44", value: 31 },
-    { label: "45-54", value: 18 },
-    { label: "18-24", value: 8 },
-    { label: "55+", value: 6 },
+  const competitorPerceptionData = [
+    { name: "Your Product", metrics: { innovation: 86, reliability: 92, value: 78 }, overall: 85 },
+    { name: "Competitor A", metrics: { innovation: 74, reliability: 68, value: 82 }, overall: 75 },
+    { name: "Competitor B", metrics: { innovation: 91, reliability: 65, value: 69 }, overall: 72 },
+    { name: "Competitor C", metrics: { innovation: 62, reliability: 88, value: 75 }, overall: 70 },
+  ];
+
+  const insightTrendsData = [
+    { month: "Jan", positive: 35, negative: 20, neutral: 45 },
+    { month: "Feb", positive: 42, negative: 18, neutral: 40 },
+    { month: "Mar", positive: 38, negative: 24, neutral: 38 },
+    { month: "Apr", positive: 45, negative: 15, neutral: 40 },
+    { month: "May", positive: 48, negative: 12, neutral: 40 },
+    { month: "Jun", positive: 52, negative: 10, neutral: 38 },
   ];
 
   const marketSegmentData = [
@@ -58,13 +66,6 @@ const Hero = () => {
     { name: "Conservatives", percentage: 17, growth: "-2.1%" },
   ];
   
-  const competitorPerceptionData = [
-    { name: "Your Product", metrics: { innovation: 86, reliability: 92, value: 78 }, overall: 85 },
-    { name: "Competitor A", metrics: { innovation: 74, reliability: 68, value: 82 }, overall: 75 },
-    { name: "Competitor B", metrics: { innovation: 91, reliability: 65, value: 69 }, overall: 72 },
-    { name: "Competitor C", metrics: { innovation: 62, reliability: 88, value: 75 }, overall: 70 },
-  ];
-
   const brandAttributeData = [
     { attribute: "Innovative", percentage: 72, change: "+8%" },
     { attribute: "Reliable", percentage: 84, change: "+12%" },
@@ -73,7 +74,7 @@ const Hero = () => {
     { attribute: "Forward-thinking", percentage: 77, change: "+15%" }
   ];
   
-  const chartTypes = ['topics', 'demographics', 'market', 'competitors', 'sentiment'];
+  const chartTypes = ['insights', 'market', 'competitors'];
   
   useEffect(() => {
     const chartInterval = setInterval(() => {
@@ -395,9 +396,9 @@ const Hero = () => {
                   {/* Main visualization area - Improved height and visibility */}
                   <div className="grid grid-cols-3 gap-4">
                     <div className="col-span-2 bg-gray-50 rounded-xl p-4 relative overflow-hidden">
-                      <div className="flex justify-between items-center mb-2">
+                      <div className="flex justify-between items-center mb-3">
                         <div className="flex items-center space-x-1.5">
-                          <BarChart className="h-4 w-4 text-indigo-600" />
+                          <LineChart className="h-4 w-4 text-indigo-600" />
                           <h4 className="text-sm font-medium text-gray-700">Analysis</h4>
                         </div>
                         <div className="flex items-center space-x-1 text-xs">
@@ -405,37 +406,25 @@ const Hero = () => {
                             onClick={() => handleTabClick(0)} 
                             className={`px-2 py-0.5 rounded cursor-pointer ${activeChart === 0 ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500 hover:bg-gray-100'}`}
                           >
-                            Topics
+                            Insights
                           </button>
                           <button 
                             onClick={() => handleTabClick(1)} 
                             className={`px-2 py-0.5 rounded cursor-pointer ${activeChart === 1 ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500 hover:bg-gray-100'}`}
                           >
-                            Demographics
+                            Market
                           </button>
                           <button 
                             onClick={() => handleTabClick(2)} 
                             className={`px-2 py-0.5 rounded cursor-pointer ${activeChart === 2 ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500 hover:bg-gray-100'}`}
                           >
-                            Market
-                          </button>
-                          <button 
-                            onClick={() => handleTabClick(3)} 
-                            className={`px-2 py-0.5 rounded cursor-pointer ${activeChart === 3 ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500 hover:bg-gray-100'}`}
-                          >
                             Competitors
-                          </button>
-                          <button 
-                            onClick={() => handleTabClick(4)} 
-                            className={`px-2 py-0.5 rounded cursor-pointer ${activeChart === 4 ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500 hover:bg-gray-100'}`}
-                          >
-                            Sentiment
                           </button>
                         </div>
                       </div>
                       
                       {/* Fixed height container for charts */}
-                      <div className="h-[160px] px-2 mt-3">
+                      <div className="h-[165px] px-2">
                         <AnimatePresence mode="wait">
                           <motion.div 
                             key={`chart-${activeChart}`}
@@ -445,59 +434,142 @@ const Hero = () => {
                             transition={{ duration: 0.5 }}
                             className="h-full w-full"
                           >
-                            {/* Demographics Chart - Improved spacing and sizing */}
-                            {activeChart === 1 && (
+                            {/* Insights Trends Chart - Replacing both Topics and Demographics */}
+                            {activeChart === 0 && (
                               <div className="h-full flex items-center justify-center">
-                                <div className="w-full max-w-md">
-                                  <div>
-                                    <div className="text-xs font-medium text-gray-700 mb-1">Age Distribution</div>
-                                    {demographicData.slice(0, 3).map((item, i) => (
-                                      <div key={`demographic-${i}`} className="mb-1">
-                                        <div className="flex justify-between text-xs mb-0.5">
-                                          <span className="text-gray-600">{item.label}</span>
-                                          <span className="text-gray-900 font-medium">{item.value}%</span>
-                                        </div>
-                                        <div className="w-full h-1.5 bg-gray-100 rounded-full">
-                                          <motion.div
-                                            className="h-1.5 bg-gradient-to-r from-indigo-400 to-purple-500 rounded-full"
-                                            initial={{ width: 0 }}
-                                            animate={{ width: `${item.value}%` }}
-                                            transition={{ delay: 0.2 + (i * 0.1), duration: 1 }}
-                                          />
-                                        </div>
+                                <div className="w-full">
+                                  <div className="flex justify-between mb-2">
+                                    <div className="text-xs font-medium text-gray-700">Customer Sentiment Trends</div>
+                                    <div className="flex items-center text-xs space-x-3">
+                                      <div className="flex items-center space-x-1">
+                                        <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
+                                        <span className="text-gray-600">Positive</span>
                                       </div>
-                                    ))}
+                                      <div className="flex items-center space-x-1">
+                                        <div className="w-2 h-2 rounded-full bg-red-400"></div>
+                                        <span className="text-gray-600">Negative</span>
+                                      </div>
+                                      <div className="flex items-center space-x-1">
+                                        <div className="w-2 h-2 rounded-full bg-gray-400"></div>
+                                        <span className="text-gray-600">Neutral</span>
+                                      </div>
+                                    </div>
                                   </div>
                                   
-                                  <div className="grid grid-cols-3 gap-2 text-center text-xs">
-                                    <div className="bg-white p-1.5 rounded border border-gray-100 shadow-sm">
-                                      <div className="text-gray-500 text-[10px]">Gender</div>
-                                      <div className="font-medium mt-0.5 flex justify-center items-center space-x-1">
-                                        <div className="w-1.5 h-1.5 bg-indigo-500 rounded-full"></div>
-                                        <span className="text-[10px]">M: 54%</span>
-                                        <div className="w-1.5 h-1.5 bg-purple-500 rounded-full ml-1"></div>
-                                        <span className="text-[10px]">F: 46%</span>
-                                      </div>
+                                  {/* SVG Area Chart */}
+                                  <div className="relative h-24 mt-2">
+                                    <svg className="w-full h-full" viewBox="0 0 600 100" preserveAspectRatio="none">
+                                      {/* Gradient definitions */}
+                                      <defs>
+                                        <linearGradient id="positiveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                          <stop offset="0%" stopColor="rgb(16, 185, 129)" stopOpacity="0.4" />
+                                          <stop offset="100%" stopColor="rgb(16, 185, 129)" stopOpacity="0.1" />
+                                        </linearGradient>
+                                        <linearGradient id="negativeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                          <stop offset="0%" stopColor="rgb(248, 113, 113)" stopOpacity="0.4" />
+                                          <stop offset="100%" stopColor="rgb(248, 113, 113)" stopOpacity="0.1" />
+                                        </linearGradient>
+                                        <linearGradient id="neutralGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                          <stop offset="0%" stopColor="rgb(156, 163, 175)" stopOpacity="0.2" />
+                                          <stop offset="100%" stopColor="rgb(156, 163, 175)" stopOpacity="0.05" />
+                                        </linearGradient>
+                                      </defs>
+                                      
+                                      {/* Grid lines */}
+                                      <line x1="0" y1="25" x2="600" y2="25" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2" />
+                                      <line x1="0" y1="50" x2="600" y2="50" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2" />
+                                      <line x1="0" y1="75" x2="600" y2="75" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2" />
+                                      
+                                      {/* X-axis labels */}
+                                      {insightTrendsData.map((data, i) => (
+                                        <text 
+                                          key={`x-label-${i}`}
+                                          x={100 * i + 50} 
+                                          y="100" 
+                                          textAnchor="middle" 
+                                          fontSize="10" 
+                                          fill="#6B7280"
+                                        >
+                                          {data.month}
+                                        </text>
+                                      ))}
+                                      
+                                      {/* Positive sentiment area */}
+                                      <path 
+                                        d={`M0,${100 - insightTrendsData[0].positive} ${insightTrendsData.map((d, i) => `L${100 * i + 50},${100 - d.positive}`).join(' ')} L600,${100 - insightTrendsData[insightTrendsData.length - 1].positive} V100 H0 Z`}
+                                        fill="url(#positiveGradient)"
+                                      />
+                                      
+                                      {/* Positive line */}
+                                      <path 
+                                        d={`M0,${100 - insightTrendsData[0].positive} ${insightTrendsData.map((d, i) => `L${100 * i + 50},${100 - d.positive}`).join(' ')} L600,${100 - insightTrendsData[insightTrendsData.length - 1].positive}`}
+                                        fill="none"
+                                        stroke="#10B981"
+                                        strokeWidth="2"
+                                      />
+                                      
+                                      {/* Negative sentiment area */}
+                                      <path 
+                                        d={`M0,${100 - insightTrendsData[0].negative} ${insightTrendsData.map((d, i) => `L${100 * i + 50},${100 - d.negative}`).join(' ')} L600,${100 - insightTrendsData[insightTrendsData.length - 1].negative} V100 H0 Z`}
+                                        fill="url(#negativeGradient)"
+                                      />
+                                      
+                                      {/* Negative line */}
+                                      <path 
+                                        d={`M0,${100 - insightTrendsData[0].negative} ${insightTrendsData.map((d, i) => `L${100 * i + 50},${100 - d.negative}`).join(' ')} L600,${100 - insightTrendsData[insightTrendsData.length - 1].negative}`}
+                                        fill="none"
+                                        stroke="#F87171"
+                                        strokeWidth="2"
+                                      />
+                                      
+                                      {/* Data points - positive */}
+                                      {insightTrendsData.map((data, i) => (
+                                        <circle 
+                                          key={`point-pos-${i}`}
+                                          cx={100 * i + 50} 
+                                          cy={100 - data.positive} 
+                                          r="3" 
+                                          fill="#10B981" 
+                                        />
+                                      ))}
+                                      
+                                      {/* Data points - negative */}
+                                      {insightTrendsData.map((data, i) => (
+                                        <circle 
+                                          key={`point-neg-${i}`}
+                                          cx={100 * i + 50} 
+                                          cy={100 - data.negative} 
+                                          r="3" 
+                                          fill="#F87171" 
+                                        />
+                                      ))}
+                                    </svg>
+                                  </div>
+                                  
+                                  <div className="mt-2 grid grid-cols-3 gap-2">
+                                    <div className="text-center bg-gray-50 rounded-md px-2 py-1 border border-gray-100">
+                                      <div className="text-[10px] text-gray-500">Key Sentiment Driver</div>
+                                      <div className="text-xs font-medium text-gray-800 mt-0.5">Product Reliability</div>
                                     </div>
-                                    <div className="bg-white p-1.5 rounded border border-gray-100 shadow-sm">
-                                      <div className="text-gray-500 text-[10px]">Role</div>
-                                      <div className="font-medium mt-0.5 text-[10px]">73% Decision Makers</div>
+                                    <div className="text-center bg-gray-50 rounded-md px-2 py-1 border border-gray-100">
+                                      <div className="text-[10px] text-gray-500">Sentiment Score</div>
+                                      <div className="text-xs font-medium text-emerald-600 mt-0.5">+32 NPS</div>
                                     </div>
-                                    <div className="bg-white p-1.5 rounded border border-gray-100 shadow-sm">
-                                      <div className="text-gray-500 text-[10px]">Industry</div>
-                                      <div className="font-medium mt-0.5 text-[10px]">Tech (42%)</div>
+                                    <div className="text-center bg-gray-50 rounded-md px-2 py-1 border border-gray-100">
+                                      <div className="text-[10px] text-gray-500">Q/Q Change</div>
+                                      <div className="text-xs font-medium text-emerald-600 mt-0.5">+5.4 pts</div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             )}
 
-                            {/* Market Segmentation Chart - Improved sizing and layout */}
-                            {activeChart === 2 && (
+                            {/* Market Adoption Curve - Enhanced with text */}
+                            {activeChart === 1 && (
                               <div className="h-full flex items-center justify-center">
-                                <div className="w-full max-w-md">
-                                  <div className="text-xs font-medium text-gray-700 mb-2">Market Adoption Curve</div>
-                                  <div className="relative h-20 mb-1">
+                                <div className="w-full">
+                                  <div className="text-xs font-medium text-gray-700 mb-2">Market Adoption Analysis</div>
+                                  <div className="relative h-24 mb-1">
                                     <svg viewBox="0 0 100 40" className="w-full h-full" preserveAspectRatio="none">
                                       {/* Bell curve path */}
                                       <defs>
@@ -539,111 +611,128 @@ const Hero = () => {
                                       Conservatives
                                     </div>
                                   </div>
+                                  
+                                  <div className="grid grid-cols-2 gap-3 mt-3 text-xs">
+                                    <div className="bg-white p-1.5 rounded-md border border-gray-100 shadow-sm">
+                                      <div className="flex justify-between items-center">
+                                        <div className="text-[10px] text-gray-500">Market Penetration</div>
+                                        <div className="text-[11px] font-medium text-indigo-600">+4.3% MoM</div>
+                                      </div>
+                                      <div className="text-[11px] text-gray-700 mt-0.5">
+                                        Currently transitioning from early adopters to early majority
+                                      </div>
+                                    </div>
+                                    <div className="bg-white p-1.5 rounded-md border border-gray-100 shadow-sm">
+                                      <div className="flex justify-between items-center">
+                                        <div className="text-[10px] text-gray-500">Growth Potential</div>
+                                        <div className="text-[11px] font-medium text-indigo-600">68%</div>
+                                      </div>
+                                      <div className="text-[11px] text-gray-700 mt-0.5">
+                                        Majority of the market still untapped, high growth potential
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             )}
                             
-                            {/* Competitors Analysis Chart */}
-                            {activeChart === 3 && (
+                            {/* Enhanced Competitors Analysis Chart - More complex */}
+                            {activeChart === 2 && (
                               <div className="h-full flex items-center justify-center">
                                 <div className="w-full">
-                                  <div className="text-xs font-medium text-gray-700 mb-2">Competitive Positioning</div>
-                                  <div className="flex flex-col space-y-2">
-                                    {competitorPerceptionData.map((competitor, i) => (
-                                      <div key={`competitor-${i}`} className="flex items-center">
-                                        <div className="w-24 text-xs text-gray-700 font-medium truncate pr-2">
-                                          {competitor.name}
-                                        </div>
-                                        <div className="flex-1">
-                                          <div className="flex items-center space-x-1">
-                                            <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                                              <motion.div
-                                                className={`h-full ${i === 0 ? 'bg-indigo-500' : 'bg-gray-400'}`}
-                                                style={{ width: `${competitor.overall}%` }}
-                                                initial={{ width: '0%' }}
-                                                animate={{ width: `${competitor.overall}%` }}
-                                                transition={{ delay: 0.1 * i, duration: 0.8 }}
-                                              />
-                                            </div>
-                                            <span className="text-xs font-medium text-gray-700 w-6 text-right">
-                                              {competitor.overall}
-                                            </span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    ))}
+                                  <div className="flex justify-between mb-1">
+                                    <div className="text-xs font-medium text-gray-700">Competitive Positioning Matrix</div>
+                                    <div className="text-[10px] text-gray-500">3-Factor Analysis</div>
                                   </div>
                                   
-                                  <div className="flex justify-between mt-2 text-[9px] text-gray-500">
-                                    <span>Innovation</span>
-                                    <span>Reliability</span>
-                                    <span>Value</span>
-                                  </div>
-                                </div>
-                              </div>
-                            )}
-                            
-                            {/* Sentiment Analysis Chart */}
-                            {activeChart === 4 && (
-                              <div className="h-full flex items-center justify-center">
-                                <div className="w-full">
-                                  <div className="text-xs font-medium text-gray-700 mb-2">Brand Sentiment Trends</div>
-                                  <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-                                    {brandAttributeData.slice(0, 4).map((item, i) => (
-                                      <div key={`attribute-${i}`} className="flex flex-col">
-                                        <div className="flex justify-between items-center text-xs mb-1">
-                                          <span className="text-gray-600">{item.attribute}</span>
-                                          <div className="flex items-center">
-                                            <span className={`text-xs mr-1 ${item.change.includes('+') ? 'text-emerald-600' : 'text-red-500'}`}>
-                                              {item.change}
-                                            </span>
-                                            <span className="font-medium text-gray-800">{item.percentage}%</span>
-                                          </div>
+                                  {/* Radar chart simulation */}
+                                  <div className="relative h-28 mt-1 mx-auto" style={{width: "280px"}}>
+                                    <svg viewBox="0 0 200 120" className="w-full h-full">
+                                      {/* Background grid */}
+                                      <circle cx="100" cy="60" r="50" fill="none" stroke="#e5e7eb" strokeWidth="0.5" />
+                                      <circle cx="100" cy="60" r="33" fill="none" stroke="#e5e7eb" strokeWidth="0.5" />
+                                      <circle cx="100" cy="60" r="16" fill="none" stroke="#e5e7eb" strokeWidth="0.5" />
+                                      
+                                      {/* Axis lines */}
+                                      <line x1="100" y1="10" x2="100" y2="110" stroke="#e5e7eb" strokeWidth="0.5" />
+                                      <line x1="50" y1="60" x2="150" y2="60" stroke="#e5e7eb" strokeWidth="0.5" />
+                                      <line x1="65" y1="25" x2="135" y2="95" stroke="#e5e7eb" strokeWidth="0.5" dasharray="2,2" />
+                                      <line x1="65" y1="95" x2="135" y2="25" stroke="#e5e7eb" strokeWidth="0.5" dasharray="2,2" />
+                                      
+                                      {/* Axis labels */}
+                                      <text x="100" y="5" textAnchor="middle" fontSize="7" fill="#6B7280">Innovation</text>
+                                      <text x="100" y="118" textAnchor="middle" fontSize="7" fill="#6B7280">Reliability</text>
+                                      <text x="45" y="63" textAnchor="end" fontSize="7" fill="#6B7280">Cost</text>
+                                      <text x="155" y="63" textAnchor="start" fontSize="7" fill="#6B7280">Value</text>
+                                      
+                                      {/* Your product */}
+                                      <polygon 
+                                        points="100,20 130,60 100,95 70,60" 
+                                        fill="rgba(79, 70, 229, 0.2)" 
+                                        stroke="#4F46E5" 
+                                        strokeWidth="1"
+                                      />
+                                      <circle cx="100" cy="20" r="2" fill="#4F46E5" />
+                                      <circle cx="130" cy="60" r="2" fill="#4F46E5" />
+                                      <circle cx="100" cy="95" r="2" fill="#4F46E5" />
+                                      <circle cx="70" cy="60" r="2" fill="#4F46E5" />
+                                      
+                                      {/* Competitor A */}
+                                      <polygon 
+                                        points="100,30 120,60 100,85 80,60" 
+                                        fill="rgba(156, 163, 175, 0.2)" 
+                                        stroke="#9CA3AF" 
+                                        strokeWidth="1"
+                                        strokeDasharray="2,1"
+                                      />
+                                      <circle cx="100" cy="30" r="1.5" fill="#9CA3AF" />
+                                      <circle cx="120" cy="60" r="1.5" fill="#9CA3AF" />
+                                      <circle cx="100" cy="85" r="1.5" fill="#9CA3AF" />
+                                      <circle cx="80" cy="60" r="1.5" fill="#9CA3AF" />
+                                      
+                                      {/* Competitor B */}
+                                      <polygon 
+                                        points="100,25 110,60 100,90 90,60" 
+                                        fill="rgba(107, 114, 128, 0.2)" 
+                                        stroke="#6B7280" 
+                                        strokeWidth="1"
+                                        strokeDasharray="2,1"
+                                      />
+                                    </svg>
+                                    
+                                    <div className="absolute top-2 right-3 bg-white/90 px-1.5 py-1 rounded border border-gray-100 shadow-sm">
+                                      <div className="flex items-center space-x-2 text-[9px]">
+                                        <div className="flex items-center">
+                                          <div className="w-2 h-2 bg-indigo-600 rounded-sm mr-1"></div>
+                                          <span>Your Product</span>
                                         </div>
-                                        <div className="w-full h-1.5 bg-gray-100 rounded-full">
-                                          <motion.div
-                                            className="h-1.5 bg-indigo-500 rounded-full"
-                                            initial={{ width: '0%' }}
-                                            animate={{ width: `${item.percentage}%` }}
-                                            transition={{ delay: 0.1 * i, duration: 0.8 }}
-                                          />
-                                        </div>
-                                      </div>
-                                    ))}
-                                  </div>
-                                </div>
-                              </div>
-                            )}
-                            
-                            {/* Topics - Simple text content instead of chart */}
-                            {activeChart === 0 && (
-                              <div className="h-full flex items-center justify-center">
-                                <div className="w-full">
-                                  <div className="text-xs font-medium text-gray-700 mb-2">Key Topics by Mention Frequency</div>
-                                  <div className="grid grid-cols-2 gap-2">
-                                    {topicData.map((topic, i) => (
-                                      <div key={`topic-summary-${i}`} className="bg-white p-2 rounded border border-gray-100 shadow-sm">
-                                        <div className="flex justify-between items-center text-xs">
-                                          <span className="font-medium text-gray-800">{topic.name}</span>
-                                          <span className="text-indigo-600">{topic.value}%</span>
-                                        </div>
-                                        <div className="w-full h-1 bg-gray-100 rounded-full mt-1 mb-1">
-                                          <motion.div 
-                                            className="h-1 bg-indigo-400 rounded-full"
-                                            initial={{ width: '0%' }}
-                                            animate={{ width: `${topic.value}%` }}
-                                            transition={{ delay: i * 0.1, duration: 0.8 }}
-                                          />
-                                        </div>
-                                        <div className="flex flex-wrap gap-1 mt-1">
-                                          {topic.keywords.slice(0, 2).map((kw, idx) => (
-                                            <span key={idx} className="text-[9px] bg-gray-50 px-1 py-0.5 rounded text-gray-600">
-                                              {kw}
-                                            </span>
-                                          ))}
+                                        <div className="flex items-center">
+                                          <div className="w-2 h-2 bg-gray-400 rounded-sm mr-1"></div>
+                                          <span>Competitors</span>
                                         </div>
                                       </div>
-                                    ))}
+                                    </div>
+                                  </div>
+                                  
+                                  <div className="grid grid-cols-2 gap-2 mt-0 text-xs">
+                                    <div className="bg-white p-1.5 rounded border border-gray-100 shadow-sm">
+                                      <div className="flex justify-between items-center">
+                                        <span className="text-[10px] text-gray-500">Overall Score</span>
+                                        <span className="text-[11px] font-medium text-indigo-600">85/100</span>
+                                      </div>
+                                      <div className="w-full h-1 bg-gray-100 rounded-full mt-1">
+                                        <div className="h-1 bg-indigo-500 rounded-full" style={{width: "85%"}}></div>
+                                      </div>
+                                    </div>
+                                    <div className="bg-white p-1.5 rounded border border-gray-100 shadow-sm">
+                                      <div className="flex justify-between items-center">
+                                        <span className="text-[10px] text-gray-500">Competitive Edge</span>
+                                        <span className="text-[11px] font-medium text-emerald-600">+13% vs Avg</span>
+                                      </div>
+                                      <div className="text-[9px] text-gray-600 mt-0.5">
+                                        Leading in innovation and reliability
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
