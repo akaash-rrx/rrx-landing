@@ -1,12 +1,24 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ArrowRight, BarChart2, LineChart, PieChart } from 'lucide-react';
+import { 
+  ChevronRight, 
+  ArrowRight, 
+  LayoutDashboard, 
+  BarChart2, 
+  LineChart, 
+  PieChart,
+  Users,
+  TrendingUp,
+  CircleDot
+} from 'lucide-react';
 
 const Hero = () => {
-  const [activeInsight, setActiveInsight] = useState(0);
+  const [activeMetric, setActiveMetric] = useState(0);
   const [activeChart, setActiveChart] = useState(0);
-  const insights = [
+  const [activeSentiment, setActiveSentiment] = useState(0);
+  
+  const metrics = [
     { title: "Customer Sentiment", value: "+87%", desc: "positive sentiment", color: "from-indigo-600 to-purple-600" },
     { title: "Decision Speed", value: "48h", desc: "turnaround time", color: "from-blue-600 to-cyan-600" },
     { title: "Actionable Insights", value: "100%", desc: "structured data", color: "from-emerald-600 to-teal-600" },
@@ -14,19 +26,25 @@ const Hero = () => {
   ];
   
   const chartTypes = ['demographics', 'sentiment', 'engagement'];
+  const sentiments = ['Positive', 'Neutral', 'Negative'];
   
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveInsight((prev) => (prev + 1) % insights.length);
+    const metricInterval = setInterval(() => {
+      setActiveMetric((prev) => (prev + 1) % metrics.length);
     }, 3000);
     
     const chartInterval = setInterval(() => {
       setActiveChart((prev) => (prev + 1) % chartTypes.length);
     }, 5000);
     
+    const sentimentInterval = setInterval(() => {
+      setActiveSentiment((prev) => (prev + 1) % sentiments.length);
+    }, 2000);
+    
     return () => {
-      clearInterval(interval);
+      clearInterval(metricInterval);
       clearInterval(chartInterval);
+      clearInterval(sentimentInterval);
     }
   }, []);
 
@@ -68,15 +86,20 @@ const Hero = () => {
               transition={{ delay: 0.4, duration: 0.8 }}
             >
               Your new research <br className="hidden lg:block" />
-              <span className="relative inline-block">
-                intelligence
+              <motion.span 
+                className="relative inline-block"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6, duration: 0.8 }}
+              >
+                <span className="relative z-10">intelligence</span>
                 <motion.span 
                   className="absolute -bottom-1 left-0 w-full h-[6px] bg-indigo-500 rounded-full opacity-60"
                   initial={{ width: 0 }}
                   animate={{ width: "100%" }}
                   transition={{ delay: 1.2, duration: 0.8 }}
                 />
-              </span> engine.
+              </motion.span> engine.
             </motion.h1>
             
             <motion.p 
@@ -130,184 +153,324 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="hidden md:block relative"
           >
-            <div className="relative h-[500px] w-full">
-              {/* Main insight card with animation */}
+            <div className="relative h-[560px] w-full">
+              {/* Main dashboard card */}
               <motion.div
-                className="absolute inset-x-0 top-[15%] bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100"
+                className="absolute inset-x-0 top-0 bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.7, delay: 1 }}
               >
-                <div className="p-8">
-                  <div className="flex justify-between items-center mb-6">
-                    <span className="text-sm font-semibold text-gray-500">RRX INSIGHTS</span>
-                    <span className="flex items-center text-sm text-indigo-600">
-                      <span className="w-2 h-2 bg-indigo-600 rounded-full mr-2 animate-pulse"></span>
-                      Live Demo
-                    </span>
+                <div className="p-6">
+                  <div className="flex justify-between items-center mb-4">
+                    <div className="flex items-center space-x-2">
+                      <LayoutDashboard className="h-5 w-5 text-indigo-600" />
+                      <span className="text-sm font-semibold text-gray-700">RRX INTELLIGENCE DASHBOARD</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <span className="flex items-center text-sm text-indigo-600">
+                        <span className="w-2 h-2 bg-indigo-600 rounded-full mr-2 animate-pulse"></span>
+                        Live Data
+                      </span>
+                      <motion.div 
+                        className="h-6 w-6 rounded-full bg-gray-100 flex items-center justify-center cursor-pointer"
+                        whileHover={{ backgroundColor: "#f3f4f6" }}
+                      >
+                        <span className="text-xs text-gray-500">⋮</span>
+                      </motion.div>
+                    </div>
                   </div>
                   
-                  <div className="h-[220px]">
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={activeInsight}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.5 }}
-                        className="text-center py-6"
+                  <div className="grid grid-cols-3 gap-4 mb-6">
+                    {metrics.map((metric, idx) => (
+                      <motion.div 
+                        key={`metric-${idx}`}
+                        className={`bg-white p-4 rounded-xl border ${activeMetric === idx ? 'border-indigo-200 shadow-md' : 'border-gray-100'}`}
+                        whileHover={{ y: -2, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
                       >
-                        <h3 className="text-xl text-gray-700 mb-6">{insights[activeInsight].title}</h3>
-                        <span className={`text-5xl font-bold bg-gradient-to-r ${insights[activeInsight].color} bg-clip-text text-transparent`}>
-                          {insights[activeInsight].value}
-                        </span>
-                        <p className="text-gray-500 mt-2">{insights[activeInsight].desc}</p>
-                        
-                        <div className="mt-6 flex justify-center">
-                          {activeChart === 0 && (
-                            <div className="h-[80px] w-[200px] mx-auto">
-                              <div className="flex items-end justify-between h-full">
-                                {[0.3, 0.5, 0.8, 0.6, 0.9, 0.7, 0.4].map((value, i) => (
-                                  <motion.div
-                                    key={i}
-                                    className="w-4 bg-gradient-to-t from-indigo-500 to-purple-500 rounded-t-sm"
-                                    style={{ height: `${value * 100}%` }}
-                                    initial={{ height: 0 }}
-                                    animate={{ height: `${value * 100}%` }}
-                                    transition={{ delay: i * 0.1, duration: 0.5 }}
-                                  />
-                                ))}
-                              </div>
-                            </div>
-                          )}
-                          
-                          {activeChart === 1 && (
-                            <div className="h-[80px] w-[200px] mx-auto relative">
-                              <svg viewBox="0 0 200 80" className="w-full h-full">
-                                <motion.path
-                                  d="M0,40 C20,20 40,60 60,40 C80,20 100,60 120,40 C140,20 160,60 180,40 C200,20 220,60 240,40"
-                                  fill="none"
-                                  stroke="url(#gradient)"
-                                  strokeWidth="3"
-                                  initial={{ pathLength: 0 }}
-                                  animate={{ pathLength: 1 }}
-                                  transition={{ duration: 1.5, ease: "easeInOut" }}
-                                />
-                                <defs>
-                                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stopColor="#9b87f5" />
-                                    <stop offset="100%" stopColor="#6E59A5" />
-                                  </linearGradient>
-                                </defs>
-                              </svg>
-                            </div>
-                          )}
-                          
-                          {activeChart === 2 && (
-                            <div className="h-[80px] w-[200px] mx-auto flex justify-center items-center">
-                              <div className="relative w-[80px] h-[80px]">
-                                <motion.div
-                                  className="absolute inset-0 border-4 border-purple-300 rounded-full"
-                                  style={{ borderRightColor: 'transparent', borderBottomColor: 'transparent' }}
-                                  animate={{ rotate: 360 }}
-                                  transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
-                                />
-                                <motion.div
-                                  className="absolute inset-[10px] border-4 border-indigo-500 rounded-full"
-                                  style={{ borderLeftColor: 'transparent', borderTopColor: 'transparent' }}
-                                  animate={{ rotate: -360 }}
-                                  transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
-                                />
-                                <motion.div
-                                  className="absolute inset-[20px] border-4 border-blue-600 rounded-full"
-                                  style={{ borderRightColor: 'transparent', borderBottomColor: 'transparent' }}
-                                  animate={{ rotate: 360 }}
-                                  transition={{ repeat: Infinity, duration: 5, ease: "linear" }}
-                                />
-                              </div>
-                            </div>
-                          )}
+                        <h4 className="text-sm text-gray-500 mb-1">{metric.title}</h4>
+                        <div className="flex items-end space-x-1">
+                          <span className={`text-2xl font-bold bg-gradient-to-r ${metric.color} bg-clip-text text-transparent`}>
+                            {metric.value}
+                          </span>
+                          <span className="text-xs text-gray-500 mb-1">{metric.desc}</span>
                         </div>
                       </motion.div>
-                    </AnimatePresence>
-                  </div>
-                  
-                  <div className="flex justify-center gap-2 mt-4">
-                    {insights.map((_, i) => (
-                      <button
-                        key={i}
-                        className={`w-2 h-2 rounded-full transition-all ${
-                          i === activeInsight ? "bg-indigo-600 w-6" : "bg-gray-200"
-                        }`}
-                        onClick={() => setActiveInsight(i)}
-                      />
                     ))}
                   </div>
-                </div>
-              </motion.div>
-              
-              {/* Secondary decorative elements with media */}
-              <motion.div 
-                className="absolute right-[10%] top-[5%] w-[150px] h-[150px] rounded-xl rotate-12 bg-gradient-to-r from-indigo-100 to-purple-100 shadow-lg overflow-hidden"
-                initial={{ opacity: 0, rotate: 0 }}
-                animate={{ opacity: 0.7, rotate: 12 }}
-                transition={{ duration: 0.8, delay: 1.2 }}
-              >
-                <div className="absolute inset-0 flex items-center justify-center p-4">
-                  <BarChart2 className="w-12 h-12 text-indigo-800/50" />
-                  <div className="absolute bottom-2 left-2 right-2 h-[30px] bg-indigo-500/20 rounded flex items-center justify-center">
-                    <span className="text-[10px] text-indigo-900 font-medium">SENTIMENT ANALYSIS</span>
+                  
+                  <div className="grid grid-cols-3 gap-6 h-[280px]">
+                    {/* Main chart visualization */}
+                    <div className="col-span-2 bg-gray-50 rounded-xl p-4 relative overflow-hidden">
+                      <h4 className="text-sm font-medium text-gray-700 mb-2">Customer Sentiment Analysis</h4>
+                      
+                      <div className="absolute bottom-0 left-0 right-0 h-[200px] px-4 pb-4">
+                        <AnimatePresence mode="wait">
+                          <motion.div 
+                            key={`chart-${activeChart}`}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="h-full w-full"
+                          >
+                            {activeChart === 0 && (
+                              <div className="h-full flex items-end justify-between w-full">
+                                {[0.65, 0.45, 0.75, 0.52, 0.68, 0.81, 0.42].map((value, i) => (
+                                  <div key={`bar-${i}`} className="flex flex-col items-center w-1/7 h-full">
+                                    <motion.div
+                                      className="w-8 bg-gradient-to-t from-indigo-500 to-purple-500 rounded-t-sm"
+                                      style={{ height: `${value * 100}%` }}
+                                      initial={{ height: 0 }}
+                                      animate={{ height: `${value * 100}%` }}
+                                      transition={{ delay: i * 0.1, duration: 0.5 }}
+                                    />
+                                    <span className="text-xs text-gray-500 mt-1">W{i+1}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                            
+                            {activeChart === 1 && (
+                              <div className="h-full relative">
+                                <svg viewBox="0 0 300 200" className="w-full h-full">
+                                  <motion.path
+                                    d="M0,100 C20,80 40,120 60,100 C80,80 100,120 120,90 C140,60 160,110 180,80 C200,50 220,100 240,70 C260,40 280,90 300,60"
+                                    fill="none"
+                                    stroke="url(#gradient)"
+                                    strokeWidth="3"
+                                    initial={{ pathLength: 0 }}
+                                    animate={{ pathLength: 1 }}
+                                    transition={{ duration: 1.5, ease: "easeInOut" }}
+                                  />
+                                  <defs>
+                                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                      <stop offset="0%" stopColor="#9b87f5" />
+                                      <stop offset="100%" stopColor="#6E59A5" />
+                                    </linearGradient>
+                                  </defs>
+                                </svg>
+                                
+                                <div className="absolute bottom-0 left-0 right-0 flex justify-between">
+                                  {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day, i) => (
+                                    <span key={`day-${i}`} className="text-xs text-gray-500">{day}</span>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                            
+                            {activeChart === 2 && (
+                              <div className="h-full flex items-center justify-center">
+                                <div className="relative w-[180px] h-[180px]">
+                                  <svg viewBox="0 0 100 100" className="w-full h-full">
+                                    <motion.circle
+                                      cx="50" cy="50" r="40"
+                                      fill="none"
+                                      stroke="#9b87f5"
+                                      strokeWidth="20"
+                                      strokeDasharray="251.2"
+                                      strokeDashoffset="50.24"
+                                      initial={{ strokeDashoffset: 251.2 }}
+                                      animate={{ strokeDashoffset: 50.24 }}
+                                      transition={{ duration: 1.5, ease: "easeInOut" }}
+                                    />
+                                    <motion.circle
+                                      cx="50" cy="50" r="40"
+                                      fill="none"
+                                      stroke="#6E59A5"
+                                      strokeWidth="20"
+                                      strokeDasharray="251.2"
+                                      strokeDashoffset="175.84"
+                                      transform="rotate(-80 50 50)"
+                                      initial={{ strokeDashoffset: 251.2 }}
+                                      animate={{ strokeDashoffset: 175.84 }}
+                                      transition={{ duration: 1.5, ease: "easeInOut", delay: 0.3 }}
+                                    />
+                                    <motion.circle
+                                      cx="50" cy="50" r="40"
+                                      fill="none"
+                                      stroke="#a1a1aa"
+                                      strokeWidth="20"
+                                      strokeDasharray="251.2"
+                                      strokeDashoffset="226.08"
+                                      transform="rotate(-170 50 50)"
+                                      initial={{ strokeDashoffset: 251.2 }}
+                                      animate={{ strokeDashoffset: 226.08 }}
+                                      transition={{ duration: 1.5, ease: "easeInOut", delay: 0.6 }}
+                                    />
+                                    <circle cx="50" cy="50" r="30" fill="white" />
+                                    <text x="50" y="55" textAnchor="middle" fontSize="12" fontWeight="bold">80%</text>
+                                  </svg>
+                                </div>
+                              </div>
+                            )}
+                          </motion.div>
+                        </AnimatePresence>
+                      </div>
+                    </div>
+                    
+                    {/* Right side secondary panels */}
+                    <div className="flex flex-col space-y-4">
+                      {/* Sentiment panel */}
+                      <div className="bg-gray-50 rounded-xl p-4 flex-1">
+                        <h4 className="text-sm font-medium text-gray-700 mb-2">Sentiment</h4>
+                        
+                        <div className="mt-3">
+                          <AnimatePresence mode="wait">
+                            <motion.div
+                              key={`sentiment-${activeSentiment}`}
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -10 }}
+                              transition={{ duration: 0.3 }}
+                              className="flex items-center justify-between"
+                            >
+                              <span className={`text-lg font-bold ${
+                                activeSentiment === 0 ? "text-emerald-600" : 
+                                activeSentiment === 1 ? "text-blue-600" : "text-red-600"
+                              }`}>
+                                {sentiments[activeSentiment]}
+                              </span>
+                              <div className={`h-8 w-8 rounded-full flex items-center justify-center ${
+                                activeSentiment === 0 ? "bg-emerald-100 text-emerald-600" : 
+                                activeSentiment === 1 ? "bg-blue-100 text-blue-600" : "bg-red-100 text-red-600"
+                              }`}>
+                                {activeSentiment === 0 ? "+" : activeSentiment === 1 ? "=" : "-"}
+                              </div>
+                            </motion.div>
+                          </AnimatePresence>
+                          
+                          <div className="h-4 w-full bg-gray-200 rounded-full mt-4 overflow-hidden">
+                            <motion.div 
+                              className="h-full bg-gradient-to-r from-indigo-500 to-purple-500"
+                              initial={{ width: "0%" }}
+                              animate={{ width: activeSentiment === 0 ? "75%" : activeSentiment === 1 ? "45%" : "30%" }}
+                              transition={{ duration: 0.5 }}
+                            />
+                          </div>
+                        </div>
+                        
+                        <div className="mt-6">
+                          <div className="flex justify-between text-xs text-gray-500 mb-1">
+                            <span>Topic Correlation</span>
+                            <span>86%</span>
+                          </div>
+                          <div className="h-1.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                            <motion.div 
+                              className="h-full bg-indigo-400"
+                              initial={{ width: "0%" }}
+                              animate={{ width: "86%" }}
+                              transition={{ delay: 0.3, duration: 0.7 }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Users panel */}
+                      <div className="bg-gray-50 rounded-xl p-4 flex-1">
+                        <div className="flex justify-between items-center mb-3">
+                          <h4 className="text-sm font-medium text-gray-700">Top Demographics</h4>
+                          <Users className="h-4 w-4 text-indigo-500" />
+                        </div>
+                        
+                        <div className="space-y-2.5">
+                          {["Age 25-34", "High Income", "Tech Industry"].map((item, i) => (
+                            <motion.div 
+                              key={`demo-${i}`}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: 0.2 + (i * 0.1), duration: 0.4 }}
+                              className="flex items-center space-x-2"
+                            >
+                              <CircleDot className="h-3 w-3 text-indigo-500" />
+                              <span className="text-xs text-gray-700">{item}</span>
+                            </motion.div>
+                          ))}
+                        </div>
+                        
+                        <div className="mt-3 pt-3 border-t border-gray-200">
+                          <div className="flex items-center justify-between text-xs">
+                            <span className="text-gray-500">Engagement</span>
+                            <div className="flex items-center space-x-1 text-emerald-600">
+                              <TrendingUp className="h-3 w-3" />
+                              <span>+12%</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-4 p-3 bg-gray-50 rounded-lg flex justify-between items-center">
+                    <div className="flex items-center space-x-2">
+                      <span className="h-2 w-2 bg-indigo-500 rounded-full"></span>
+                      <span className="text-xs text-gray-600">Updated 5 minutes ago</span>
+                    </div>
+                    
+                    <div className="flex items-center space-x-3">
+                      <motion.button 
+                        className="text-xs text-gray-700 bg-white px-3 py-1.5 rounded border border-gray-200 flex items-center space-x-1"
+                        whileHover={{ y: -1, boxShadow: "0 2px 5px rgba(0,0,0,0.05)" }}
+                        whileTap={{ y: 0 }}
+                      >
+                        <span>Refresh</span>
+                      </motion.button>
+                      <motion.button 
+                        className="text-xs text-white bg-indigo-600 px-3 py-1.5 rounded flex items-center space-x-1"
+                        whileHover={{ y: -1, boxShadow: "0 2px 5px rgba(0,0,0,0.1)" }}
+                        whileTap={{ y: 0 }}
+                      >
+                        <span>Export Data</span>
+                      </motion.button>
+                    </div>
                   </div>
                 </div>
               </motion.div>
               
+              {/* Floating insights */}
               <motion.div 
-                className="absolute left-[5%] bottom-[15%] w-[180px] h-[180px] rounded-xl -rotate-6 bg-gradient-to-r from-blue-50 to-cyan-50 shadow-lg overflow-hidden"
-                initial={{ opacity: 0, rotate: 0 }}
-                animate={{ opacity: 0.7, rotate: -6 }}
-                transition={{ duration: 0.8, delay: 1.4 }}
+                className="absolute -right-4 top-12 p-3 bg-white rounded-lg shadow-xl border border-gray-100 w-[180px]"
+                initial={{ opacity: 0, scale: 0.9, x: 20 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                transition={{ delay: 1.4, duration: 0.6 }}
               >
-                <div className="absolute inset-0 flex items-center justify-center p-4">
-                  <LineChart className="w-12 h-12 text-blue-800/50" />
-                  <div className="absolute bottom-2 left-2 right-2 h-[30px] bg-blue-500/20 rounded flex items-center justify-center">
-                    <span className="text-[10px] text-blue-900 font-medium">TREND FORECASTING</span>
-                  </div>
-                </div>
-              </motion.div>
-              
-              <motion.div
-                className="absolute right-[20%] bottom-[5%] p-4 bg-white rounded-lg shadow-lg border border-gray-100 overflow-hidden"
-                initial={{ y: 40, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.7, delay: 1.6 }}
-              >
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full flex items-center justify-center bg-gradient-to-br from-indigo-100 to-purple-100 text-indigo-600">
-                    <PieChart className="h-5 w-5" />
+                <div className="flex items-center space-x-2">
+                  <div className="h-8 w-8 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600">
+                    <TrendingUp className="h-4 w-4" />
                   </div>
                   <div>
-                    <h4 className="font-medium">ML-Powered</h4>
-                    <p className="text-sm text-gray-500">Advanced processing</p>
+                    <h4 className="text-sm font-medium">+23%</h4>
+                    <p className="text-xs text-gray-500">Growth this week</p>
                   </div>
                 </div>
-                <div className="mt-2 h-[3px] w-full bg-gray-100 overflow-hidden">
-                  <motion.div 
-                    className="h-full bg-gradient-to-r from-indigo-500 to-purple-500" 
-                    initial={{ width: '0%' }}
-                    animate={{ width: '85%' }}
-                    transition={{ delay: 2, duration: 1.5 }}
-                  />
+              </motion.div>
+              
+              <motion.div 
+                className="absolute -left-4 bottom-12 p-3 bg-white rounded-lg shadow-xl border border-gray-100 w-[180px]"
+                initial={{ opacity: 0, scale: 0.9, x: -20 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                transition={{ delay: 1.6, duration: 0.6 }}
+              >
+                <div className="flex items-center space-x-2">
+                  <div className="h-8 w-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
+                    <Users className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-medium">532</h4>
+                    <p className="text-xs text-gray-500">New responses</p>
+                  </div>
                 </div>
               </motion.div>
               
               {/* Data points floating around */}
-              {[1, 2, 3, 4, 5].map((_, i) => (
+              {[1, 2, 3].map((_, i) => (
                 <motion.div
                   key={`data-point-${i}`}
                   className="absolute w-3 h-3 rounded-full bg-gradient-to-r from-indigo-400 to-purple-400 shadow-lg"
                   style={{
-                    left: `${10 + i * 20}%`,
-                    top: `${(i % 3) * 20 + 10}%`,
+                    left: `${10 + i * 25}%`,
+                    top: `${(i % 3) * 25 + 10}%`,
+                    zIndex: 5
                   }}
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ 
