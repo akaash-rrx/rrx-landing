@@ -416,11 +416,11 @@ const Hero = () => {
                     </motion.div>
                   </div>
                   
-                  {/* Main visualization area - Added more spacing between tabs and content */}
+                  {/* Main visualization area - MODIFIED: Added more spacing between tabs and content */}
                   <div className="grid grid-cols-3 gap-4">
                     <div className="col-span-2 bg-gray-50 rounded-xl p-4 relative overflow-hidden">
                       {/* Analysis header and tabs - with more separation from content */}
-                      <div className="flex justify-between items-center mb-6">
+                      <div className="flex justify-between items-center mb-8">
                         <div className="flex items-center space-x-1.5">
                           <LineChart className="h-4 w-4 text-indigo-600" />
                           <h4 className="text-sm font-medium text-gray-700">Analysis</h4>
@@ -448,7 +448,7 @@ const Hero = () => {
                       </div>
                       
                       {/* Fixed height container for charts with increased top margin */}
-                      <div className="h-[200px] px-2 mt-4">
+                      <div className="h-[200px] px-2 mt-8">
                         <AnimatePresence mode="wait">
                           <motion.div 
                             key={`chart-${activeChart}`}
@@ -564,34 +564,70 @@ const Hero = () => {
                               </div>
                             )}
 
-                            {/* Market Adoption Curve - Reverted to original design */}
+                            {/* Market Adoption Curve - UPDATED: More sophisticated design */}
                             {activeChart === 1 && (
                               <div className="h-full flex items-center justify-center">
                                 <div className="w-full">
                                   <div className="text-xs font-medium text-gray-700 mb-2">Market Adoption Analysis</div>
                                   <div className="relative h-28">
                                     <svg viewBox="0 0 100 40" className="w-full h-full" preserveAspectRatio="none">
-                                      {/* Background grid lines */}
+                                      {/* Refined background grid */}
+                                      <defs>
+                                        <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                          <stop offset="0%" stopColor="#9b87f5" stopOpacity="0.3" />
+                                          <stop offset="100%" stopColor="#9b87f5" stopOpacity="0.05" />
+                                        </linearGradient>
+                                        <linearGradient id="areaGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                          <stop offset="0%" stopColor="#6E59A5" stopOpacity="0.2" />
+                                          <stop offset="100%" stopColor="#6E59A5" stopOpacity="0.05" />
+                                        </linearGradient>
+                                        <linearGradient id="areaGradient3" x1="0%" y1="0%" x2="0%" y2="100%">
+                                          <stop offset="0%" stopColor="#4338ca" stopOpacity="0.15" />
+                                          <stop offset="100%" stopColor="#4338ca" stopOpacity="0.03" />
+                                        </linearGradient>
+                                      </defs>
+                                    
+                                      {/* Grid lines with subtle styling */}
                                       <line x1="0" y1="39" x2="100" y2="39" stroke="#f1f1f1" strokeWidth="0.5" />
-                                      <line x1="25" y1="0" x2="25" y2="40" stroke="#f1f1f1" strokeWidth="0.5" />
-                                      <line x1="50" y1="0" x2="50" y2="40" stroke="#f1f1f1" strokeWidth="0.5" />
-                                      <line x1="75" y1="0" x2="75" y2="40" stroke="#f1f1f1" strokeWidth="0.5" />
+                                      <line x1="20" y1="0" x2="20" y2="40" stroke="#f1f1f1" strokeWidth="0.5" strokeDasharray="1,1" />
+                                      <line x1="40" y1="0" x2="40" y2="40" stroke="#f1f1f1" strokeWidth="0.5" strokeDasharray="1,1" />
+                                      <line x1="60" y1="0" x2="60" y2="40" stroke="#f1f1f1" strokeWidth="0.5" strokeDasharray="1,1" />
+                                      <line x1="80" y1="0" x2="80" y2="40" stroke="#f1f1f1" strokeWidth="0.5" strokeDasharray="1,1" />
                                       
-                                      {/* Bell curve */}
-                                      <path d="M5,38 C15,38 20,35 25,20 C30,5 35,3 40,3 C45,3 50,10 55,10 C60,10 65,5 70,10 C75,15 80,25 85,30 C90,35 95,37 100,38" fill="none" stroke="#9b87f5" strokeWidth="2" />
+                                      {/* Bell curve drawn with multiple segments for smoother appearance */}
+                                      <path d="M0,39 C5,39 8,38 10,36 C15,32 17,25 20,18 C23,10 25,5 30,3 C35,1 40,1 45,2 C50,3 55,7 60,12 C65,17 68,21 75,25 C82,29 88,33 95,36 C98,37 99,38 100,39" 
+                                        fill="none" 
+                                        stroke="#9b87f5" 
+                                        strokeWidth="0.75" 
+                                      />
                                       
-                                      {/* Areas under the bell curve */}
-                                      <path d="M5,38 C15,38 20,35 25,20 C30,5 35,3 40,3 L40,39 L5,39 Z" fill="rgba(155, 135, 245, 0.1)" />
-                                      <path d="M40,3 C45,3 50,10 55,10 C60,10 65,5 70,10 L70,39 L40,39 Z" fill="rgba(155, 135, 245, 0.2)" />
-                                      <path d="M70,10 C75,15 80,25 85,30 C90,35 95,37 100,38 L100,39 L70,39 Z" fill="rgba(155, 135, 245, 0.05)" />
+                                      {/* Areas under the bell curve with gradient fills */}
+                                      <path d="M0,39 C5,39 8,38 10,36 C15,32 17,25 20,18 L20,39 Z" 
+                                        fill="url(#areaGradient)" 
+                                      />
+                                      <path d="M20,18 C23,10 25,5 30,3 C35,1 40,1 45,2 C50,3 55,7 60,12 L60,39 L20,39 Z" 
+                                        fill="url(#areaGradient2)" 
+                                      />
+                                      <path d="M60,12 C65,17 68,21 75,25 C82,29 88,33 95,36 C98,37 99,38 100,39 L100,39 L60,39 Z" 
+                                        fill="url(#areaGradient3)" 
+                                      />
                                       
-                                      {/* Current position marker */}
-                                      <circle cx="40" cy="3" r="2" fill="#6E59A5" />
+                                      {/* Current position marker with pulsing effect */}
+                                      <circle cx="42" cy="2" r="1.2" fill="#6E59A5" />
+                                      <circle cx="42" cy="2" r="2.2" fill="none" stroke="#6E59A5" strokeWidth="0.4">
+                                        <animate attributeName="r" values="2.2;3;2.2" dur="3s" repeatCount="indefinite" />
+                                        <animate attributeName="opacity" values="1;0.5;1" dur="3s" repeatCount="indefinite" />
+                                      </circle>
                                       
-                                      {/* Labels */}
-                                      <text x="12" y="33" fontSize="3" textAnchor="middle" fill="#6E59A5">Early Adopters</text>
-                                      <text x="55" y="33" fontSize="3" textAnchor="middle" fill="#6E59A5">Early Majority</text>
-                                      <text x="85" y="33" fontSize="3" textAnchor="middle" fill="#6E59A5">Late Majority</text>
+                                      {/* Labels with better positioning and styling */}
+                                      <text x="10" y="35" fontSize="2.8" fontWeight="500" textAnchor="middle" fill="#6E59A5">Innovators</text>
+                                      <text x="40" y="35" fontSize="2.8" fontWeight="500" textAnchor="middle" fill="#6E59A5">Early Adopters</text>
+                                      <text x="80" y="35" fontSize="2.8" fontWeight="500" textAnchor="middle" fill="#6E59A5">Mainstream</text>
+                                      
+                                      {/* Percentage markers at bottom */}
+                                      <text x="10" y="38" fontSize="2" textAnchor="middle" fill="#64748b">2.5%</text>
+                                      <text x="40" y="38" fontSize="2" textAnchor="middle" fill="#64748b">13.5%</text>
+                                      <text x="80" y="38" fontSize="2" textAnchor="middle" fill="#64748b">84%</text>
                                     </svg>
                                   </div>
                                   
