@@ -227,7 +227,7 @@ const Hero = () => {
                   </div>
                   
                   {/* Topic Insights Panel */}
-                  <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="grid grid-cols-2 gap-4 mb-4">
                     <motion.div
                       className="bg-gradient-to-br from-white to-indigo-50/40 p-4 rounded-xl border border-indigo-100 shadow-sm"
                       whileHover={{ y: -2 }}
@@ -385,8 +385,8 @@ const Hero = () => {
                     </motion.div>
                   </div>
                   
-                  {/* Main visualization area - Fixing height and spacing issues */}
-                  <div className="grid grid-cols-3 gap-6">
+                  {/* Main visualization area - Improved height and visibility */}
+                  <div className="grid grid-cols-3 gap-4">
                     <div className="col-span-2 bg-gray-50 rounded-xl p-4 relative overflow-hidden">
                       <div className="flex justify-between items-center mb-2">
                         <h4 className="text-sm font-medium text-gray-700">Market Research Analysis</h4>
@@ -409,8 +409,8 @@ const Hero = () => {
                         </div>
                       </div>
                       
-                      {/* Fixed height and spacing to ensure content is visible */}
-                      <div className="h-[210px] px-2">
+                      {/* Fixed height container for charts */}
+                      <div className="h-[160px] px-2 mt-3">
                         <AnimatePresence mode="wait">
                           <motion.div 
                             key={`chart-${activeChart}`}
@@ -422,7 +422,7 @@ const Hero = () => {
                           >
                             {/* Topic Distribution Chart - Fixed positioning and scaling */}
                             {activeChart === 0 && (
-                              <div className="h-full flex items-start justify-between w-full pt-2">
+                              <div className="h-full flex items-end justify-between w-full">
                                 {[
                                   { name: "Product", value: 0.34, positive: 0.76, negative: 0.24 },
                                   { name: "Pricing", value: 0.22, positive: 0.65, negative: 0.35 },
@@ -430,23 +430,23 @@ const Hero = () => {
                                   { name: "UX", value: 0.14, positive: 0.72, negative: 0.28 },
                                   { name: "Features", value: 0.12, positive: 0.81, negative: 0.19 }
                                 ].map((item, i) => (
-                                  <div key={`topic-bar-${i}`} className="flex flex-col items-center w-1/5 h-full">
-                                    <div className="flex-1 w-10 flex flex-col-reverse relative">
+                                  <div key={`topic-bar-${i}`} className="flex flex-col items-center w-1/5">
+                                    <div className="w-10 flex flex-col-reverse relative h-[100px]">
                                       {/* Positive sentiment portion - Fixed scaling */}
                                       <motion.div
                                         className="w-10 bg-emerald-500/80 rounded-t-sm"
-                                        style={{ height: `${Math.min(item.positive * 100 * item.value * 1.5, 100)}%` }}
+                                        style={{ height: `${item.positive * 100 * item.value * 0.8}%` }}
                                         initial={{ height: 0 }}
-                                        animate={{ height: `${Math.min(item.positive * 100 * item.value * 1.5, 100)}%` }}
+                                        animate={{ height: `${item.positive * 100 * item.value * 0.8}%` }}
                                         transition={{ delay: 0.3, duration: 1 }}
                                       />
                                       
                                       {/* Negative sentiment portion - Fixed scaling */}
                                       <motion.div
                                         className="w-10 bg-red-400/80 rounded-t-sm"
-                                        style={{ height: `${Math.min(item.negative * 100 * item.value * 1.5, 100)}%` }}
+                                        style={{ height: `${item.negative * 100 * item.value * 0.8}%` }}
                                         initial={{ height: 0 }}
-                                        animate={{ height: `${Math.min(item.negative * 100 * item.value * 1.5, 100)}%` }}
+                                        animate={{ height: `${item.negative * 100 * item.value * 0.8}%` }}
                                         transition={{ delay: 0.5, duration: 1 }}
                                       />
                                       
@@ -471,12 +471,12 @@ const Hero = () => {
                             
                             {/* Demographics Chart - Improved spacing and sizing */}
                             {activeChart === 1 && (
-                              <div className="h-full flex items-center justify-center pt-1">
+                              <div className="h-full flex items-center justify-center">
                                 <div className="w-full max-w-md">
-                                  <div className="mb-2">
+                                  <div>
                                     <div className="text-xs font-medium text-gray-700 mb-1">Age Distribution</div>
                                     {demographicData.slice(0, 3).map((item, i) => (
-                                      <div key={`demographic-${i}`} className="mb-1.5">
+                                      <div key={`demographic-${i}`} className="mb-1">
                                         <div className="flex justify-between text-xs mb-0.5">
                                           <span className="text-gray-600">{item.label}</span>
                                           <span className="text-gray-900 font-medium">{item.value}%</span>
@@ -518,10 +518,10 @@ const Hero = () => {
 
                             {/* Market Segmentation Chart - Improved sizing and layout */}
                             {activeChart === 2 && (
-                              <div className="h-full flex items-center justify-center pt-1">
+                              <div className="h-full flex items-center justify-center">
                                 <div className="w-full max-w-md">
                                   <div className="text-xs font-medium text-gray-700 mb-2">Market Adoption Curve</div>
-                                  <div className="relative h-24 mb-3">
+                                  <div className="relative h-20 mb-1">
                                     <svg viewBox="0 0 100 40" className="w-full h-full" preserveAspectRatio="none">
                                       {/* Bell curve path */}
                                       <defs>
@@ -548,6 +548,78 @@ const Hero = () => {
                                       <circle cx="65" cy="25" r="1.2" fill="#aaa6db" />
                                       <circle cx="85" cy="33" r="1.2" fill="#d0cce9" />
                                     </svg>
-                                    
+                                      
                                     {/* Improved label positioning */}
-                                    <div className="absolute -bottom-3 left-[18%] transform -translate-x-1/2 text
+                                    <div className="absolute -bottom-3 left-[18%] transform -translate-x-1/2 text-[8px] text-gray-600">
+                                      Early Adopters
+                                    </div>
+                                    <div className="absolute -bottom-3 left-[42%] transform -translate-x-1/2 text-[8px] text-gray-600">
+                                      Tech Enthusiasts
+                                    </div>
+                                    <div className="absolute -bottom-3 left-[65%] transform -translate-x-1/2 text-[8px] text-gray-600">
+                                      Pragmatists
+                                    </div>
+                                    <div className="absolute -bottom-3 left-[85%] transform -translate-x-1/2 text-[8px] text-gray-600">
+                                      Conservatives
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </motion.div>
+                        </AnimatePresence>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-gray-50 rounded-xl p-4 overflow-hidden">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center space-x-1.5">
+                          <MapPin className="h-4 w-4 text-indigo-600" />
+                          <h3 className="font-medium text-sm text-gray-800">Regional Insights</h3>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-2 text-xs">
+                        <div className="bg-white p-2 rounded border border-gray-100 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <div className="font-medium text-gray-800">North America</div>
+                            <div className="text-indigo-600 font-medium">42%</div>
+                          </div>
+                          <div className="w-full h-1.5 bg-gray-100 rounded-full mt-1">
+                            <div className="h-1.5 bg-indigo-500 rounded-full" style={{ width: '42%' }} />
+                          </div>
+                        </div>
+                        
+                        <div className="bg-white p-2 rounded border border-gray-100 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <div className="font-medium text-gray-800">Europe</div>
+                            <div className="text-indigo-600 font-medium">28%</div>
+                          </div>
+                          <div className="w-full h-1.5 bg-gray-100 rounded-full mt-1">
+                            <div className="h-1.5 bg-indigo-500 rounded-full" style={{ width: '28%' }} />
+                          </div>
+                        </div>
+                        
+                        <div className="bg-white p-2 rounded border border-gray-100 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <div className="font-medium text-gray-800">Asia Pacific</div>
+                            <div className="text-indigo-600 font-medium">21%</div>
+                          </div>
+                          <div className="w-full h-1.5 bg-gray-100 rounded-full mt-1">
+                            <div className="h-1.5 bg-indigo-500 rounded-full" style={{ width: '21%' }} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
