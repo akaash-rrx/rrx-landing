@@ -25,7 +25,7 @@ import {
 } from 'lucide-react';
 
 const Hero = () => {
-  const [activeChart, setActiveChart] = useState(0);
+  const [activeChart, setActiveChart] = useState(1);
   const [activeTopic, setActiveTopic] = useState(0);
   const [activeSegment, setActiveSegment] = useState(0);
   const [activeAttribute, setActiveAttribute] = useState("Innovative");
@@ -102,9 +102,9 @@ const Hero = () => {
   const chartTypes = ['insights', 'market', 'competitors'];
   
   useEffect(() => {
-    const chartInterval = setInterval(() => {
-      setActiveChart((prev) => (prev + 1) % chartTypes.length);
-    }, 8000);
+    // const chartInterval = setInterval(() => {
+    //   setActiveChart((prev) => (prev + 1) % chartTypes.length);
+    // }, 8000);
     
     const topicInterval = setInterval(() => {
       setActiveTopic((prev) => (prev + 1) % topicData.length);
@@ -123,7 +123,7 @@ const Hero = () => {
     }, 4000);
     
     return () => {
-      clearInterval(chartInterval);
+      // clearInterval(chartInterval);
       clearInterval(topicInterval);
       clearInterval(segmentInterval);
       clearInterval(attributeInterval);
@@ -436,7 +436,7 @@ const Hero = () => {
                           <LineChart className="h-4 w-4 text-indigo-600" />
                           <h4 className="text-sm font-medium text-gray-700">Analysis</h4>
                         </div>
-                        <div className="flex items-center space-x-1 text-xs">
+                        {/* <div className="flex items-center space-x-1 text-xs">
                           <button 
                             onClick={() => handleTabClick(0)} 
                             className={`px-2 py-0.5 rounded cursor-pointer ${activeChart === 0 ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500 hover:bg-gray-100'}`}
@@ -455,9 +455,19 @@ const Hero = () => {
                           >
                             Competitors
                           </button>
+                        </div> */}
+                        <div className="flex items-center space-x-1 text-xs">
+                          <span className="px-2 py-0.5 rounded text-gray-400 bg-gray-100 cursor-default select-none">
+                            Insights
+                          </span>
+                          <span className="px-2 py-0.5 rounded text-indigo-700 bg-indigo-100 font-medium cursor-default select-none">
+                            Market
+                          </span>
+                          <span className="px-2 py-0.5 rounded text-gray-400 bg-gray-100 cursor-default select-none">
+                            Competitors
+                          </span>
                         </div>
                       </div>
-                      
                       {/* Fixed height container for charts - reduced height */}
                       <div className="h-[170px] px-2 mt-6">
                         <AnimatePresence mode="wait">
