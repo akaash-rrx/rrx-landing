@@ -20,21 +20,23 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-medium mb-4">Company</h3>
+            <h3 className="text-lg font-medium mb-4">About RRX</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">About</a></li>
-              <li><a href="#what-we-offer" className="text-gray-400 hover:text-white transition-colors">Services</a></li>
-              <li><a href="#approach" className="text-gray-400 hover:text-white transition-colors">Approach</a></li>
-              <li><a href="#contact" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+              {/* <li><a href="#" className="text-gray-400 hover:text-white transition-colors">About</a></li> */}
+              <li><a href="#our-research-stack" className="text-gray-400 hover:text-white transition-colors">Studies</a></li>
+              <li><a href="#core-differentiators" className="text-gray-400 hover:text-white transition-colors">Analysis</a></li>
+              {/* <li><a href="#book-a-demo-with-rrx" className="text-gray-400 hover:text-white transition-colors">Contact</a></li> */}
             </ul>
           </div>
           
           <div>
-            <h3 className="text-lg font-medium mb-4">Legal</h3>
+            <h3 className="text-lg font-medium mb-4">Company</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Terms</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Cookies</a></li>
+              {/* <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Terms</a></li> */}
+              {/* <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy</a></li> */}
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Careers</a></li>
+              {/* <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Cookies</a></li> */}
+              <li><a href="#book-a-demo-with-rrx" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
             </ul>
           </div>
         </div>
@@ -43,7 +45,7 @@ const Footer = () => {
           <p className="text-gray-400 text-sm">
             © {currentYear} RRX Research. All rights reserved.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
+          {/* <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="text-gray-400 hover:text-white transition-colors">
               <span className="sr-only">LinkedIn</span>
               <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -56,7 +58,7 @@ const Footer = () => {
                 <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723 9.99 9.99 0 01-3.128 1.195 4.92 4.92 0 00-8.48 4.482 13.995 13.995 0 01-10.155-5.145 5 5 0 00-.665 2.5 4.998 4.998 0 002.25 4.188 4.936 4.936 0 01-2.235-.616v.061a4.926 4.926 0 003.95 4.827 4.996 4.996 0 01-2.235.085 4.937 4.937 0 004.604 3.417 9.868 9.868 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63a9.936 9.936 0 002.46-2.548l-.047-.02z"/>
               </svg>
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

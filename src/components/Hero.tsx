@@ -209,7 +209,7 @@ const Hero = () => {
               transition={{ delay: 0.8, duration: 0.6 }}
             >
               <motion.a 
-                href="#contact" 
+                href="#book-a-demo-with-rrx" 
                 className="group flex items-center justify-center gap-2 bg-black text-white px-8 py-4 rounded-lg hover:bg-gray-900 transition-all text-center shadow-lg hover:shadow-xl"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
@@ -225,7 +225,7 @@ const Hero = () => {
               </motion.a>
               
               <motion.a 
-                href="#approach" 
+                href="#core-differentiators" 
                 className="group flex items-center justify-center gap-2 border-2 border-gray-300 px-8 py-4 rounded-lg hover:border-black transition-all text-center"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}

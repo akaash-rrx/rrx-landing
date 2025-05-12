@@ -39,7 +39,7 @@ const Navbar = () => {
           <a href="#book-a-demo-with-rrx" className="text-gray-800 hover:text-black transition-colors">Contact</a>
         </div> */}
         <a 
-          href="#contact" 
+          href="https://beta.rrxresearch.com/login" 
           className="bg-black text-white px-5 py-2 rounded hover:bg-gray-800 transition-colors"
         >
           Log In
