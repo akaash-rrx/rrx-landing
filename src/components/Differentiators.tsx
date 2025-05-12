@@ -57,7 +57,6 @@ const Differentiators = () => {
               <div className="text-[10px] text-gray-500">Total brand value: $3.9M</div>
             </div>
             <div className="bg-black text-white text-[10px] px-1.5 py-0.5 rounded">
-              {/* Fix the arithmetic operation error - convert to number instead of using character code */}
               {activeBrand === "Brand A" ? 28 : 
                activeBrand === "Brand B" ? 25 : 
                activeBrand === "Brand C" ? 22 : 19}% Market Share
@@ -75,7 +74,7 @@ const Differentiators = () => {
             </div>
             
             {/* Bar chart - modified for bottom alignment and prevent text overlap */}
-            <div className="absolute inset-0 flex items-end justify-between px-1 pb-6">
+            <div className="absolute left-12 right-2 bottom-0 flex items-end justify-between">
               {["Design", "Innovation", "Luxury", "Connectivity", "Quality", "Loyalty", "Perception"].map((attr, i) => {
                 const values = [
                   [90, 85, 80, 70, 65, 50, 25],
@@ -89,17 +88,17 @@ const Differentiators = () => {
                 const height = values[brandIndex][i];
                 
                 return (
-                  <div key={i} className="flex flex-col items-center">
+                  <div key={i} className="flex flex-col items-center w-7">
                     <motion.div 
-                      className={`w-7 ${
+                      className={`w-full ${
                         i < 3 ? 'bg-black' : 
                         i < 6 ? 'bg-gray-600' : 'bg-gray-400'
                       } rounded-t`}
                       initial={{ height: 0 }}
-                      animate={{ height: `${height}%` }}
+                      animate={{ height: `${height}px` }}
                       transition={{ duration: 0.5, delay: i * 0.1 }}
                     />
-                    <div className="text-[8px] text-gray-500 mt-1">
+                    <div className="text-[8px] text-gray-500 mt-1 w-full text-center">
                       {attr}
                     </div>
                   </div>
