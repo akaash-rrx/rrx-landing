@@ -10,7 +10,10 @@ import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white relative overflow-hidden">
+      {/* Page-wide gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white opacity-70 pointer-events-none z-0"></div>
+      
       <Navbar />
       <Hero />
       
@@ -19,11 +22,17 @@ const Index = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="relative"
+        className="relative z-10"
       >
-        <Offering />
-        <Differentiators />
-        <ContactForm />
+        <div className="section-transition">
+          <Offering />
+        </div>
+        <div className="section-transition">
+          <Differentiators />
+        </div>
+        <div className="section-transition">
+          <ContactForm />
+        </div>
       </motion.div>
       
       <Footer />

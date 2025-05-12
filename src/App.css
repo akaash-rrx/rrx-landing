@@ -49,8 +49,39 @@ html {
 
 /* General transitions */
 section {
-  transition: background-color 0.5s ease-in-out;
+  transition: background-color 0.5s ease-in-out, transform 0.8s ease-out;
   position: relative;
+  z-index: 2;
+}
+
+/* Section transitions with consistent styling */
+.section-transition {
+  position: relative;
+  z-index: 2;
+}
+
+.section-transition::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.8));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.section-transition::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to top, rgba(255,255,255,0), rgba(255,255,255,0.8));
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* Add more sophisticated animations */
