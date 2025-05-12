@@ -269,13 +269,13 @@ const Differentiators = () => {
                     />
                   )}
                   
-                  {/* Axis labels */}
-                  <text x="50" y="5" fontSize="4" textAnchor="middle" fill="#6b7280">Top</text>
-                  <text x="92" y="30" fontSize="4" textAnchor="start" fill="#6b7280">Right</text>
-                  <text x="92" y="70" fontSize="4" textAnchor="start" fill="#6b7280">Bottom-right</text>
-                  <text x="50" y="95" fontSize="4" textAnchor="middle" fill="#6b7280">Bottom</text>
-                  <text x="8" y="70" fontSize="4" textAnchor="end" fill="#6b7280">Bottom-left</text>
-                  <text x="8" y="30" fontSize="4" textAnchor="end" fill="#6b7280">Left</text>
+                  {/* Updated axis labels with meaningful feature aspects */}
+                  <text x="50" y="5" fontSize="4" textAnchor="middle" fill="#6b7280">Performance</text>
+                  <text x="92" y="30" fontSize="4" textAnchor="start" fill="#6b7280">Design</text>
+                  <text x="92" y="70" fontSize="4" textAnchor="start" fill="#6b7280">Price</text>
+                  <text x="50" y="95" fontSize="4" textAnchor="middle" fill="#6b7280">Value</text>
+                  <text x="8" y="70" fontSize="4" textAnchor="end" fill="#6b7280">Technology</text>
+                  <text x="8" y="30" fontSize="4" textAnchor="end" fill="#6b7280">Quality</text>
                 </svg>
               </div>
               
