@@ -20,19 +20,19 @@ const jobDetails: Record<string, JobDetail> = {
     id: 'designer',
     title: 'UX Designer',
     location: 'Palo Alto, CA',
-    salary: '$150,000 - $220,000 per year + equity',
-    overview: `RRX builds systems that translate qualitative data into structured insight, helping organizations make better decisions through behavioral simulation and causal modeling. As a UX Designer, you'll help shape the interface layer of this complex engine, designing ways for users to engage with research outputs, simulated audiences, and evolving decision paths.
+    salary: '$120,000 - $180,000 per year + equity',
+    overview: `RRX builds systems that translate qualitative data into structured insight, helping organizations make better decisions. As a UX Designer, you'll help shape the interface layer of this complex engine, designing ways for users to engage with research outputs, simulated audiences, and evolving decision paths.
 
 You’ll collaborate with product, engineering, and research teams to build an experience that’s both powerful and human-centered. Your work will make the difference between raw research and usable, actionable intelligence — and you’ll be central to helping our users navigate high-stakes questions with confidence.`,
     responsibilities: [
-      'Design intuitive workflows that help users explore simulation outputs and behavioral insights',
+      'Design intuitive workflows that help users explore behavioral insights from studies',
       'Work with researchers and engineers to visualize abstract or multi-scale models',
       'Own interface design for internal tools and client-facing dashboards',
       'Establish and maintain a consistent design language across the platform'
     ],
     requirements: [
-      '3+ years of experience in UX or product design roles',
-      'Fluent in design tools like Figma or Sketch, with experience prototyping data-driven interfaces',
+      '1+ years of experience in UX or product design roles',
+      'Experience prototyping data-driven interfaces',
       'Strong systems thinking and ability to reduce complexity through design',
       'Comfort working with technical teams and engaging directly with research outputs'
     ]
@@ -42,17 +42,15 @@ You’ll collaborate with product, engineering, and research teams to build an e
     title: 'Research Scientist',
     location: 'Palo Alto, CA',
     salary: '$160,000 - $220,000 per year + equity',
-    overview: `At RRX, our core technology transforms raw qualitative data into structured, decision-grade insight. As a Research Scientist, you’ll develop the methodologies behind this transformation, drawing from fields like behavioral economics, computational social science, and causal inference. Your work will directly influence how we extract signal from noisy interviews and simulations — and how we translate that into clear strategic recommendations.`,
+    overview: `At RRX, our core technology transforms raw qualitative data into structured, decision-grade insight. As a Research Scientist, you’ll develop the methodologies behind this transformation. Your work will directly influence how we design, execute, and analyze studies — and how we translate that into clear strategic recommendations.`,
     responsibilities: [
-      'Design experiments and inference frameworks to quantify human decision-making',
-      'Develop and refine methods for thematic analysis, preference modeling, and structural mapping',
-      'Collaborate with engineers to scale qualitative-to-quantitative pipelines',
-      'Contribute to the design of our simulation engine’s modeling architecture'
+      'Design experiments and inference frameworks to quantify & understand human decision-making',
+      'Develop and refine methods for drawing causal, predictive conclusions from qualitative data',
+      'Collaborate with engineers to scale and design automated analysis pipelines',
     ],
     requirements: [
-      'Advanced degree (PhD or MS) in a relevant field like computer science, math, or applied statistics',
-      'Strong foundation in causal inference, experimental design, or structural modeling',
-      'Familiarity with Python and data tools like pandas, NumPy, or scikit-learn',
+      'Research in a relevant field like computer science, math, or applied statistics',
+      'Strong foundation in experimental design, statistical analysis, and quantitative modeling',
       'Ability to collaborate with product, engineering, and client-facing teams'
     ]
   }
