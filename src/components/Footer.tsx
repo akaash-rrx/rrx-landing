@@ -23,8 +23,8 @@ const Footer = () => {
             <h3 className="text-lg font-medium mb-4">About RRX</h3>
             <ul className="space-y-2">
               {/* <li><a href="#" className="text-gray-400 hover:text-white transition-colors">About</a></li> */}
-              <li><a href="#our-research-stack" className="text-gray-400 hover:text-white transition-colors">Studies</a></li>
-              <li><a href="#core-differentiators" className="text-gray-400 hover:text-white transition-colors">Analysis</a></li>
+              <li><a href="/#our-research-stack" className="text-gray-400 hover:text-white transition-colors">Studies</a></li>
+              <li><a href="/#core-differentiators" className="text-gray-400 hover:text-white transition-colors">Analysis</a></li>
               {/* <li><a href="#book-a-demo-with-rrx" className="text-gray-400 hover:text-white transition-colors">Contact</a></li> */}
             </ul>
           </div>
