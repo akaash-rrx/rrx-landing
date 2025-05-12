@@ -141,10 +141,6 @@ const Differentiators = () => {
           </motion.div>
         </motion.div>
       </div>
-      
-      <div className="absolute top-4 right-4 bg-black/80 text-white text-[10px] px-2 py-1 rounded flex items-center gap-1.5">
-        <Play size={10} /> Live Demo
-      </div>
     </div>
   );
   
@@ -360,10 +356,6 @@ const Differentiators = () => {
           ))}
         </div>
       </div>
-      
-      <div className="absolute top-4 right-4 bg-black/80 text-white text-[10px] px-2 py-1 rounded flex items-center gap-1.5">
-        <Play size={10} /> Live Demo
-      </div>
     </div>
   );
 
@@ -438,10 +430,6 @@ const Differentiators = () => {
             </motion.div>
           ))}
         </motion.div>
-      </div>
-      
-      <div className="absolute top-4 right-4 bg-black/80 text-white text-[10px] px-2 py-1 rounded flex items-center gap-1.5">
-        <Play size={10} /> Live Demo
       </div>
       
       <div className="absolute bottom-4 left-4 right-4 flex items-center gap-2">

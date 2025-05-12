@@ -62,7 +62,7 @@ const Hero = () => {
 
   const marketSegmentData = [
     { name: "Early Adopters", percentage: 18, growth: "+5.2%" },
-    { name: "Technology Enthusiasts", percentage: 23, growth: "+3.8%" },
+    { name: "Innovators", percentage: 23, growth: "+3.8%" },
     { name: "Pragmatists", percentage: 42, growth: "+1.5%" },
     { name: "Conservatives", percentage: 17, growth: "-2.1%" },
   ];
@@ -337,7 +337,7 @@ const Hero = () => {
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center space-x-1.5">
                           <Users className="h-4 w-4 text-purple-600" />
-                          <h3 className="font-medium text-sm text-gray-800">Audience Breakdown</h3>
+                          <h3 className="font-medium text-sm text-gray-800">Audiences</h3>
                         </div>
                         <span className="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">
                           1,204 Respondents

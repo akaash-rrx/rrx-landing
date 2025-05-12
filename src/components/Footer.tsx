@@ -15,7 +15,7 @@ const Footer = () => {
               className="h-10 mb-6" 
             />
             <p className="text-gray-400 mb-6 max-w-md">
-              RRX delivers state-of-the-art research intelligence in 48 hours. Intelligent research. Intelligent decisions.
+              Intelligent research. Intelligent decisions.
             </p>
           </div>
           

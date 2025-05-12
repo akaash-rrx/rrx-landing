@@ -30,7 +30,7 @@ const ContactForm = () => {
       setLoading(false);
       toast({
         title: "Request submitted",
-        description: "We'll be in touch with you shortly.",
+        description: "We'll be in touch with you later today.",
       });
       setFormData({
         name: '',
@@ -51,9 +51,9 @@ const ContactForm = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">Get in touch</h2>
+          <h2 className="text-4xl font-bold mb-4">Book a demo with RRX</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Ready to transform your research approach? Let's talk.
+            Ready for intelligent and actionable research? We'll break it down in 20 minutes.
           </p>
         </motion.div>
         
