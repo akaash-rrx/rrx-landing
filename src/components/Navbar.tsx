@@ -33,11 +33,11 @@ const Navbar = () => {
             className="h-10" 
           />
         </a>
-        <div className="hidden md:flex space-x-8">
+        {/* <div className="hidden md:flex space-x-8">
           <a href="#our-research-stack" className="text-gray-800 hover:text-black transition-colors">Studies</a>
           <a href="#core-differentiators" className="text-gray-800 hover:text-black transition-colors">Analysis</a>
-          <a href="#book-a-demo-with-rrx" className="text-gray-800 hover:text-black transition-colors">Why RRX</a>
-        </div>
+          <a href="#book-a-demo-with-rrx" className="text-gray-800 hover:text-black transition-colors">Contact</a>
+        </div> */}
         <a 
           href="#contact" 
           className="bg-black text-white px-5 py-2 rounded hover:bg-gray-800 transition-colors"
