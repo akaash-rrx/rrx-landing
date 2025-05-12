@@ -38,7 +38,7 @@ const Offering = () => {
             </div>
             <h3 className="text-xl font-semibold mb-4">Qualitative Interviews</h3>
             <p className="text-gray-600">
-              Rich, in-depth conversations with target audiences to uncover deep insights and patterns.
+              AI-led interviews deliver rich, unbiased conversations at scale to reveal how customers think and feel.
             </p>
           </motion.div>
           
@@ -54,7 +54,7 @@ const Offering = () => {
             </div>
             <h3 className="text-xl font-semibold mb-4">Iterative Hypothesis Testing</h3>
             <p className="text-gray-600">
-              Systematic validation of ideas through structured experimentation and data collection.
+              Test every message, feature, and value prop using real input with synthetic pruning to explore the full decision space.
             </p>
           </motion.div>
           
@@ -70,7 +70,7 @@ const Offering = () => {
             </div>
             <h3 className="text-xl font-semibold mb-4">Immersive Studies</h3>
             <p className="text-gray-600">
-              Comprehensive analytical frameworks to understand behaviors in their natural context.
+              Capture real-time behavior through voice diaries and mobile prompts while context and emotion are still fresh.
             </p>
           </motion.div>
         </div>
