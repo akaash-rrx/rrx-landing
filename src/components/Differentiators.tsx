@@ -144,7 +144,7 @@ const Differentiators = () => {
     </div>
   );
   
-  // Updated demo for conjoint-based preference modeling
+  // Redesigned demo for conjoint-based preference modeling with a radically different look
   const conjointModelingDemo = (
     <div className="relative w-full h-full">
       <div className="absolute inset-0 p-4 flex flex-col">
@@ -153,140 +153,279 @@ const Differentiators = () => {
           <p className="text-xs text-gray-500">Quantifying feature importance and value for consumer decision-making.</p>
         </div>
         
-        {/* Feature category rows */}
-        <div className="grid grid-cols-4 gap-2 mb-3">
+        {/* Horizontal feature selector */}
+        <div className="flex gap-2 mb-3 overflow-x-auto pb-1 no-scrollbar">
           {["Performance", "Design", "Technology", "Sustainability"].map((feature, i) => (
             <motion.div 
               key={i} 
-              className={`bg-white rounded-md p-2 border ${selectedFeature === feature ? 'border-purple-500 shadow-md' : 'border-gray-200'}`}
-              whileHover={{ scale: 1.02 }}
+              className={`flex-shrink-0 bg-white rounded-full px-3 py-1 border-2 ${
+                selectedFeature === feature 
+                  ? 'border-purple-500 shadow-sm bg-purple-50' 
+                  : 'border-gray-100'
+              }`}
+              whileHover={{ scale: 1.05 }}
               onClick={() => setSelectedFeature(feature)}
               transition={{ duration: 0.2 }}
             >
-              <div className="flex justify-center mb-1">
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
-                  i === 0 ? 'bg-purple-100' : 
-                  i === 1 ? 'bg-blue-100' :
-                  i === 2 ? 'bg-amber-100' :
-                  'bg-green-100'
-                }`}>
-                  {i === 0 && <div className="w-3 h-3 rounded-sm bg-purple-500" />}
-                  {i === 1 && <div className="w-3 h-3 rounded-sm bg-blue-500" />}
-                  {i === 2 && <div className="w-3 h-3 rounded-sm bg-amber-500" />}
-                  {i === 3 && <div className="w-3 h-3 rounded-sm bg-green-500" />}
-                </div>
+              <div className="flex items-center gap-1.5">
+                <div className={`w-3 h-3 rounded-full ${
+                  i === 0 ? 'bg-purple-600' : 
+                  i === 1 ? 'bg-blue-600' :
+                  i === 2 ? 'bg-amber-600' :
+                  'bg-green-600'
+                }`}></div>
+                <div className="text-xs font-medium">{feature}</div>
               </div>
-              <div className="text-center text-xs font-medium">{feature}</div>
-              <div className="text-xs text-center text-gray-500">{i === 0 ? 'High' : i === 1 ? 'Medium' : i === 2 ? 'Medium' : 'Low'} Priority</div>
             </motion.div>
           ))}
         </div>
         
-        {/* Selected feature detail */}
-        <motion.div 
-          className="bg-white rounded-md border border-gray-200 p-3 flex-1"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="flex justify-between items-center mb-2">
-            <div>
-              <h4 className="text-xs font-medium">{selectedFeature} Feature Importance</h4>
-              <div className="text-[10px] text-gray-500">Relative importance in purchase decisions</div>
-            </div>
-            <div className={`px-1.5 py-0.5 rounded text-[10px] ${
-              selectedFeature === "Performance" ? 'bg-purple-100 text-purple-700' :
-              selectedFeature === "Design" ? 'bg-blue-100 text-blue-700' :
-              selectedFeature === "Technology" ? 'bg-amber-100 text-amber-700' :
-              'bg-green-100 text-green-700'
-            }`}>
-              {selectedFeature === "Performance" ? '38% Impact' : 
-               selectedFeature === "Design" ? '27% Impact' : 
-               selectedFeature === "Technology" ? '23% Impact' : 
-               '12% Impact'}
-            </div>
-          </div>
-          
-          <div className="h-[140px] relative">
-            {/* Y-axis labels */}
-            <div className="absolute left-0 top-0 bottom-0 w-10 flex flex-col justify-between text-[8px] text-gray-500 py-1">
-              <div>100%</div>
-              <div>75%</div>
-              <div>50%</div>
-              <div>25%</div>
-              <div>0%</div>
-            </div>
+        {/* Feature detail with hexagonal insights */}
+        <div className="flex-1 grid grid-cols-12 gap-3">
+          {/* Left side - radar chart visualization */}
+          <div className="col-span-5 bg-white rounded-lg border border-gray-100 shadow-sm p-2 relative flex flex-col">
+            <div className="text-xs font-medium mb-1">Importance</div>
+            <div className="text-[10px] text-gray-500 mb-2">Relative score</div>
             
-            {/* Bar chart - with bars closer together and preserving full text visibility */}
-            <div className="absolute left-12 right-2 bottom-0 flex items-end justify-between">
-              {(() => {
-                const features = {
-                  "Performance": ["Acceleration", "Top Speed", "Engine Type", "Handling", "Efficiency"],
-                  "Design": ["Exterior", "Interior", "Materials", "Colors", "Lighting"],
-                  "Technology": ["Connect", "Display", "Interface", "Voice", "Safety"],
-                  "Sustainability": ["Emissions", "Materials", "Energy", "Recycle", "Lifecycle"]
-                };
-                
-                const values = {
-                  "Performance": [85, 65, 55, 75, 40],
-                  "Design": [70, 60, 80, 50, 65],
-                  "Technology": [65, 75, 60, 45, 80],
-                  "Sustainability": [50, 70, 55, 65, 45]
-                };
-                
-                const colors = {
-                  "Performance": ["bg-purple-800", "bg-purple-700", "bg-purple-600", "bg-purple-500", "bg-purple-400"],
-                  "Design": ["bg-blue-800", "bg-blue-700", "bg-blue-600", "bg-blue-500", "bg-blue-400"],
-                  "Technology": ["bg-amber-800", "bg-amber-700", "bg-amber-600", "bg-amber-500", "bg-amber-400"],
-                  "Sustainability": ["bg-green-800", "bg-green-700", "bg-green-600", "bg-green-500", "bg-green-400"]
-                };
-                
-                const selectedFeatureData = features[selectedFeature as keyof typeof features];
-                const selectedValues = values[selectedFeature as keyof typeof values];
-                const selectedColors = colors[selectedFeature as keyof typeof colors];
-                
-                return selectedFeatureData.map((featureName, i) => {
-                  // Fixed pixel heights instead of percentages
-                  const height = selectedValues[i];
-                  const pixelHeight = (height / 100) * 120; // 120px is max height
+            <div className="flex-1 relative">
+              {/* Radar chart simulation */}
+              <div className="absolute inset-0">
+                <svg className="w-full h-full" viewBox="0 0 100 100">
+                  {/* Background hexagon shapes */}
+                  <polygon 
+                    points="50,10 85,30 85,70 50,90 15,70 15,30" 
+                    fill="none" 
+                    stroke="#f3f4f6" 
+                    strokeWidth="0.5"
+                  />
+                  <polygon 
+                    points="50,20 77,35 77,65 50,80 23,65 23,35" 
+                    fill="none" 
+                    stroke="#f3f4f6" 
+                    strokeWidth="0.5"
+                  />
+                  <polygon 
+                    points="50,30 70,40 70,60 50,70 30,60 30,40" 
+                    fill="none" 
+                    stroke="#f3f4f6" 
+                    strokeWidth="0.5"
+                  />
+                  <polygon 
+                    points="50,40 62,45 62,55 50,60 38,55 38,45" 
+                    fill="none" 
+                    stroke="#f3f4f6" 
+                    strokeWidth="0.5"
+                  />
                   
-                  return (
-                    <div key={i} className="flex flex-col items-center w-6">
-                      <motion.div 
-                        className={`w-4 ${selectedColors[i]} rounded-t`}
-                        style={{ height: `${pixelHeight}px` }}
-                        initial={{ height: 0 }}
-                        animate={{ height: `${pixelHeight}px` }}
-                        transition={{ duration: 0.5, delay: i * 0.1 }}
-                      />
-                      <div className="text-[8px] text-gray-500 mt-1 w-full text-center overflow-visible whitespace-nowrap">
-                        {featureName}
-                      </div>
-                    </div>
-                  );
-                });
-              })()}
-            </div>
-          </div>
-          
-          {/* Insights */}
-          <motion.div 
-            className="mt-2 bg-purple-50 border border-purple-100 p-1.5 rounded"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7 }}
-          >
-            <div className="flex items-start gap-1.5">
-              <div className="font-medium text-[9px] text-purple-700">Model Insight:</div>
-              <div className="text-[9px] text-purple-800">
-                {selectedFeature === "Performance" ? 'Acceleration (85%) is the top performance driver – 2.1x more valued than efficiency.' :
-                 selectedFeature === "Design" ? 'Material quality (80%) dominates design perception – 1.6x more important than color options.' :
-                 selectedFeature === "Technology" ? 'Safety tech (80%) is the leading technology value driver for luxury segment buyers.' :
-                 'Sustainable materials (70%) have the highest environmental impact on purchase intent.'}
+                  {/* Data polygon for Performance */}
+                  {selectedFeature === "Performance" && (
+                    <motion.polygon 
+                      points="50,15 80,32 75,65 45,80 25,55 30,35" 
+                      fill="rgba(147, 51, 234, 0.1)" 
+                      stroke="#9333ea" 
+                      strokeWidth="1.5"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5 }}
+                    />
+                  )}
+                  
+                  {/* Data polygon for Design */}
+                  {selectedFeature === "Design" && (
+                    <motion.polygon 
+                      points="50,20 75,38 70,65 40,75 25,50 35,30" 
+                      fill="rgba(59, 130, 246, 0.1)" 
+                      stroke="#3b82f6" 
+                      strokeWidth="1.5"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5 }}
+                    />
+                  )}
+                  
+                  {/* Data polygon for Technology */}
+                  {selectedFeature === "Technology" && (
+                    <motion.polygon 
+                      points="50,25 70,35 75,60 55,75 30,60 25,35" 
+                      fill="rgba(217, 119, 6, 0.1)" 
+                      stroke="#d97706" 
+                      strokeWidth="1.5"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5 }}
+                    />
+                  )}
+                  
+                  {/* Data polygon for Sustainability */}
+                  {selectedFeature === "Sustainability" && (
+                    <motion.polygon 
+                      points="50,30 65,40 60,60 45,65 30,55 35,40" 
+                      fill="rgba(16, 185, 129, 0.1)" 
+                      stroke="#10b981" 
+                      strokeWidth="1.5"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5 }}
+                    />
+                  )}
+                  
+                  {/* Axis labels */}
+                  <text x="50" y="5" fontSize="4" textAnchor="middle" fill="#6b7280">Top</text>
+                  <text x="92" y="30" fontSize="4" textAnchor="start" fill="#6b7280">Right</text>
+                  <text x="92" y="70" fontSize="4" textAnchor="start" fill="#6b7280">Bottom-right</text>
+                  <text x="50" y="95" fontSize="4" textAnchor="middle" fill="#6b7280">Bottom</text>
+                  <text x="8" y="70" fontSize="4" textAnchor="end" fill="#6b7280">Bottom-left</text>
+                  <text x="8" y="30" fontSize="4" textAnchor="end" fill="#6b7280">Left</text>
+                </svg>
+              </div>
+              
+              {/* Impact value (absolute center) */}
+              <div className="absolute inset-0 flex items-center justify-center flex-col">
+                <div className={`text-lg font-bold ${
+                  selectedFeature === "Performance" ? 'text-purple-700' : 
+                  selectedFeature === "Design" ? 'text-blue-700' :
+                  selectedFeature === "Technology" ? 'text-amber-700' :
+                  'text-green-700'
+                }`}>
+                  {selectedFeature === "Performance" ? '38%' : 
+                  selectedFeature === "Design" ? '27%' : 
+                  selectedFeature === "Technology" ? '23%' : 
+                  '12%'}
+                </div>
+                <div className="text-[10px] text-gray-500">Impact</div>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+            
+            {/* Legend */}
+            <div className="mt-2 pt-1 border-t border-gray-100">
+              <div className="flex items-center justify-between text-[9px] text-gray-500">
+                <span>Relative importance</span>
+                <span className="font-medium">
+                  {selectedFeature === "Performance" ? 'Very High' : 
+                  selectedFeature === "Design" ? 'High' : 
+                  selectedFeature === "Technology" ? 'Medium' : 
+                  'Low'}
+                </span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Right side - detailed breakdown */}
+          <div className="col-span-7 flex flex-col">
+            {/* Feature detail card */}
+            <div className="bg-white rounded-lg border border-gray-100 shadow-sm p-2 flex-1">
+              <div className="flex justify-between items-start mb-2">
+                <div>
+                  <div className="text-xs font-medium">{selectedFeature} Attributes</div>
+                  <div className="text-[10px] text-gray-500">Value contribution</div>
+                </div>
+                <div className={`px-2 py-0.5 text-[10px] rounded-full ${
+                  selectedFeature === "Performance" ? 'bg-purple-100 text-purple-700' : 
+                  selectedFeature === "Design" ? 'bg-blue-100 text-blue-700' :
+                  selectedFeature === "Technology" ? 'bg-amber-100 text-amber-700' :
+                  'bg-green-100 text-green-700'
+                }`}>
+                  {selectedFeature === "Performance" ? '#1 Factor' : 
+                  selectedFeature === "Design" ? '#2 Factor' : 
+                  selectedFeature === "Technology" ? '#3 Factor' : 
+                  '#4 Factor'}
+                </div>
+              </div>
+              
+              {/* Horizontal bars */}
+              <div className="space-y-2">
+                {(() => {
+                  const features = {
+                    "Performance": ["Acceleration", "Top Speed", "Engine Type", "Handling", "Efficiency"],
+                    "Design": ["Exterior", "Interior", "Materials", "Colors", "Lighting"],
+                    "Technology": ["Connect", "Display", "Interface", "Voice", "Safety"],
+                    "Sustainability": ["Emissions", "Materials", "Energy", "Recycle", "Lifecycle"]
+                  };
+                  
+                  const values = {
+                    "Performance": [85, 65, 55, 75, 40],
+                    "Design": [70, 60, 80, 50, 65],
+                    "Technology": [65, 75, 60, 45, 80],
+                    "Sustainability": [50, 70, 55, 65, 45]
+                  };
+                  
+                  const selectedFeatureData = features[selectedFeature as keyof typeof features];
+                  const selectedValues = values[selectedFeature as keyof typeof values];
+                  
+                  return selectedFeatureData.map((featureName, i) => (
+                    <div key={i} className="flex items-center">
+                      <div className="w-20 text-[9px] text-gray-600 mr-2 overflow-visible whitespace-nowrap">
+                        {featureName}
+                      </div>
+                      <div className="flex-1 h-5 bg-gray-50 rounded-full overflow-hidden flex items-center">
+                        <motion.div 
+                          className={`h-5 ${
+                            selectedFeature === "Performance" 
+                              ? 'bg-gradient-to-r from-purple-700 to-purple-400' : 
+                            selectedFeature === "Design" 
+                              ? 'bg-gradient-to-r from-blue-700 to-blue-400' :
+                            selectedFeature === "Technology" 
+                              ? 'bg-gradient-to-r from-amber-700 to-amber-400' :
+                            'bg-gradient-to-r from-green-700 to-green-400'
+                          } rounded-full`}
+                          initial={{ width: '0%' }}
+                          animate={{ width: `${selectedValues[i]}%` }}
+                          transition={{ duration: 0.7, delay: i * 0.1 }}
+                        >
+                          <div className="h-full w-full opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMiI+PC9yZWN0Pgo8cGF0aCBkPSJNMCAwTDUgNVpNNSAwTDAgNVoiIHN0cm9rZS13aWR0aD0iMC41IiBzdHJva2U9IiNmZmYiPjwvcGF0aD4KPC9zdmc+')]"></div>
+                        </motion.div>
+                        <div className="absolute ml-2 text-[10px] text-white font-medium drop-shadow-sm">
+                          {selectedValues[i]}%
+                        </div>
+                      </div>
+                    </div>
+                  ));
+                })()}
+              </div>
+            </div>
+            
+            {/* Insight box */}
+            <motion.div 
+              className={`mt-3 p-2 rounded-lg border ${
+                selectedFeature === "Performance" ? 'bg-purple-50 border-purple-200' : 
+                selectedFeature === "Design" ? 'bg-blue-50 border-blue-200' :
+                selectedFeature === "Technology" ? 'bg-amber-50 border-amber-200' :
+                'bg-green-50 border-green-200'
+              }`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              <div className="flex flex-col text-[10px]">
+                <div className={`font-medium ${
+                  selectedFeature === "Performance" ? 'text-purple-700' : 
+                  selectedFeature === "Design" ? 'text-blue-700' :
+                  selectedFeature === "Technology" ? 'text-amber-700' :
+                  'text-green-700'
+                } flex items-center gap-1`}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a.75.75 0 0 0 0 1.5h.253a.25.25 0 0 1 .244.304l-.459 2.066A1.75 1.75 0 0 0 10.747 15H11a.75.75 0 0 0 0-1.5h-.253a.25.25 0 0 1-.244-.304l.459-2.066A1.75 1.75 0 0 0 9.253 9H9Z" clipRule="evenodd" />
+                  </svg>
+                  Model Insight
+                </div>
+                <div className={`${
+                  selectedFeature === "Performance" ? 'text-purple-800' : 
+                  selectedFeature === "Design" ? 'text-blue-800' :
+                  selectedFeature === "Technology" ? 'text-amber-800' :
+                  'text-green-800'
+                } mt-1`}>
+                  {selectedFeature === "Performance" 
+                    ? 'Acceleration (85%) is the top performance driver – 2.1x more valued than efficiency.' 
+                    : selectedFeature === "Design" 
+                    ? 'Material quality (80%) dominates design perception – 1.6x more important than color options.' 
+                    : selectedFeature === "Technology" 
+                    ? 'Safety tech (80%) is the leading technology value driver for luxury segment buyers.' 
+                    : 'Sustainable materials (70%) have the highest environmental impact on purchase intent.'}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </div>
       
       <div className="absolute top-4 right-4 bg-black/80 text-white text-[10px] px-2 py-1 rounded flex items-center gap-1.5">
