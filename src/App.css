@@ -52,15 +52,17 @@ section {
   transition: transform 0.8s ease-out;
   position: relative;
   z-index: 2;
-  background: transparent !important; /* Force all sections to be transparent */
+  background-color: transparent !important; /* Force all sections to be transparent */
 }
 
-/* Ensure no background colors interfere with the gradient */
-.section-transition {
+/* Remove all backgrounds and make sure content is transparent */
+.section-transition,
+section > div,
+.content-wrapper {
+  background-color: transparent !important;
+  background: transparent !important;
   position: relative;
   z-index: 2;
-  margin: 2rem 0;
-  background: transparent !important;
 }
 
 /* Remove any separators or dividers that might block the gradient */

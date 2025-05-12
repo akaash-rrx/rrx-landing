@@ -1,10 +1,11 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { TrendingUp, BookOpen, FileText } from 'lucide-react';
 
 const Offering = () => {
   return (
-    <section id="our-research-stack" className="py-24 px-6 relative overflow-hidden" style={{ background: 'transparent' }}>
+    <section id="our-research-stack" className="py-24 px-6 relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -30,7 +31,7 @@ const Offering = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="bg-white bg-opacity-70 backdrop-blur-sm p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all hover:translate-y-[-5px]"
+            className="bg-white bg-opacity-30 backdrop-blur-sm p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all hover:translate-y-[-5px]"
           >
             <div className="p-3 bg-black rounded-md w-fit mb-6">
               <TrendingUp className="text-white" size={24} />
@@ -46,7 +47,7 @@ const Offering = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-white bg-opacity-70 backdrop-blur-sm p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all hover:translate-y-[-5px]"
+            className="bg-white bg-opacity-30 backdrop-blur-sm p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all hover:translate-y-[-5px]"
           >
             <div className="p-3 bg-black rounded-md w-fit mb-6">
               <BookOpen className="text-white" size={24} />
@@ -62,7 +63,7 @@ const Offering = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="bg-white bg-opacity-70 backdrop-blur-sm p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all hover:translate-y-[-5px]"
+            className="bg-white bg-opacity-30 backdrop-blur-sm p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all hover:translate-y-[-5px]"
           >
             <div className="p-3 bg-black rounded-md w-fit mb-6">
               <FileText className="text-white" size={24} />
@@ -74,8 +75,6 @@ const Offering = () => {
           </motion.div>
         </div>
       </div>
-      
-      {/* Remove the wave separator that created a visual break */}
     </section>
   );
 };

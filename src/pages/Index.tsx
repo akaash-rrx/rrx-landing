@@ -13,7 +13,7 @@ const Index = () => {
     <div className="min-h-screen">
       {/* Full page gradient overlay that shows through all content */}
       <div 
-        className="fixed inset-0 bg-gradient-to-b from-gray-50 via-white to-gray-50 z-0" 
+        className="fixed inset-0 bg-gradient-to-b from-gray-100 via-gray-50 to-gray-100 z-0" 
         style={{ pointerEvents: 'none' }}
       ></div>
       
