@@ -7,58 +7,139 @@ import { Card, CardContent } from '@/components/ui/card';
 
 const Differentiators = () => {
   const [activeDemo, setActiveDemo] = useState<number>(0);
+  const [activeBrand, setActiveBrand] = useState<string>("Brand B");
 
+  // Updated modeling demo to match the luxury automotive brand style
   const modelingDemo = (
     <div className="relative w-full h-full">
-      <div className="absolute inset-0 grid grid-cols-3 grid-rows-3 gap-1.5 p-4">
-        {[...Array(6)].map((_, i) => (
-          <div 
-            key={i} 
-            className="overflow-hidden rounded-md bg-white/90 shadow-sm border border-gray-100 flex flex-col"
-            style={{ opacity: 0.9 - (i * 0.1) }}
-          >
-            <div className="bg-gray-100/80 h-1/2 p-2 flex items-center justify-center overflow-hidden">
-              {i % 3 === 0 && (
-                <div className="w-full h-full bg-gradient-to-br from-indigo-50 to-purple-50 animate-pulse flex items-center justify-center">
-                  <ChartLine className="text-purple-600" size={16} />
+      <div className="absolute inset-0 p-4 flex flex-col">
+        <div className="mb-2">
+          <h3 className="text-sm font-medium">Brand Associations & Value Modeling</h3>
+          <p className="text-xs text-gray-500">Quantifying how specific attributes drive overall brand value. Hover over each brand to see its breakdown.</p>
+        </div>
+        
+        {/* Brand cards row */}
+        <div className="grid grid-cols-4 gap-2 mb-6">
+          {["Brand A", "Brand B", "Brand C", "Brand D"].map((brand, i) => (
+            <motion.div 
+              key={i} 
+              className={`bg-white rounded-md p-3 border ${activeBrand === brand ? 'border-indigo-500 shadow-md' : 'border-gray-200'}`}
+              whileHover={{ scale: 1.02 }}
+              onClick={() => setActiveBrand(brand)}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="flex justify-center mb-2">
+                <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+                  {i === 0 && <div className="w-5 h-5 rounded-full bg-blue-400" />}
+                  {i === 1 && <div className="w-5 h-5 rounded-full border-2 border-gray-400" />}
+                  {i === 2 && <div className="w-5 h-5 bg-red-400" />}
+                  {i === 3 && <div className="w-5 h-5 bg-green-400" />}
                 </div>
-              )}
-              {i % 3 === 1 && (
-                <motion.div 
-                  className="w-full h-3 bg-gradient-to-r from-purple-300 to-indigo-300 rounded"
-                  initial={{ width: '30%' }}
-                  animate={{ width: ['30%', '80%', '50%', '70%'] }}
-                  transition={{ duration: 8, repeat: Infinity, repeatType: 'reverse' }}
-                />
-              )}
-              {i % 3 === 2 && (
-                <div className="grid grid-cols-2 gap-1 w-full h-full">
-                  <div className="bg-indigo-100/70 rounded"></div>
-                  <div className="bg-purple-100/70 rounded"></div>
-                </div>
-              )}
+              </div>
+              <div className="text-center text-xs font-medium">{brand}</div>
+              <div className="text-xs text-center text-gray-500">{28 - (i * 3)}% Market Share</div>
+              <div className="mt-2 bg-black text-white text-xs px-2 py-1 rounded text-center">
+                ${(4.2 - (i * 0.3)).toFixed(1)}M
+              </div>
+            </motion.div>
+          ))}
+        </div>
+        
+        {/* Selected brand detail */}
+        <motion.div 
+          className="bg-white rounded-md border border-gray-200 p-3 flex-1"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="flex justify-between items-center mb-2">
+            <div>
+              <h4 className="text-sm font-medium">{activeBrand} Association Value</h4>
+              <div className="text-xs text-gray-500">Total brand value: $3.9M</div>
             </div>
-            <div className="p-2 text-[10px] text-gray-600 flex-1 flex flex-col">
-              <div className="font-medium mb-1 text-gray-800">Data Node {i+1}</div>
-              <div className="bg-gray-100 h-1.5 w-[70%] rounded mb-1"></div>
-              <div className="bg-gray-100 h-1.5 w-[50%] rounded"></div>
+            <div className="bg-black text-white text-xs px-2 py-1 rounded">
+              {28 - ([...activeBrand][6] * 3)}% Market Share
             </div>
           </div>
-        ))}
+          
+          <div className="h-[180px] relative">
+            {/* Bar chart */}
+            <div className="absolute inset-0 flex items-end justify-between px-2">
+              {["Design", "Innovation", "Luxury", "Connectivity", "Quality", "Loyalty", "Perception"].map((attr, i) => {
+                const values = [
+                  [90, 85, 80, 70, 65, 50, 25],
+                  [85, 80, 75, 60, 60, 45, 30],
+                  [95, 75, 85, 65, 50, 55, 20],
+                  [80, 90, 70, 75, 55, 40, 35],
+                ];
+                const brandIndex = parseInt(activeBrand.slice(-1), 36) % 4;
+                const height = values[brandIndex][i];
+                
+                return (
+                  <motion.div 
+                    key={i} 
+                    className="flex flex-col items-center gap-1"
+                    initial={{ height: 0 }}
+                    animate={{ height: `${height}%` }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                  >
+                    <motion.div 
+                      className={`w-8 ${
+                        i < 3 ? 'bg-black' : 
+                        i < 6 ? 'bg-gray-600' : 'bg-gray-400'
+                      } rounded-t`}
+                      style={{ height: `${height}%` }}
+                    />
+                    <div className="text-[9px] text-gray-500 transform -rotate-45 origin-top-left mt-2">
+                      {attr}
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+            
+            {/* Y-axis labels */}
+            <div className="absolute left-0 top-0 bottom-0 w-12 flex flex-col justify-between text-[9px] text-gray-500 py-1">
+              <div>$1000k</div>
+              <div>$750k</div>
+              <div>$500k</div>
+              <div>$250k</div>
+              <div>$0k</div>
+            </div>
+          </div>
+          
+          {/* Legend */}
+          <div className="flex gap-4 text-[9px] mt-10">
+            <div className="flex items-center gap-1">
+              <div className="w-3 h-3 bg-black rounded-sm"></div>
+              <span>High Impact</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <div className="w-3 h-3 bg-gray-600 rounded-sm"></div>
+              <span>Medium Impact</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <div className="w-3 h-3 bg-gray-400 rounded-sm"></div>
+              <span>Low Impact</span>
+            </div>
+          </div>
+          
+          {/* Insight box */}
+          <motion.div 
+            className="mt-3 bg-indigo-50 border border-indigo-100 p-2 rounded"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7 }}
+          >
+            <div className="flex items-start gap-2">
+              <div className="font-medium text-[10px] text-indigo-700">Key Decision Insight:</div>
+              <div className="text-[10px] text-indigo-800">
+                {activeBrand} leads with "Design" at $970K—over 20% of its brand value. Leverage this design leadership to reinforce market differentiation.
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
-      
-      <motion.div 
-        className="absolute bottom-3 left-0 right-0 mx-auto w-[80%] h-6 bg-white/90 rounded shadow-sm border border-gray-100 flex items-center justify-between px-3"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-      >
-        <div className="text-[10px] font-medium text-gray-800">Brand Value Model v2.3</div>
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-green-500"></div>
-          <div className="text-[10px] text-gray-600">Live</div>
-        </div>
-      </motion.div>
       
       <div className="absolute top-4 right-4 bg-black/80 text-white text-[10px] px-2 py-1 rounded flex items-center gap-1.5">
         <Play size={10} /> Live Demo
