@@ -20,7 +20,7 @@ const Navbar = () => {
         scrolled ? "bg-white shadow-md py-3" : "bg-transparent"
       )}
     >
-      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link to="/" className="flex items-center">
           <img
             src="/lovable-uploads/7eedce34-6e27-4846-ad94-996dd71f3fc9.png"
@@ -36,14 +36,12 @@ const Navbar = () => {
           <a href="#book-a-demo-with-rrx" className="text-gray-800 hover:text-black transition-colors">Contact</a>
         </div> */}
 
-        <div className="mt-4 sm:mt-0">
-          <a
-            href="https://beta.rrxresearch.com/login"
-            className="bg-black text-white px-5 py-2 rounded hover:bg-gray-800 transition-colors text-sm sm:text-base"
-          >
-            Log In
-          </a>
-        </div>
+        <a
+          href="https://beta.rrxresearch.com/login"
+          className="bg-black text-white px-5 py-2 rounded hover:bg-gray-800 transition-colors text-sm"
+        >
+          Log In
+        </a>
       </div>
     </nav>
   );
