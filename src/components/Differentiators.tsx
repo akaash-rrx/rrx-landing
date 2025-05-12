@@ -558,9 +558,9 @@ const Differentiators = () => {
             BUILT FOR INSIGHT
           </span>
 
-          <h2 className="text-4xl font-bold mb-4">Core differentiators</h2>
+          <h2 className="text-4xl font-bold mb-4">From Noise to Signal</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We don't summarize data. We model it.
+            We don’t summarize what customers say. We model what drives their decisions.
           </p>
         </motion.div>
         
@@ -583,7 +583,7 @@ const Differentiators = () => {
                 Brand Associations & Value Modeling
               </h3>
               <p className="text-gray-700 mb-6">
-                Regression analysis to map consumer associations to brand value. We identify which specific perceptions drive the most value, enabling targeted brand strategy.
+                Regression analysis to quantify how customer perceptions translate to brand value. Identify which associations drive growth and tailor strategy by audience.
               </p>
               <Carousel className="w-full">
                 <CarouselContent className="-ml-2">
@@ -619,7 +619,7 @@ const Differentiators = () => {
                 Conjoint-Based Preference Modeling
               </h3>
               <p className="text-gray-700 mb-6">
-                Quantitative modeling to uncover what features, benefits, or messages matter most to your customers. Reveal the real value of each through rigorous experiments.
+                Quantitative tradeoff modeling using real customer choices to uncover what features, benefits, and messages matter most.
               </p>
               <Carousel className="w-full">
                 <CarouselContent className="-ml-2">
@@ -665,7 +665,7 @@ const Differentiators = () => {
                 Synthetic Data & Simulations
               </h3>
               <p className="text-gray-700 mb-6">
-                Generative modeling for prototyping, stress-testing, and what-if scenarios. Explore potential outcomes without the cost and time of traditional testing.
+                Generative modeling for stress-testing decisions and running what-if scenarios. Forecast real outcomes fast—before investing in rollout.
               </p>
               <Carousel className="w-full">
                 <CarouselContent className="-ml-2">

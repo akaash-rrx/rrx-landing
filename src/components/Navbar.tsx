@@ -34,7 +34,7 @@ const Navbar = () => {
           />
         </a>
         <div className="hidden md:flex space-x-8">
-          <a href="#what-we-offer" className="text-gray-800 hover:text-black transition-colors">Studies</a>
+          <a href="#our-research-stack" className="text-gray-800 hover:text-black transition-colors">Studies</a>
           <a href="#core-differentiators" className="text-gray-800 hover:text-black transition-colors">Analysis</a>
           <a href="#book-a-demo-with-rrx" className="text-gray-800 hover:text-black transition-colors">Why RRX</a>
         </div>

@@ -5,7 +5,7 @@ import { TrendingUp, BookOpen, FileText } from 'lucide-react';
 
 const Offering = () => {
   return (
-    <section id="what-we-offer" className="py-24 px-6 bg-gray-50">
+    <section id="our-research-stack" className="py-24 px-6 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -19,9 +19,9 @@ const Offering = () => {
             DESIGNED FOR SPEED
           </span>
 
-          <h2 className="text-4xl font-bold mb-4">What we offer</h2>
+          <h2 className="text-4xl font-bold mb-4">Our Research Stack</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We deliver state-of-the-art research in 48 hours.
+            Our AI interviewer collects high-quality data in less than 24 hours.
           </p>
         </motion.div>
         
