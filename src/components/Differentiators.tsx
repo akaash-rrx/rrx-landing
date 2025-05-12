@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { TrendingUp, Database, Lightbulb, ChartLine, Play } from 'lucide-react';
@@ -74,7 +75,7 @@ const Differentiators = () => {
               <div>$0k</div>
             </div>
             
-            {/* Bar chart - modified for bottom alignment and prevent text overlap */}
+            {/* Bar chart - modified for bottom alignment, closer bars, and preventing text overlap */}
             <div className="absolute left-12 right-2 bottom-0 flex items-end justify-between">
               {["Design", "Innovation", "Luxury", "Connectivity", "Quality", "Loyalty", "Perception"].map((attr, i) => {
                 const values = [
@@ -89,9 +90,9 @@ const Differentiators = () => {
                 const height = values[brandIndex][i];
                 
                 return (
-                  <div key={i} className="flex flex-col items-center w-7">
+                  <div key={i} className="flex flex-col items-center w-6"> {/* Reduced width from w-7 to w-6 */}
                     <motion.div 
-                      className={`w-full ${
+                      className={`w-4 ${/* Reduced width from w-full to w-4 */
                         i < 3 ? 'bg-black' : 
                         i < 6 ? 'bg-gray-600' : 'bg-gray-400'
                       } rounded-t`}
@@ -99,7 +100,7 @@ const Differentiators = () => {
                       animate={{ height: `${height}px` }}
                       transition={{ duration: 0.5, delay: i * 0.1 }}
                     />
-                    <div className="text-[8px] text-gray-500 mt-1 w-full text-center">
+                    <div className="text-[8px] text-gray-500 mt-1 w-full text-center whitespace-nowrap">
                       {attr}
                     </div>
                   </div>
@@ -220,14 +221,14 @@ const Differentiators = () => {
               <div>0%</div>
             </div>
             
-            {/* Bar chart */}
+            {/* Bar chart - with bars closer together and preserving full text visibility */}
             <div className="absolute left-12 right-2 bottom-0 flex items-end justify-between">
               {(() => {
                 const features = {
                   "Performance": ["Acceleration", "Top Speed", "Engine Type", "Handling", "Efficiency"],
-                  "Design": ["Exterior Lines", "Interior Space", "Materials", "Colors", "Lighting"],
-                  "Technology": ["Connectivity", "Display Size", "Interface", "Voice Control", "Safety Tech"],
-                  "Sustainability": ["Emissions", "Materials", "Energy Use", "Recyclability", "Lifecycle"]
+                  "Design": ["Exterior", "Interior", "Materials", "Colors", "Lighting"],
+                  "Technology": ["Connect", "Display", "Interface", "Voice", "Safety"],
+                  "Sustainability": ["Emissions", "Materials", "Energy", "Recycle", "Lifecycle"]
                 };
                 
                 const values = {
@@ -254,15 +255,15 @@ const Differentiators = () => {
                   const pixelHeight = (height / 100) * 120; // 120px is max height
                   
                   return (
-                    <div key={i} className="flex flex-col items-center w-8">
+                    <div key={i} className="flex flex-col items-center w-6"> {/* Reduced width from w-8 to w-6 */}
                       <motion.div 
-                        className={`w-5 ${selectedColors[i]} rounded-t`}
+                        className={`w-4 ${selectedColors[i]} rounded-t`} {/* Reduced width from w-5 to w-4 */}
                         style={{ height: `${pixelHeight}px` }}
                         initial={{ height: 0 }}
                         animate={{ height: `${pixelHeight}px` }}
                         transition={{ duration: 0.5, delay: i * 0.1 }}
                       />
-                      <div className="text-[8px] text-gray-500 mt-1 w-full text-center truncate">
+                      <div className="text-[8px] text-gray-500 mt-1 w-full text-center overflow-visible whitespace-nowrap">
                         {featureName}
                       </div>
                     </div>
