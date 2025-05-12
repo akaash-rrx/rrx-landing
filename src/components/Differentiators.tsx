@@ -9,7 +9,7 @@ const Differentiators = () => {
   const [activeBrand, setActiveBrand] = useState<string>("Brand B");
   const [selectedFeature, setSelectedFeature] = useState<string>("Performance");
 
-  // Updated modeling demo to match the luxury automotive brand style
+  // Updated modeling demo to match the luxury automotive brand style with fixes for overflow
   const modelingDemo = (
     <div className="relative w-full h-full">
       <div className="absolute inset-0 p-4 flex flex-col">
@@ -45,9 +45,9 @@ const Differentiators = () => {
           ))}
         </div>
         
-        {/* Selected brand detail - reduced height */}
+        {/* Selected brand detail - reduced height to avoid overflow */}
         <motion.div 
-          className="bg-white rounded-md border border-gray-200 p-2 flex-1"
+          className="bg-white rounded-md border border-gray-200 p-2 flex-1 overflow-hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
@@ -64,7 +64,7 @@ const Differentiators = () => {
             </div>
           </div>
           
-          <div className="h-[140px] relative">
+          <div className="h-[130px] relative">
             {/* Y-axis labels - adjusted size */}
             <div className="absolute left-0 top-0 bottom-0 w-10 flex flex-col justify-between text-[8px] text-gray-500 py-1">
               <div>$1000k</div>
@@ -74,24 +74,24 @@ const Differentiators = () => {
               <div>$0k</div>
             </div>
             
-            {/* Bar chart - modified for bottom alignment, closer bars, and preventing text overlap */}
+            {/* Bar chart - modified with bars closer together, narrower, and ensuring it fits */}
             <div className="absolute left-12 right-2 bottom-0 flex items-end justify-between">
-              {["Design", "Innovation", "Luxury", "Connectivity", "Quality", "Loyalty", "Perception"].map((attr, i) => {
+              {["Design", "Innov", "Luxury", "Connect", "Quality", "Loyalty", "Percep"].map((attr, i) => {
                 const values = [
-                  [90, 85, 80, 70, 65, 50, 25],
-                  [85, 80, 75, 60, 60, 45, 30],
-                  [95, 75, 85, 65, 50, 55, 20],
-                  [80, 90, 70, 75, 55, 40, 35],
+                  [85, 80, 75, 65, 60, 45, 22],
+                  [80, 75, 70, 55, 55, 40, 25],
+                  [90, 70, 80, 60, 45, 50, 18],
+                  [75, 85, 65, 70, 50, 35, 30],
                 ];
                 const brandIndex = activeBrand === "Brand A" ? 0 :
                                   activeBrand === "Brand B" ? 1 :
                                   activeBrand === "Brand C" ? 2 : 3;
-                const height = values[brandIndex][i];
+                const height = (values[brandIndex][i] * 1.2); // Scaling to fit properly
                 
                 return (
-                  <div key={i} className="flex flex-col items-center w-6">
+                  <div key={i} className="flex flex-col items-center w-5">
                     <motion.div 
-                      className={`w-4 ${
+                      className={`w-3 ${
                         i < 3 ? 'bg-black' : 
                         i < 6 ? 'bg-gray-600' : 'bg-gray-400'
                       } rounded-t`}
@@ -99,7 +99,7 @@ const Differentiators = () => {
                       animate={{ height: `${height}px` }}
                       transition={{ duration: 0.5, delay: i * 0.1 }}
                     />
-                    <div className="text-[8px] text-gray-500 mt-1 w-full text-center whitespace-nowrap">
+                    <div className="text-[7px] text-gray-500 mt-1 w-full text-center whitespace-nowrap">
                       {attr}
                     </div>
                   </div>
