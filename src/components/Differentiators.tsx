@@ -90,9 +90,9 @@ const Differentiators = () => {
                 const height = values[brandIndex][i];
                 
                 return (
-                  <div key={i} className="flex flex-col items-center w-6"> {/* Reduced width from w-7 to w-6 */}
+                  <div key={i} className="flex flex-col items-center w-6">
                     <motion.div 
-                      className={`w-4 ${/* Reduced width from w-full to w-4 */
+                      className={`w-4 ${
                         i < 3 ? 'bg-black' : 
                         i < 6 ? 'bg-gray-600' : 'bg-gray-400'
                       } rounded-t`}
@@ -255,9 +255,9 @@ const Differentiators = () => {
                   const pixelHeight = (height / 100) * 120; // 120px is max height
                   
                   return (
-                    <div key={i} className="flex flex-col items-center w-6"> {/* Reduced width from w-8 to w-6 */}
+                    <div key={i} className="flex flex-col items-center w-6">
                       <motion.div 
-                        className={`w-4 ${selectedColors[i]} rounded-t`} {/* Reduced width from w-5 to w-4 */}
+                        className={`w-4 ${selectedColors[i]} rounded-t`}
                         style={{ height: `${pixelHeight}px` }}
                         initial={{ height: 0 }}
                         animate={{ height: `${pixelHeight}px` }}
