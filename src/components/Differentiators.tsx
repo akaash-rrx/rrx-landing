@@ -623,7 +623,7 @@ const Differentiators = () => {
   }, []);
 
   return (
-    <section id="differentiators" className="py-24 px-6 bg-gray-50/50">
+    <section id="core-differentiators" className="py-24 px-6 bg-gray-50/50">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -632,9 +632,11 @@ const Differentiators = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <div className="inline-block bg-gradient-to-r from-purple-500 to-indigo-500 text-transparent bg-clip-text font-medium mb-3">
-            Our approach
-          </div>
+          <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-indigo-50 text-indigo-700 text-sm font-medium tracking-wider mb-4">
+            <span className="w-2 h-2 bg-indigo-600 rounded-full mr-2"></span>
+            BUILT FOR INSIGHT
+          </span>
+
           <h2 className="text-4xl font-bold mb-4">Core differentiators</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             We don't summarize data. We model it.

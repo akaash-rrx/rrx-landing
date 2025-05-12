@@ -14,6 +14,11 @@ const Offering = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
+          <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-indigo-50 text-indigo-700 text-sm font-medium tracking-wider mb-4">
+            <span className="w-2 h-2 bg-indigo-600 rounded-full mr-2"></span>
+            DESIGNED FOR SPEED
+          </span>
+
           <h2 className="text-4xl font-bold mb-4">What we offer</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             We deliver state-of-the-art research in 48 hours.
