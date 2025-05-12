@@ -65,8 +65,17 @@ const Differentiators = () => {
           </div>
           
           <div className="h-[140px] relative">
-            {/* Bar chart - reduced height */}
-            <div className="absolute inset-0 flex items-end justify-between px-1">
+            {/* Y-axis labels - adjusted size */}
+            <div className="absolute left-0 top-0 bottom-0 w-10 flex flex-col justify-between text-[8px] text-gray-500 py-1">
+              <div>$1000k</div>
+              <div>$750k</div>
+              <div>$500k</div>
+              <div>$250k</div>
+              <div>$0k</div>
+            </div>
+            
+            {/* Bar chart - modified for bottom alignment and prevent text overlap */}
+            <div className="absolute inset-0 flex items-end justify-between px-1 pb-6">
               {["Design", "Innovation", "Luxury", "Connectivity", "Quality", "Loyalty", "Perception"].map((attr, i) => {
                 const values = [
                   [90, 85, 80, 70, 65, 50, 25],
@@ -80,35 +89,22 @@ const Differentiators = () => {
                 const height = values[brandIndex][i];
                 
                 return (
-                  <motion.div 
-                    key={i} 
-                    className="flex flex-col items-center gap-0.5"
-                    initial={{ height: 0 }}
-                    animate={{ height: `${height}%` }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
-                  >
+                  <div key={i} className="flex flex-col items-center">
                     <motion.div 
                       className={`w-7 ${
                         i < 3 ? 'bg-black' : 
                         i < 6 ? 'bg-gray-600' : 'bg-gray-400'
                       } rounded-t`}
-                      style={{ height: `${height}%` }}
+                      initial={{ height: 0 }}
+                      animate={{ height: `${height}%` }}
+                      transition={{ duration: 0.5, delay: i * 0.1 }}
                     />
-                    <div className="text-[8px] text-gray-500 transform -rotate-45 origin-top-left mt-1">
+                    <div className="text-[8px] text-gray-500 mt-1">
                       {attr}
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })}
-            </div>
-            
-            {/* Y-axis labels - adjusted size */}
-            <div className="absolute left-0 top-0 bottom-0 w-10 flex flex-col justify-between text-[8px] text-gray-500 py-1">
-              <div>$1000k</div>
-              <div>$750k</div>
-              <div>$500k</div>
-              <div>$250k</div>
-              <div>$0k</div>
             </div>
           </div>
           
