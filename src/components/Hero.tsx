@@ -209,12 +209,12 @@ const Hero = () => {
               transition={{ delay: 0.8, duration: 0.6 }}
             >
               <motion.a 
-                href="#book-a-demo-with-rrx" 
+                href="https://cal.com/rrx-demo" 
                 className="group flex items-center justify-center gap-2 bg-black text-white px-8 py-4 rounded-lg hover:bg-gray-900 transition-all text-center shadow-lg hover:shadow-xl"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Get Started
+                Book Demo
                 <motion.span
                   initial={{ x: 0 }}
                   animate={{ x: [0, 5, 0] }}

@@ -20,7 +20,7 @@ const jobDetails: Record<string, JobDetail> = {
     id: 'designer',
     title: 'UX Designer',
     location: 'Palo Alto, CA',
-    salary: '$120,000 - $180,000 per year + equity',
+    salary: '$120,000 - $150,000 per year + equity',
     overview: `RRX builds systems that translate qualitative data into structured insight, helping organizations make better decisions. As a UX Designer, you'll help shape the interface layer of this complex engine, designing ways for users to engage with research outputs, simulated audiences, and evolving decision paths.
 
 You’ll collaborate with product, engineering, and research teams to build an experience that’s both powerful and human-centered. Your work will make the difference between raw research and usable, actionable intelligence — and you’ll be central to helping our users navigate high-stakes questions with confidence.`,
@@ -41,7 +41,7 @@ You’ll collaborate with product, engineering, and research teams to build an e
     id: 'research-scientist',
     title: 'Research Scientist',
     location: 'Palo Alto, CA',
-    salary: '$160,000 - $220,000 per year + equity',
+    salary: '$150,000 - $220,000 per year + equity',
     overview: `At RRX, our core technology transforms raw qualitative data into structured, decision-grade insight. As a Research Scientist, you’ll develop the methodologies behind this transformation. Your work will directly influence how we design, execute, and analyze studies — and how we translate that into clear strategic recommendations.`,
     responsibilities: [
       'Design experiments and inference frameworks to quantify & understand human decision-making',
