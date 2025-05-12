@@ -10,9 +10,9 @@ import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-white relative overflow-hidden">
-      {/* Page-wide gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white opacity-70 pointer-events-none z-0"></div>
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Continuous gradient overlay across the entire page */}
+      <div className="fixed inset-0 bg-gradient-to-b from-gray-50 via-white to-gray-50 opacity-90 pointer-events-none z-0"></div>
       
       <Navbar />
       <Hero />
