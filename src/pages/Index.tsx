@@ -10,32 +10,27 @@ import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="min-h-screen relative">
       {/* Continuous gradient overlay across the entire page */}
-      <div className="fixed inset-0 bg-gradient-to-b from-gray-50 via-white to-gray-50 opacity-90 pointer-events-none z-0"></div>
+      <div className="fixed inset-0 bg-gradient-to-b from-gray-50 via-white to-gray-50 z-0 pointer-events-none"></div>
       
-      <Navbar />
-      <Hero />
-      
-      {/* Sections with transitions */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="relative z-10"
-      >
-        <div className="section-transition">
+      <div className="relative z-10">
+        <Navbar />
+        <Hero />
+        
+        {/* Sections with transitions */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
           <Offering />
-        </div>
-        <div className="section-transition">
           <Differentiators />
-        </div>
-        <div className="section-transition">
           <ContactForm />
-        </div>
-      </motion.div>
-      
-      <Footer />
+        </motion.div>
+        
+        <Footer />
+      </div>
     </div>
   );
 };

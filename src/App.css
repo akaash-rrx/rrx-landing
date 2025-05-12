@@ -49,41 +49,24 @@ html {
 
 /* General transitions */
 section {
-  transition: background-color 0.5s ease-in-out, transform 0.8s ease-out;
+  transition: transform 0.8s ease-out;
   position: relative;
   z-index: 2;
-  background-color: transparent;
+  background-color: transparent !important; /* Force all sections to be transparent */
 }
 
-/* Section transitions with consistent styling - removing hard white edges */
+/* Section transitions with consistent styling */
 .section-transition {
   position: relative;
   z-index: 2;
   margin: 2rem 0;
+  background-color: transparent !important;
 }
 
-.section-transition::before {
-  content: '';
-  position: absolute;
-  top: -50px;
-  left: 0;
-  right: 0;
-  height: 100px;
-  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.1));
-  pointer-events: none;
-  z-index: 1;
-}
-
+/* Remove the separator styles that might create harsh edges */
+.section-transition::before,
 .section-transition::after {
-  content: '';
-  position: absolute;
-  bottom: -50px;
-  left: 0;
-  right: 0;
-  height: 100px;
-  background: linear-gradient(to top, rgba(255,255,255,0), rgba(255,255,255,0.1));
-  pointer-events: none;
-  z-index: 1;
+  display: none;
 }
 
 /* Add more sophisticated animations */
