@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { TrendingUp, Database, Lightbulb, ChartLine, Play } from 'lucide-react';
@@ -19,52 +18,55 @@ const Differentiators = () => {
         </div>
         
         {/* Brand cards row */}
-        <div className="grid grid-cols-4 gap-2 mb-6">
+        <div className="grid grid-cols-4 gap-2 mb-3">
           {["Brand A", "Brand B", "Brand C", "Brand D"].map((brand, i) => (
             <motion.div 
               key={i} 
-              className={`bg-white rounded-md p-3 border ${activeBrand === brand ? 'border-indigo-500 shadow-md' : 'border-gray-200'}`}
+              className={`bg-white rounded-md p-2 border ${activeBrand === brand ? 'border-indigo-500 shadow-md' : 'border-gray-200'}`}
               whileHover={{ scale: 1.02 }}
               onClick={() => setActiveBrand(brand)}
               transition={{ duration: 0.2 }}
             >
-              <div className="flex justify-center mb-2">
-                <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                  {i === 0 && <div className="w-5 h-5 rounded-full bg-blue-400" />}
-                  {i === 1 && <div className="w-5 h-5 rounded-full border-2 border-gray-400" />}
-                  {i === 2 && <div className="w-5 h-5 bg-red-400" />}
-                  {i === 3 && <div className="w-5 h-5 bg-green-400" />}
+              <div className="flex justify-center mb-1">
+                <div className="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center">
+                  {i === 0 && <div className="w-4 h-4 rounded-full bg-blue-400" />}
+                  {i === 1 && <div className="w-4 h-4 rounded-full border-2 border-gray-400" />}
+                  {i === 2 && <div className="w-4 h-4 bg-red-400" />}
+                  {i === 3 && <div className="w-4 h-4 bg-green-400" />}
                 </div>
               </div>
               <div className="text-center text-xs font-medium">{brand}</div>
               <div className="text-xs text-center text-gray-500">{28 - (i * 3)}% Market Share</div>
-              <div className="mt-2 bg-black text-white text-xs px-2 py-1 rounded text-center">
+              <div className="mt-1 bg-black text-white text-xs px-2 py-0.5 rounded text-center">
                 ${(4.2 - (i * 0.3)).toFixed(1)}M
               </div>
             </motion.div>
           ))}
         </div>
         
-        {/* Selected brand detail */}
+        {/* Selected brand detail - reduced height */}
         <motion.div 
-          className="bg-white rounded-md border border-gray-200 p-3 flex-1"
+          className="bg-white rounded-md border border-gray-200 p-2 flex-1"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="flex justify-between items-center mb-2">
+          <div className="flex justify-between items-center mb-1">
             <div>
-              <h4 className="text-sm font-medium">{activeBrand} Association Value</h4>
-              <div className="text-xs text-gray-500">Total brand value: $3.9M</div>
+              <h4 className="text-xs font-medium">{activeBrand} Association Value</h4>
+              <div className="text-[10px] text-gray-500">Total brand value: $3.9M</div>
             </div>
-            <div className="bg-black text-white text-xs px-2 py-1 rounded">
-              {28 - ([...activeBrand][6] * 3)}% Market Share
+            <div className="bg-black text-white text-[10px] px-1.5 py-0.5 rounded">
+              {/* Fix the arithmetic operation error - convert to number instead of using character code */}
+              {activeBrand === "Brand A" ? 28 : 
+               activeBrand === "Brand B" ? 25 : 
+               activeBrand === "Brand C" ? 22 : 19}% Market Share
             </div>
           </div>
           
-          <div className="h-[180px] relative">
-            {/* Bar chart */}
-            <div className="absolute inset-0 flex items-end justify-between px-2">
+          <div className="h-[140px] relative">
+            {/* Bar chart - reduced height */}
+            <div className="absolute inset-0 flex items-end justify-between px-1">
               {["Design", "Innovation", "Luxury", "Connectivity", "Quality", "Loyalty", "Perception"].map((attr, i) => {
                 const values = [
                   [90, 85, 80, 70, 65, 50, 25],
@@ -72,25 +74,27 @@ const Differentiators = () => {
                   [95, 75, 85, 65, 50, 55, 20],
                   [80, 90, 70, 75, 55, 40, 35],
                 ];
-                const brandIndex = parseInt(activeBrand.slice(-1), 36) % 4;
+                const brandIndex = activeBrand === "Brand A" ? 0 :
+                                  activeBrand === "Brand B" ? 1 :
+                                  activeBrand === "Brand C" ? 2 : 3;
                 const height = values[brandIndex][i];
                 
                 return (
                   <motion.div 
                     key={i} 
-                    className="flex flex-col items-center gap-1"
+                    className="flex flex-col items-center gap-0.5"
                     initial={{ height: 0 }}
                     animate={{ height: `${height}%` }}
                     transition={{ duration: 0.5, delay: i * 0.1 }}
                   >
                     <motion.div 
-                      className={`w-8 ${
+                      className={`w-7 ${
                         i < 3 ? 'bg-black' : 
                         i < 6 ? 'bg-gray-600' : 'bg-gray-400'
                       } rounded-t`}
                       style={{ height: `${height}%` }}
                     />
-                    <div className="text-[9px] text-gray-500 transform -rotate-45 origin-top-left mt-2">
+                    <div className="text-[8px] text-gray-500 transform -rotate-45 origin-top-left mt-1">
                       {attr}
                     </div>
                   </motion.div>
@@ -98,8 +102,8 @@ const Differentiators = () => {
               })}
             </div>
             
-            {/* Y-axis labels */}
-            <div className="absolute left-0 top-0 bottom-0 w-12 flex flex-col justify-between text-[9px] text-gray-500 py-1">
+            {/* Y-axis labels - adjusted size */}
+            <div className="absolute left-0 top-0 bottom-0 w-10 flex flex-col justify-between text-[8px] text-gray-500 py-1">
               <div>$1000k</div>
               <div>$750k</div>
               <div>$500k</div>
@@ -108,32 +112,32 @@ const Differentiators = () => {
             </div>
           </div>
           
-          {/* Legend */}
-          <div className="flex gap-4 text-[9px] mt-10">
+          {/* Legend - adjusted size */}
+          <div className="flex gap-3 text-[8px] mt-6">
             <div className="flex items-center gap-1">
-              <div className="w-3 h-3 bg-black rounded-sm"></div>
+              <div className="w-2 h-2 bg-black rounded-sm"></div>
               <span>High Impact</span>
             </div>
             <div className="flex items-center gap-1">
-              <div className="w-3 h-3 bg-gray-600 rounded-sm"></div>
+              <div className="w-2 h-2 bg-gray-600 rounded-sm"></div>
               <span>Medium Impact</span>
             </div>
             <div className="flex items-center gap-1">
-              <div className="w-3 h-3 bg-gray-400 rounded-sm"></div>
+              <div className="w-2 h-2 bg-gray-400 rounded-sm"></div>
               <span>Low Impact</span>
             </div>
           </div>
           
-          {/* Insight box */}
+          {/* Insight box - adjusted size */}
           <motion.div 
-            className="mt-3 bg-indigo-50 border border-indigo-100 p-2 rounded"
+            className="mt-2 bg-indigo-50 border border-indigo-100 p-1.5 rounded"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7 }}
           >
-            <div className="flex items-start gap-2">
-              <div className="font-medium text-[10px] text-indigo-700">Key Decision Insight:</div>
-              <div className="text-[10px] text-indigo-800">
+            <div className="flex items-start gap-1.5">
+              <div className="font-medium text-[9px] text-indigo-700">Key Decision Insight:</div>
+              <div className="text-[9px] text-indigo-800">
                 {activeBrand} leads with "Design" at $970K—over 20% of its brand value. Leverage this design leadership to reinforce market differentiation.
               </div>
             </div>

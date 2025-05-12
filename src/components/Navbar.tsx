@@ -28,7 +28,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <a href="#" className="flex items-center">
           <img 
-            src="/lovable-uploads/7eedce34-6e27-4846-ad94-996dd71f3fc9.png" 
+            src="/lovable-uploads/28983b35-b059-4de6-9b2b-c60d2085f706.png" 
             alt="RRX Research" 
             className="h-10" 
           />
@@ -50,3 +50,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
