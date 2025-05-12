@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { TrendingUp, Database, Lightbulb, ChartLine, Play } from 'lucide-react';
@@ -269,48 +268,48 @@ const Differentiators = () => {
                     />
                   )}
                   
-                  {/* Dynamic axis labels based on selected feature */}
+                  {/* Dynamic axis labels based on selected feature - adjusted positions to prevent overflow */}
                   {selectedFeature === "Performance" && (
                     <>
-                      <text x="50" y="5" fontSize="4" textAnchor="middle" fill="#6b7280">Speed</text>
-                      <text x="92" y="30" fontSize="4" textAnchor="start" fill="#6b7280">Acceleration</text>
-                      <text x="92" y="70" fontSize="4" textAnchor="start" fill="#6b7280">Power</text>
-                      <text x="50" y="95" fontSize="4" textAnchor="middle" fill="#6b7280">Handling</text>
-                      <text x="8" y="70" fontSize="4" textAnchor="end" fill="#6b7280">Efficiency</text>
-                      <text x="8" y="30" fontSize="4" textAnchor="end" fill="#6b7280">Braking</text>
+                      <text x="50" y="8" fontSize="3.5" textAnchor="middle" fill="#6b7280">Speed</text>
+                      <text x="88" y="30" fontSize="3.5" textAnchor="start" fill="#6b7280">Acceleration</text>
+                      <text x="88" y="70" fontSize="3.5" textAnchor="start" fill="#6b7280">Power</text>
+                      <text x="50" y="94" fontSize="3.5" textAnchor="middle" fill="#6b7280">Handling</text>
+                      <text x="12" y="70" fontSize="3.5" textAnchor="end" fill="#6b7280">Efficiency</text>
+                      <text x="12" y="30" fontSize="3.5" textAnchor="end" fill="#6b7280">Braking</text>
                     </>
                   )}
                   
                   {selectedFeature === "Design" && (
                     <>
-                      <text x="50" y="5" fontSize="4" textAnchor="middle" fill="#6b7280">Exterior</text>
-                      <text x="92" y="30" fontSize="4" textAnchor="start" fill="#6b7280">Materials</text>
-                      <text x="92" y="70" fontSize="4" textAnchor="start" fill="#6b7280">Color</text>
-                      <text x="50" y="95" fontSize="4" textAnchor="middle" fill="#6b7280">Interior</text>
-                      <text x="8" y="70" fontSize="4" textAnchor="end" fill="#6b7280">Lighting</text>
-                      <text x="8" y="30" fontSize="4" textAnchor="end" fill="#6b7280">Comfort</text>
+                      <text x="50" y="8" fontSize="3.5" textAnchor="middle" fill="#6b7280">Exterior</text>
+                      <text x="88" y="30" fontSize="3.5" textAnchor="start" fill="#6b7280">Materials</text>
+                      <text x="88" y="70" fontSize="3.5" textAnchor="start" fill="#6b7280">Color</text>
+                      <text x="50" y="94" fontSize="3.5" textAnchor="middle" fill="#6b7280">Interior</text>
+                      <text x="12" y="70" fontSize="3.5" textAnchor="end" fill="#6b7280">Lighting</text>
+                      <text x="12" y="30" fontSize="3.5" textAnchor="end" fill="#6b7280">Comfort</text>
                     </>
                   )}
                   
                   {selectedFeature === "Technology" && (
                     <>
-                      <text x="50" y="5" fontSize="4" textAnchor="middle" fill="#6b7280">Display</text>
-                      <text x="92" y="30" fontSize="4" textAnchor="start" fill="#6b7280">Interface</text>
-                      <text x="92" y="70" fontSize="4" textAnchor="start" fill="#6b7280">Connect</text>
-                      <text x="50" y="95" fontSize="4" textAnchor="middle" fill="#6b7280">Voice</text>
-                      <text x="8" y="70" fontSize="4" textAnchor="end" fill="#6b7280">Safety</text>
-                      <text x="8" y="30" fontSize="4" textAnchor="end" fill="#6b7280">Features</text>
+                      <text x="50" y="8" fontSize="3.5" textAnchor="middle" fill="#6b7280">Display</text>
+                      <text x="88" y="30" fontSize="3.5" textAnchor="start" fill="#6b7280">Interface</text>
+                      <text x="88" y="70" fontSize="3.5" textAnchor="start" fill="#6b7280">Connect</text>
+                      <text x="50" y="94" fontSize="3.5" textAnchor="middle" fill="#6b7280">Voice</text>
+                      <text x="12" y="70" fontSize="3.5" textAnchor="end" fill="#6b7280">Safety</text>
+                      <text x="12" y="30" fontSize="3.5" textAnchor="end" fill="#6b7280">Features</text>
                     </>
                   )}
                   
                   {selectedFeature === "Sustainability" && (
                     <>
-                      <text x="50" y="5" fontSize="4" textAnchor="middle" fill="#6b7280">Emissions</text>
-                      <text x="92" y="30" fontSize="4" textAnchor="start" fill="#6b7280">Materials</text>
-                      <text x="92" y="70" fontSize="4" textAnchor="start" fill="#6b7280">Recycle</text>
-                      <text x="50" y="95" fontSize="4" textAnchor="middle" fill="#6b7280">Energy</text>
-                      <text x="8" y="70" fontSize="4" textAnchor="end" fill="#6b7280">Production</text>
-                      <text x="8" y="30" fontSize="4" textAnchor="end" fill="#6b7280">Lifecycle</text>
+                      <text x="50" y="8" fontSize="3.5" textAnchor="middle" fill="#6b7280">Emissions</text>
+                      <text x="88" y="30" fontSize="3.5" textAnchor="start" fill="#6b7280">Materials</text>
+                      <text x="88" y="70" fontSize="3.5" textAnchor="start" fill="#6b7280">Recycle</text>
+                      <text x="50" y="94" fontSize="3.5" textAnchor="middle" fill="#6b7280">Energy</text>
+                      <text x="12" y="70" fontSize="3.5" textAnchor="end" fill="#6b7280">Production</text>
+                      <text x="12" y="30" fontSize="3.5" textAnchor="end" fill="#6b7280">Lifecycle</text>
                     </>
                   )}
                 </svg>
@@ -493,7 +492,7 @@ const Differentiators = () => {
             >
               <div className="flex justify-between items-start mb-2">
                 <div className="font-medium text-xs">Topic {i+1}</div>
-                <div className={`text-[10px] px-1.5 py-0.5 rounded ${
+                <div className={`text-[10px] px-1.5 py-0.5 rounded-full ${
                   i % 3 === 0 ? 'bg-emerald-100 text-emerald-700' : 
                   i % 3 === 1 ? 'bg-amber-100 text-amber-700' : 
                   'bg-indigo-100 text-indigo-700'
