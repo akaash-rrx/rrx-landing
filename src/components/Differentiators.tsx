@@ -14,8 +14,7 @@ const Differentiators = () => {
     <div className="relative w-full h-full">
       <div className="absolute inset-0 p-4 flex flex-col">
         <div className="mb-2">
-          <h3 className="text-sm font-medium">Brand Associations & Value Modeling</h3>
-          <p className="text-xs text-gray-500">Quantifying how specific attributes drive overall brand value. Hover over each brand to see its breakdown.</p>
+          {/* <h3 className="text-sm font-medium">Brand Associations & Value Modeling</h3> */}
         </div>
         
         {/* Brand cards row */}
@@ -43,6 +42,7 @@ const Differentiators = () => {
               </div>
             </motion.div>
           ))}
+
         </div>
         
         {/* Selected brand detail - reduced height to avoid overflow */}
@@ -75,7 +75,7 @@ const Differentiators = () => {
             </div>
             
             {/* Bar chart - modified with bars closer together, narrower, and ensuring it fits */}
-            <div className="absolute left-12 right-2 bottom-0 flex items-end justify-between">
+            <div className="absolute left-12 right-2 bottom-[-15px] flex items-end justify-between">
               {["Design", "Innov", "Luxury", "Connect", "Quality", "Loyalty", "Percep"].map((attr, i) => {
                 const values = [
                   [85, 80, 75, 65, 60, 45, 22],
@@ -91,7 +91,7 @@ const Differentiators = () => {
                 return (
                   <div key={i} className="flex flex-col items-center w-5">
                     <motion.div 
-                      className={`w-3 ${
+                      className={`w-4 ${
                         i < 3 ? 'bg-black' : 
                         i < 6 ? 'bg-gray-600' : 'bg-gray-400'
                       } rounded-t`}
@@ -107,26 +107,10 @@ const Differentiators = () => {
               })}
             </div>
           </div>
-          
-          {/* Legend - adjusted size */}
-          <div className="flex gap-3 text-[8px] mt-6">
-            <div className="flex items-center gap-1">
-              <div className="w-2 h-2 bg-black rounded-sm"></div>
-              <span>High Impact</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <div className="w-2 h-2 bg-gray-600 rounded-sm"></div>
-              <span>Medium Impact</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <div className="w-2 h-2 bg-gray-400 rounded-sm"></div>
-              <span>Low Impact</span>
-            </div>
-          </div>
-          
+        
           {/* Insight box - adjusted size */}
           <motion.div 
-            className="mt-2 bg-indigo-50 border border-indigo-100 p-1.5 rounded"
+            className="relative top-[30px] bg-indigo-50 border border-indigo-100 p-1.5 rounded"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7 }}
@@ -134,7 +118,7 @@ const Differentiators = () => {
             <div className="flex items-start gap-1.5">
               <div className="font-medium text-[9px] text-indigo-700">Key Decision Insight:</div>
               <div className="text-[9px] text-indigo-800">
-                {activeBrand} leads with "Design" at $970K—over 20% of its brand value. Leverage this design leadership to reinforce market differentiation.
+                {activeBrand} leads with "Design" at $970K. Leverage design to reinforce market differentiation.
               </div>
             </div>
           </motion.div>
@@ -148,8 +132,7 @@ const Differentiators = () => {
     <div className="relative w-full h-full">
       <div className="absolute inset-0 p-4 flex flex-col">
         <div className="mb-2">
-          <h3 className="text-sm font-medium">Conjoint-Based Preference Modeling</h3>
-          <p className="text-xs text-gray-500">Quantifying feature importance and value for consumer decision-making.</p>
+          {/* <h3 className="text-sm font-medium">Conjoint-Based Preference Modeling</h3> */}
         </div>
         
         {/* Horizontal feature selector */}
@@ -464,73 +447,6 @@ const Differentiators = () => {
         </div>
       </div>
       
-      <div className="absolute top-4 right-4 bg-black/80 text-white text-[10px] px-2 py-1 rounded flex items-center gap-1.5">
-        <Play size={10} /> Live Demo
-      </div>
-    </div>
-  );
-
-  const latentTopicDemo = (
-    <div className="relative w-full h-full">
-      <div className="absolute inset-0 p-6">
-        <div className="grid grid-cols-3 grid-rows-3 gap-3 h-full w-full">
-          {[...Array(9)].map((_, i) => (
-            <motion.div 
-              key={i} 
-              className="bg-white/90 rounded-lg shadow-sm border border-gray-100 p-3 flex flex-col"
-              initial={{ scale: 0.9, opacity: 0.7 }}
-              animate={{ 
-                scale: i === (activeDemo % 9) ? 1.05 : 1,
-                opacity: i === (activeDemo % 9) ? 1 : 0.7 + (Math.random() * 0.2)
-              }}
-              transition={{ 
-                duration: 0.8, 
-                repeat: Infinity,
-                repeatType: "reverse",
-                delay: i * 0.2
-              }}
-            >
-              <div className="flex justify-between items-start mb-2">
-                <div className="font-medium text-xs">Topic {i+1}</div>
-                <div className={`text-[10px] px-1.5 py-0.5 rounded-full ${
-                  i % 3 === 0 ? 'bg-emerald-100 text-emerald-700' : 
-                  i % 3 === 1 ? 'bg-amber-100 text-amber-700' : 
-                  'bg-indigo-100 text-indigo-700'
-                }`}>
-                  {i % 3 === 0 ? 'Trending' : i % 3 === 1 ? 'Stable' : 'Emerging'}
-                </div>
-              </div>
-              
-              <div className="flex-1 flex flex-col justify-center">
-                <div className="space-y-1.5">
-                  {[...Array(3)].map((_, j) => (
-                    <div key={j} className="flex items-center gap-1.5">
-                      <div 
-                        className="h-1.5 rounded"
-                        style={{ 
-                          width: `${20 + Math.random() * 60}%`,
-                          backgroundColor: `rgba(${100 + i*20}, ${120 + j*20}, ${190 - i*10}, 0.3)`
-                        }}
-                      ></div>
-                      <div className="text-[9px] text-gray-500">{Math.floor(Math.random() * 100)}%</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              
-              <motion.div 
-                className="mt-2 text-[9px] text-gray-500 italic"
-                animate={{
-                  opacity: [0.5, 1, 0.5]
-                }}
-                transition={{ duration: 4, repeat: Infinity }}
-              >
-                {i % 3 === 0 ? 'Language pattern detected' : i % 3 === 1 ? 'Sentiment analysis' : 'Association mapping'}
-              </motion.div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 
@@ -611,6 +527,11 @@ const Differentiators = () => {
         <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
         <div className="text-[10px] text-gray-600">Real-time data processing</div>
       </div>
+
+      <div className="absolute top-4 right-4 bg-black/80 text-white text-[10px] px-2 py-1 rounded flex items-center gap-1.5">
+        <Play size={10} /> Run New Simulation
+      </div>
+
     </div>
   );
 
