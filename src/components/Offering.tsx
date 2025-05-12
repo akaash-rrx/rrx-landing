@@ -1,11 +1,10 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { TrendingUp, BookOpen, FileText } from 'lucide-react';
 
 const Offering = () => {
   return (
-    <section id="our-research-stack" className="py-24 px-6 relative overflow-hidden">
+    <section id="our-research-stack" className="py-24 px-6 relative overflow-hidden" style={{ background: 'transparent' }}>
       <div className="max-w-7xl mx-auto relative z-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

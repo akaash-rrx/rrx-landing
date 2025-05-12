@@ -47,29 +47,29 @@ html {
   scroll-behavior: smooth;
 }
 
-/* General transitions */
+/* All sections must be fully transparent to show the gradient */
 section {
   transition: transform 0.8s ease-out;
   position: relative;
   z-index: 2;
-  background-color: transparent !important; /* Force all sections to be transparent */
+  background: transparent !important; /* Force all sections to be transparent */
 }
 
-/* Section transitions with consistent styling */
+/* Ensure no background colors interfere with the gradient */
 .section-transition {
   position: relative;
   z-index: 2;
   margin: 2rem 0;
-  background-color: transparent !important;
+  background: transparent !important;
 }
 
-/* Remove the separator styles that might create harsh edges */
+/* Remove any separators or dividers that might block the gradient */
 .section-transition::before,
 .section-transition::after {
   display: none;
 }
 
-/* Add more sophisticated animations */
+/* Keep animations */
 @keyframes fadeIn {
   from {
     opacity: 0;

@@ -10,15 +10,19 @@ import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen relative">
-      {/* Continuous gradient overlay across the entire page */}
-      <div className="fixed inset-0 bg-gradient-to-b from-gray-50 via-white to-gray-50 z-0 pointer-events-none"></div>
+    <div className="min-h-screen">
+      {/* Full page gradient overlay that shows through all content */}
+      <div 
+        className="fixed inset-0 bg-gradient-to-b from-gray-50 via-white to-gray-50 z-0" 
+        style={{ pointerEvents: 'none' }}
+      ></div>
       
+      {/* Content container with transparent background */}
       <div className="relative z-10">
         <Navbar />
         <Hero />
         
-        {/* Sections with transitions */}
+        {/* Sections without any background color */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
