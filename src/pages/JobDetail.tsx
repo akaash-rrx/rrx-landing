@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
@@ -19,63 +18,42 @@ interface JobDetail {
 const jobDetails: Record<string, JobDetail> = {
   'designer': {
     id: 'designer',
-    title: 'Designer',
-    location: 'New York City',
+    title: 'UX Designer',
+    location: 'Palo Alto, CA',
     salary: '$150,000 - $220,000 per year + equity',
-    overview: `At RRX, we're building cutting-edge simulation engines that model the decisions and behaviors of individuals, groups, and entire populations. Your job as a designer is to turn these powerful tools into intuitive, beautiful products our customers love to use.
+    overview: `RRX builds systems that translate qualitative data into structured insight, helping organizations make better decisions through behavioral simulation and causal modeling. As a UX Designer, you'll help shape the interface layer of this complex engine, designing ways for users to engage with research outputs, simulated audiences, and evolving decision paths.
 
-You'll work closely with engineering and growth teams to design interfaces that showcase insights, predictions, and outcomes — from simulating the behavior of a single politician to forecasting market responses to a new product launch.
-
-Simulation design comes with unique challenges: How do you visualize an audience of matcha-drinkers in Brooklyn versus a national population of voters? How do you make these vastly different use cases feel part of one coherent experience? Solving problems like these — and building elegant, scalable design systems around them — will be at the core of your work.`,
+You’ll collaborate with product, engineering, and research teams to build an experience that’s both powerful and human-centered. Your work will make the difference between raw research and usable, actionable intelligence — and you’ll be central to helping our users navigate high-stakes questions with confidence.`,
     responsibilities: [
-      'Design user experiences and interfaces for our simulation platform',
-      'Create original, compelling data visualizations and charts',
-      'Work with product and growth teams to turn user feedback into features',
-      'Define a visual and UX approach to ensure simulations feel magical'
+      'Design intuitive workflows that help users explore simulation outputs and behavioral insights',
+      'Work with researchers and engineers to visualize abstract or multi-scale models',
+      'Own interface design for internal tools and client-facing dashboards',
+      'Establish and maintain a consistent design language across the platform'
     ],
     requirements: [
-      '3+ years of experience',
-      'Willing to work in person in our office in New York, NY, 6 days a week',
-      'Solid understanding of UX principles, including user research, journey mapping, and prototyping',
-      'Familiarity with design systems and scaling UI/UX across multiple use cases'
+      '3+ years of experience in UX or product design roles',
+      'Fluent in design tools like Figma or Sketch, with experience prototyping data-driven interfaces',
+      'Strong systems thinking and ability to reduce complexity through design',
+      'Comfort working with technical teams and engaging directly with research outputs'
     ]
   },
-  'deployment-lead': {
-    id: 'deployment-lead',
-    title: 'Deployment Lead',
-    location: 'Remote (US)',
-    salary: '$140,000 - $180,000 per year + equity',
-    overview: `As a Deployment Lead at RRX, you will play a critical role in ensuring our simulation engines are successfully integrated with our clients' existing systems and workflows. You'll be the bridge between our engineering team and client stakeholders, managing all aspects of the deployment process.`,
-    responsibilities: [
-      'Lead the technical implementation of our platform for enterprise clients',
-      'Develop deployment strategies and timelines based on client requirements',
-      'Collaborate with engineering to troubleshoot integration issues',
-      'Provide technical guidance and support throughout the client onboarding process'
-    ],
-    requirements: [
-      '5+ years of experience in technical project management or similar role',
-      'Strong technical background with experience in enterprise software deployment',
-      'Excellent communication skills and ability to explain complex technical concepts',
-      'Experience with data migration, API integration, and system architecture'
-    ]
-  },
-  'software-engineer': {
-    id: 'software-engineer',
-    title: 'Software Engineer',
-    location: 'Remote (US)',
+  'research-scientist': {
+    id: 'research-scientist',
+    title: 'Research Scientist',
+    location: 'Palo Alto, CA',
     salary: '$160,000 - $220,000 per year + equity',
-    overview: `Join our engineering team at RRX to build the next generation of simulation engines. You'll be working on challenging problems at the intersection of machine learning, behavioral science, and software engineering to create tools that provide unprecedented insights into human behavior and decision-making.`,
+    overview: `At RRX, our core technology transforms raw qualitative data into structured, decision-grade insight. As a Research Scientist, you’ll develop the methodologies behind this transformation, drawing from fields like behavioral economics, computational social science, and causal inference. Your work will directly influence how we extract signal from noisy interviews and simulations — and how we translate that into clear strategic recommendations.`,
     responsibilities: [
-      'Design, develop, and maintain our core simulation platform',
-      'Implement efficient algorithms for processing large datasets',
-      'Build robust APIs and integrations with third-party services',
-      'Collaborate with data scientists to implement and optimize models'
+      'Design experiments and inference frameworks to quantify human decision-making',
+      'Develop and refine methods for thematic analysis, preference modeling, and structural mapping',
+      'Collaborate with engineers to scale qualitative-to-quantitative pipelines',
+      'Contribute to the design of our simulation engine’s modeling architecture'
     ],
     requirements: [
-      '3+ years of experience in software development',
-      'Proficiency in Python, TypeScript, or similar languages',
-      'Experience with distributed systems and cloud infrastructure',
-      'Knowledge of machine learning concepts and frameworks is a plus'
+      'Advanced degree (PhD or MS) in a relevant field like computer science, math, or applied statistics',
+      'Strong foundation in causal inference, experimental design, or structural modeling',
+      'Familiarity with Python and data tools like pandas, NumPy, or scikit-learn',
+      'Ability to collaborate with product, engineering, and client-facing teams'
     ]
   }
 };
@@ -125,7 +103,7 @@ const JobDetail = () => {
             <div className="mt-12">
               <h2 className="text-lg font-semibold uppercase text-gray-500">TO APPLY</h2>
               <p className="mt-2">
-                Send your CV and introduction to <a href="mailto:jobs@rrx.com" className="text-black hover:underline">jobs@rrx.com</a>
+                Send your CV and introduction to <a href="mailto:contact@rrxresearch.com" className="text-black hover:underline">contact@rrxresearch.com</a>
               </p>
             </div>
             

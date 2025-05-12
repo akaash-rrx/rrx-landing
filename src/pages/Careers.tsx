@@ -13,9 +13,9 @@ interface Job {
 }
 
 const jobs: Job[] = [
-  { id: 'designer', title: 'Designer', type: 'Full Time' },
-  { id: 'deployment-lead', title: 'Deployment Lead', type: 'Full Time' },
-  { id: 'software-engineer', title: 'Software Engineer', type: 'Full Time' },
+  { id: 'designer', title: 'UX Designer', type: 'Full Time' },
+  // { id: 'deployment-lead', title: 'Deployment Lead', type: 'Full Time' },
+  { id: 'research-scientist', title: 'Research Scientist', type: 'Full Time' },
 ];
 
 const Careers = () => {
@@ -61,8 +61,8 @@ const Careers = () => {
             <div className="mt-16 text-center">
               <p className="text-gray-600">
                 Don't see what you're looking for? 
-                <a href="mailto:jobs@rrx.com" className="text-black ml-2 hover:underline">
-                  Get in touch: jobs@rrx.com
+                <a href="mailto:contact@rrxresearch.com" className="text-black ml-2 hover:underline">
+                  Get in touch: contact@rrxresearch.com
                 </a>
               </p>
             </div>
