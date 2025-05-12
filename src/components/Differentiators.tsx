@@ -7,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 const Differentiators = () => {
   const [activeDemo, setActiveDemo] = useState<number>(0);
   const [activeBrand, setActiveBrand] = useState<string>("Brand B");
+  const [selectedFeature, setSelectedFeature] = useState<string>("Performance");
 
   // Updated modeling demo to match the luxury automotive brand style
   const modelingDemo = (
@@ -134,6 +135,157 @@ const Differentiators = () => {
               <div className="font-medium text-[9px] text-indigo-700">Key Decision Insight:</div>
               <div className="text-[9px] text-indigo-800">
                 {activeBrand} leads with "Design" at $970K—over 20% of its brand value. Leverage this design leadership to reinforce market differentiation.
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+      
+      <div className="absolute top-4 right-4 bg-black/80 text-white text-[10px] px-2 py-1 rounded flex items-center gap-1.5">
+        <Play size={10} /> Live Demo
+      </div>
+    </div>
+  );
+  
+  // Updated demo for conjoint-based preference modeling
+  const conjointModelingDemo = (
+    <div className="relative w-full h-full">
+      <div className="absolute inset-0 p-4 flex flex-col">
+        <div className="mb-2">
+          <h3 className="text-sm font-medium">Conjoint-Based Preference Modeling</h3>
+          <p className="text-xs text-gray-500">Quantifying feature importance and value for consumer decision-making.</p>
+        </div>
+        
+        {/* Feature category rows */}
+        <div className="grid grid-cols-4 gap-2 mb-3">
+          {["Performance", "Design", "Technology", "Sustainability"].map((feature, i) => (
+            <motion.div 
+              key={i} 
+              className={`bg-white rounded-md p-2 border ${selectedFeature === feature ? 'border-purple-500 shadow-md' : 'border-gray-200'}`}
+              whileHover={{ scale: 1.02 }}
+              onClick={() => setSelectedFeature(feature)}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="flex justify-center mb-1">
+                <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
+                  i === 0 ? 'bg-purple-100' : 
+                  i === 1 ? 'bg-blue-100' :
+                  i === 2 ? 'bg-amber-100' :
+                  'bg-green-100'
+                }`}>
+                  {i === 0 && <div className="w-3 h-3 rounded-sm bg-purple-500" />}
+                  {i === 1 && <div className="w-3 h-3 rounded-sm bg-blue-500" />}
+                  {i === 2 && <div className="w-3 h-3 rounded-sm bg-amber-500" />}
+                  {i === 3 && <div className="w-3 h-3 rounded-sm bg-green-500" />}
+                </div>
+              </div>
+              <div className="text-center text-xs font-medium">{feature}</div>
+              <div className="text-xs text-center text-gray-500">{i === 0 ? 'High' : i === 1 ? 'Medium' : i === 2 ? 'Medium' : 'Low'} Priority</div>
+            </motion.div>
+          ))}
+        </div>
+        
+        {/* Selected feature detail */}
+        <motion.div 
+          className="bg-white rounded-md border border-gray-200 p-3 flex-1"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="flex justify-between items-center mb-2">
+            <div>
+              <h4 className="text-xs font-medium">{selectedFeature} Feature Importance</h4>
+              <div className="text-[10px] text-gray-500">Relative importance in purchase decisions</div>
+            </div>
+            <div className={`px-1.5 py-0.5 rounded text-[10px] ${
+              selectedFeature === "Performance" ? 'bg-purple-100 text-purple-700' :
+              selectedFeature === "Design" ? 'bg-blue-100 text-blue-700' :
+              selectedFeature === "Technology" ? 'bg-amber-100 text-amber-700' :
+              'bg-green-100 text-green-700'
+            }`}>
+              {selectedFeature === "Performance" ? '38% Impact' : 
+               selectedFeature === "Design" ? '27% Impact' : 
+               selectedFeature === "Technology" ? '23% Impact' : 
+               '12% Impact'}
+            </div>
+          </div>
+          
+          <div className="h-[140px] relative">
+            {/* Y-axis labels */}
+            <div className="absolute left-0 top-0 bottom-0 w-10 flex flex-col justify-between text-[8px] text-gray-500 py-1">
+              <div>100%</div>
+              <div>75%</div>
+              <div>50%</div>
+              <div>25%</div>
+              <div>0%</div>
+            </div>
+            
+            {/* Bar chart */}
+            <div className="absolute left-12 right-2 bottom-0 flex items-end justify-between">
+              {(() => {
+                const features = {
+                  "Performance": ["Acceleration", "Top Speed", "Engine Type", "Handling", "Efficiency"],
+                  "Design": ["Exterior Lines", "Interior Space", "Materials", "Colors", "Lighting"],
+                  "Technology": ["Connectivity", "Display Size", "Interface", "Voice Control", "Safety Tech"],
+                  "Sustainability": ["Emissions", "Materials", "Energy Use", "Recyclability", "Lifecycle"]
+                };
+                
+                const values = {
+                  "Performance": [85, 65, 55, 75, 40],
+                  "Design": [70, 60, 80, 50, 65],
+                  "Technology": [65, 75, 60, 45, 80],
+                  "Sustainability": [50, 70, 55, 65, 45]
+                };
+                
+                const colors = {
+                  "Performance": ["bg-purple-800", "bg-purple-700", "bg-purple-600", "bg-purple-500", "bg-purple-400"],
+                  "Design": ["bg-blue-800", "bg-blue-700", "bg-blue-600", "bg-blue-500", "bg-blue-400"],
+                  "Technology": ["bg-amber-800", "bg-amber-700", "bg-amber-600", "bg-amber-500", "bg-amber-400"],
+                  "Sustainability": ["bg-green-800", "bg-green-700", "bg-green-600", "bg-green-500", "bg-green-400"]
+                };
+                
+                const selectedFeatureData = features[selectedFeature as keyof typeof features];
+                const selectedValues = values[selectedFeature as keyof typeof values];
+                const selectedColors = colors[selectedFeature as keyof typeof colors];
+                
+                return selectedFeatureData.map((featureName, i) => {
+                  // Fixed pixel heights instead of percentages
+                  const height = selectedValues[i];
+                  const pixelHeight = (height / 100) * 120; // 120px is max height
+                  
+                  return (
+                    <div key={i} className="flex flex-col items-center w-8">
+                      <motion.div 
+                        className={`w-5 ${selectedColors[i]} rounded-t`}
+                        style={{ height: `${pixelHeight}px` }}
+                        initial={{ height: 0 }}
+                        animate={{ height: `${pixelHeight}px` }}
+                        transition={{ duration: 0.5, delay: i * 0.1 }}
+                      />
+                      <div className="text-[8px] text-gray-500 mt-1 w-full text-center truncate">
+                        {featureName}
+                      </div>
+                    </div>
+                  );
+                });
+              })()}
+            </div>
+          </div>
+          
+          {/* Insights */}
+          <motion.div 
+            className="mt-2 bg-purple-50 border border-purple-100 p-1.5 rounded"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7 }}
+          >
+            <div className="flex items-start gap-1.5">
+              <div className="font-medium text-[9px] text-purple-700">Model Insight:</div>
+              <div className="text-[9px] text-purple-800">
+                {selectedFeature === "Performance" ? 'Acceleration (85%) is the top performance driver – 2.1x more valued than efficiency.' :
+                 selectedFeature === "Design" ? 'Material quality (80%) dominates design perception – 1.6x more important than color options.' :
+                 selectedFeature === "Technology" ? 'Safety tech (80%) is the leading technology value driver for luxury segment buyers.' :
+                 'Sustainable materials (70%) have the highest environmental impact on purchase intent.'}
               </div>
             </div>
           </motion.div>
@@ -385,18 +537,18 @@ const Differentiators = () => {
                 <Database className="text-white" size={24} />
               </div>
               <h3 className="text-2xl font-bold mb-4">
-                Latent topic identification
+                Conjoint-Based Preference Modeling
               </h3>
               <p className="text-gray-700 mb-6">
-                AI-driven text mining to reveal themes and forecast narrative change. Our algorithms detect emerging concepts before they become mainstream trends.
+                Quantitative modeling to uncover what features, benefits, or messages matter most to your customers. Reveal the real-world value of each through rigorous experimental design.
               </p>
               <Carousel className="w-full">
                 <CarouselContent className="-ml-2">
                   {[
-                    "Uncover hidden patterns in language",
-                    "Track sentiment evolution over time",
-                    "Detect emerging narratives early",
-                    "Quantify concept associations"
+                    "Isolate feature importance by segment",
+                    "Calculate price sensitivity thresholds",
+                    "Simulate market response to changes",
+                    "Optimize product configurations"
                   ].map((item, index) => (
                     <CarouselItem key={index} className="pl-2 basis-full md:basis-1/2">
                       <Card>
@@ -414,7 +566,7 @@ const Differentiators = () => {
             </div>
             <div className="order-1 md:order-2 rounded-xl overflow-hidden h-[400px] relative bg-gradient-to-br from-slate-50 to-purple-50 shadow-lg border border-gray-200">
               <div className="absolute inset-0 flex items-center justify-center">
-                {latentTopicDemo}
+                {conjointModelingDemo}
               </div>
             </div>
           </motion.div>
