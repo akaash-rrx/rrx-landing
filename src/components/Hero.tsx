@@ -180,7 +180,7 @@ const Hero = () => {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.6, duration: 0.8 }}
                 >
-                  intelligence
+                  intelligence engine.
                 </motion.span>
                 <motion.span 
                   className="absolute -bottom-1 left-0 w-full h-[6px] bg-indigo-500 rounded-full opacity-60"
@@ -257,10 +257,10 @@ const Hero = () => {
                       <span className="text-sm font-semibold text-gray-700">RRX DASHBOARD</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <span className="flex items-center text-xs text-indigo-600">
-                        <span className="w-2 h-2 bg-indigo-600 rounded-full mr-1.5"></span>
-                        1,204 Interviews Analyzed
-                      </span>
+                    <span className="flex items-center text-xs text-green-600">
+                      <span className="w-2 h-2 bg-green-600 rounded-full mr-1.5 inline-block"></span>
+                      <span>Live</span>
+                    </span>
                       <div className="flex items-center space-x-2 bg-gray-50 px-2.5 py-1 rounded-md">
                         <Clock className="h-3.5 w-3.5 text-gray-500" />
                         <span className="text-xs text-gray-600">Last 30 Days</span>
@@ -413,7 +413,7 @@ const Hero = () => {
                           {activeSegment === 3 && (
                             <div className="grid grid-cols-2 gap-2 text-xs">
                               <div className="flex justify-between bg-white px-2.5 py-1.5 rounded border border-gray-200">
-                                <span className="text-gray-600">Average Age</span>
+                                <span className="text-gray-600">Average <br /> Age</span>
                                 <span className="font-medium text-gray-900">31</span>
                               </div>
                               <div className="flex justify-between bg-white px-2.5 py-1.5 rounded border border-gray-200">

@@ -26,7 +26,7 @@ const Navbar = () => {
       scrolled ? "bg-white shadow-md py-3" : "bg-transparent"
     )}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <a href="#" className="flex items-center">
+        <a href="#" className="flex items-left -ml-10">
           <img 
             src="/lovable-uploads/28983b35-b059-4de6-9b2b-c60d2085f706.png" 
             alt="RRX Research" 
@@ -42,7 +42,7 @@ const Navbar = () => {
           href="#contact" 
           className="bg-black text-white px-5 py-2 rounded hover:bg-gray-800 transition-colors"
         >
-          Get Started
+          Log In
         </a>
       </div>
     </nav>

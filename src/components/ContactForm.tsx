@@ -64,10 +64,7 @@ const ContactForm = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h3 className="text-2xl font-semibold mb-6">Start a conversation</h3>
-            <p className="text-gray-600 mb-8">
-              Tell us about your research needs and we'll get back to you within 24 hours.
-            </p>
+            <h3 className="text-2xl font-semibold mb-6">Send us a note. We'll get back to you today.</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
@@ -133,7 +130,7 @@ const ContactForm = () => {
             transition={{ duration: 0.8 }}
             className="bg-white p-8 rounded-xl self-start"
           >
-            <h3 className="text-2xl font-semibold mb-6">Why work with us?</h3>
+            <h3 className="text-2xl font-semibold mb-6">The RRX Process</h3>
             <ul className="space-y-6">
               <li className="flex">
                 <div className="mt-1 mr-4 flex-shrink-0">
@@ -142,9 +139,9 @@ const ContactForm = () => {
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-medium mb-2">48-hour turnaround</h4>
+                  <h4 className="font-medium mb-2">Tell us what's at stake</h4>
                   <p className="text-gray-600">
-                    Get actionable insights in just two days, not weeks or months.
+                    Tell us the decision you need to make: launch a product, refine messaging, or find out what drives loyalty. 
                   </p>
                 </div>
               </li>
@@ -155,9 +152,9 @@ const ContactForm = () => {
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-medium mb-2">Structured data modeling</h4>
+                  <h4 className="font-medium mb-2">Talk to your customers</h4>
                   <p className="text-gray-600">
-                    Move beyond anecdotes to statistical confidence in your decisions.
+                    We recruit and connect with your audience using AI-led interviews, voice diaries, and real-time check-ins—new leads or existing users.
                   </p>
                 </div>
               </li>
@@ -168,9 +165,9 @@ const ContactForm = () => {
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-medium mb-2">AI-powered methodology</h4>
+                  <h4 className="font-medium mb-2">Get decision-grade insights</h4>
                   <p className="text-gray-600">
-                    Leverage cutting-edge technology for deeper, more nuanced insights.
+                    Our models turn raw feedback into structured outputs: brand maps, conjoint models, and synthetic simulations tailored to your goals.
                   </p>
                 </div>
               </li>
@@ -181,9 +178,9 @@ const ContactForm = () => {
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-medium mb-2">Expert analysis</h4>
+                  <h4 className="font-medium mb-2">Trust the experts</h4>
                   <p className="text-gray-600">
-                    Human researchers interpret and contextualize all findings.
+                    RRX researchers oversee every step, interpreting results and engineering custom recommendations for your use case.
                   </p>
                 </div>
               </li>
