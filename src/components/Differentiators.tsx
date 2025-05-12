@@ -579,11 +579,8 @@ const Differentiators = () => {
               </div>
             </div>
             <div>
-              <div className="inline-flex p-3 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-md mb-6 shadow-md">
-                <TrendingUp className="text-white" size={24} />
-              </div>
               <h3 className="text-2xl font-bold mb-4">
-                Brand associations & value modeling
+                Brand Associations & Value Modeling
               </h3>
               <p className="text-gray-700 mb-6">
                 Regression analysis to map consumer associations to brand value. We identify which specific perceptions drive the most value, enabling targeted brand strategy.
@@ -591,16 +588,14 @@ const Differentiators = () => {
               <Carousel className="w-full">
                 <CarouselContent className="-ml-2">
                   {[
-                    "Isolate key value drivers from noise",
-                    "Forecast impact of perception changes",
-                    "Build predictive models with high accuracy",
-                    "Optimize messaging for maximum ROI"
+                    "Compare brand positioning by channel",
+                    "Track shifts in brand narrative over time"
                   ].map((item, index) => (
                     <CarouselItem key={index} className="pl-2 basis-full md:basis-1/2">
                       <Card>
                         <CardContent className="p-3">
                           <div className="flex items-start">
-                            <span className="mr-2 text-lg text-indigo-500">→</span>
+                            {/* <span className="mr-2 text-lg text-indigo-500">→</span> */}
                             <span className="text-sm">{item}</span>
                           </div>
                         </CardContent>
@@ -620,28 +615,23 @@ const Differentiators = () => {
             className="grid md:grid-cols-2 gap-12 items-center"
           >
             <div className="order-2 md:order-1">
-              <div className="inline-flex p-3 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-md mb-6 shadow-md">
-                <Database className="text-white" size={24} />
-              </div>
               <h3 className="text-2xl font-bold mb-4">
                 Conjoint-Based Preference Modeling
               </h3>
               <p className="text-gray-700 mb-6">
-                Quantitative modeling to uncover what features, benefits, or messages matter most to your customers. Reveal the real-world value of each through rigorous experimental design.
+                Quantitative modeling to uncover what features, benefits, or messages matter most to your customers. Reveal the real value of each through rigorous experiments.
               </p>
               <Carousel className="w-full">
                 <CarouselContent className="-ml-2">
                   {[
-                    "Isolate feature importance by segment",
-                    "Calculate price sensitivity thresholds",
-                    "Simulate market response to changes",
-                    "Optimize product configurations"
+                    "Identify must-have features by audience",
+                    "Test new value props before launch",
                   ].map((item, index) => (
                     <CarouselItem key={index} className="pl-2 basis-full md:basis-1/2">
                       <Card>
                         <CardContent className="p-3">
                           <div className="flex items-start">
-                            <span className="mr-2 text-lg text-indigo-500">→</span>
+                            {/* <span className="mr-2 text-lg text-indigo-500">→</span> */}
                             <span className="text-sm">{item}</span>
                           </div>
                         </CardContent>
@@ -671,11 +661,8 @@ const Differentiators = () => {
               </div>
             </div>
             <div>
-              <div className="inline-flex p-3 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-md mb-6 shadow-md">
-                <Lightbulb className="text-white" size={24} />
-              </div>
               <h3 className="text-2xl font-bold mb-4">
-                Synthetic data & simulations
+                Synthetic Data & Simulations
               </h3>
               <p className="text-gray-700 mb-6">
                 Generative modeling for prototyping, stress-testing, and what-if scenarios. Explore potential outcomes without the cost and time of traditional testing.
@@ -683,16 +670,14 @@ const Differentiators = () => {
               <Carousel className="w-full">
                 <CarouselContent className="-ml-2">
                   {[
-                    "Test concepts before investment",
-                    "Predict audience response with high accuracy",
-                    "Run thousands of simulations in minutes",
-                    "Optimize for specific business outcomes"
+                    "Model downstream impact of messaging",
+                    "Compare rollout strategies side-by-side",
                   ].map((item, index) => (
                     <CarouselItem key={index} className="pl-2 basis-full md:basis-1/2">
                       <Card>
                         <CardContent className="p-3">
                           <div className="flex items-start">
-                            <span className="mr-2 text-lg text-indigo-500">→</span>
+                            {/* <span className="mr-2 text-lg text-indigo-500">→</span> */}
                             <span className="text-sm">{item}</span>
                           </div>
                         </CardContent>
